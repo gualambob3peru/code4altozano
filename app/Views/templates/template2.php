@@ -29,6 +29,22 @@
         .miNav a {
             color: white;
         }
+        .miDrop{
+            list-style-type: none;
+            padding-top: 8px;
+        }
+        .miDrop:hover a{
+            color: white !important;
+        }
+        .miDrop a{
+            color: white !important;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .miDrop:hover ul{
+            display: block;
+        }
     </style>
 </head>
 
@@ -66,35 +82,37 @@
 
 
                     <?php if ($_SESSION["personal"]["idCargo"] == "2") : ?>
+                        <ul class="miDrop">
 
-                        <li class="nav-item dropdown ">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Maestros
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="admin/empresa">Empresas</a></li>
-                                <li><a class="dropdown-item" href="admin/personal">Personal</a></li>
-                                <li><a class="dropdown-item" href="admin/key">Key</a></li>
-                                <li><a class="dropdown-item" href="admin/banco">Bancos</a></li>
+                            <li>
+                                <a class="text-white">
+                                    Maestros
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="admin/empresa">Empresas</a></li>
+                                    <li><a class="dropdown-item" href="admin/personal">Personal</a></li>
+                                    <li><a class="dropdown-item" href="admin/key">Key</a></li>
+                                    <li><a class="dropdown-item" href="admin/banco">Bancos</a></li>
 
-                                <li><a class="dropdown-item" href="admin/clasecosto">Clase costo</a></li>
-                           <!--      <li><a class="dropdown-item" href="admin/cuenta1">Cuentas 1</a></li>
-                                <li><a class="dropdown-item" href="admin/cuenta2">Cuentas 2</a></li>
-                                <li><a class="dropdown-item" href="admin/cuenta3">Cuentas 3</a></li> -->
-                                <li><a class="dropdown-item" href="admin/clasecosto/cuentas">Cuentas Total</a></li>
+                                    <li><a class="dropdown-item" href="admin/clasecosto">Clase costo</a></li>
+                            <!--      <li><a class="dropdown-item" href="admin/cuenta1">Cuentas 1</a></li>
+                                    <li><a class="dropdown-item" href="admin/cuenta2">Cuentas 2</a></li>
+                                    <li><a class="dropdown-item" href="admin/cuenta3">Cuentas 3</a></li> -->
+                                    <li><a class="dropdown-item" href="admin/clasecosto/cuentas">Cuentas Total</a></li>
 
-                            </ul>
-                        </li>
+                                </ul>
+                            </li>
+                        </ul>
                     <?php endif; ?>
 
 
                 </ul>
 
 
-                <ul class="navbar-nav">
+                <ul class="miDrop">
 
-                    <li class="nav-item dropdown ">
-                        <a class="nav-link dropdown-toggle" href="#" id=" navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <li>
+                        <a class="text-white">
                             <?php
                             if ($_SESSION["personal"]["idCargo"] == "1") {
                                 $cargo = "GERENCIA";
@@ -107,20 +125,12 @@
 
                             <?= $_SESSION["personal"]["nombres"]. " ".$_SESSION["personal"]["apellidoPaterno"]." ".$_SESSION["personal"]["apellidoMaterno"]. " - " . $cargo ?>
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown2">
+                        <ul class="dropdown-menu dropdown-menu-dark">
                             <li><a class="dropdown-item" href="admin/logout"><i class="bi bi-box-arrow-right"></i> Cerrar sesión</a></li>
 
                         </ul>
                     </li>
                 </ul>
-
-
-
-
-
-
-
-
             </div>
         </div>
     </nav>
@@ -128,16 +138,8 @@
     <div class="container-fluid">
         <?php echo $body ?>
     </div>
+   
 
-    <!-- Optional JavaScript; choose one of the two! -->
-
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script>
-    -->
 </body>
 
 </html>
