@@ -5,7 +5,7 @@
         <div class="mb-3 row">
             <label for="descripcion" class="col-sm-2 col-form-label">Descripción</label>
             <div class="col-sm-10">
-                <input type="text" name="descripcion" class="form-control" id="descripcion" value="<?= $f_model["descripcion"] ?>">
+                <input type="text" name="descripcion" class="form-control" id="descripcion" value="<?= $f_model["descripcion"] ?>" required>
                 <?php if ($validation->getError('descripcion')) { ?>
                     <div class='alert alert-danger mt-2'>
                         <?= $error = $validation->getError('descripcion'); ?>

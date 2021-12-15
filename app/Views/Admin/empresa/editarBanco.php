@@ -9,7 +9,7 @@
             <div class="col-sm-10">
                 
 
-                <select name="idBanco" id="idBanco" class="form-select">
+                <select name="idBanco" id="idBanco" class="form-select" required>
                     <option value="">Seleccionar banco</option>
                     <?php foreach($bancos as $key=>$value): ?>
                     <option <?php echo (( $banco->idBanco == $value["id"] )?"selected":"") ?> value="<?= $value["id"] ?>"><?= $value["descripcion"] ?></option>
@@ -29,7 +29,7 @@
             <div class="col-sm-10">
                 
 
-                <select name="idMoneda" id="idMoneda" class="form-select">
+                <select name="idMoneda" id="idMoneda" class="form-select" required>
                     <option value="">Seleccionar banco</option>
                     <?php foreach($monedas as $key=>$value): ?>
                     <option <?php echo (( $banco->idMoneda == $value["id"] )?"selected":"") ?> value="<?= $value["id"] ?>"><?= $value["descripcion"] ?></option>
@@ -47,7 +47,7 @@
         <div class="mb-3 row">
             <label for="nroCuenta" class="col-sm-2 col-form-label">Nº Cuenta</label>
             <div class="col-sm-10">
-                <input type="text" name="nroCuenta" id="nroCuenta" class="form-control" value="<?= $banco->nroCuenta ?>">
+                <input type="text" name="nroCuenta" id="nroCuenta" class="form-control" value="<?= $banco->nroCuenta ?>" required>
                 <?php if ($validation->getError('nroCuenta')) { ?>
                     <div class='alert alert-danger mt-2'>
                         <?= $error = $validation->getError('nroCuenta'); ?>

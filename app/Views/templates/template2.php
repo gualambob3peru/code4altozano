@@ -29,20 +29,23 @@
         .miNav a {
             color: white;
         }
-        .miDrop{
+
+        .miDrop {
             list-style-type: none;
             padding-top: 8px;
         }
-        .miDrop:hover a{
+
+        .miDrop:hover a {
             color: white !important;
         }
-        .miDrop a{
+
+        .miDrop a {
             color: white !important;
             cursor: pointer;
             text-decoration: none;
         }
 
-        .miDrop:hover ul{
+        .miDrop:hover ul {
             display: block;
         }
     </style>
@@ -68,17 +71,20 @@
                         <a class="nav-link active" aria-current="page" href="admin/oc/rendicion">Rendición</a>
                     </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="admin/oc/reporteOrdenes">Reporte Ordenes</a>
-                    </li>
+                    <ul class="miDrop">
 
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="admin/oc/reporteFinanzas">Reporte Finanzas</a>
-                    </li>
+                        <li>
+                            <a class="text-white">
+                            <i class="bi bi-caret-down-fill"></i> Reportes
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="admin/oc/reporteOrdenes">Reporte Ordenes</a></li>
+                                <li><a class="dropdown-item" href="admin/oc/reporteFinanzas">Reporte Finanzas</a></li>
+                                <li><a class="dropdown-item" href="admin/oc/reporteTesoreria">Reporte Tesorería</a></li>
+                            </ul>
+                        </li>
+                    </ul>
 
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="admin/oc/reporteTesoreria">Reporte Tesorería</a>
-                    </li>
 
 
                     <?php if ($_SESSION["personal"]["idCargo"] == "2") : ?>
@@ -86,7 +92,7 @@
 
                             <li>
                                 <a class="text-white">
-                                    Maestros
+                                <i class="bi bi-caret-down-fill"></i> Maestros
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
                                     <li><a class="dropdown-item" href="admin/empresa">Empresas</a></li>
@@ -95,7 +101,7 @@
                                     <li><a class="dropdown-item" href="admin/banco">Bancos</a></li>
 
                                     <li><a class="dropdown-item" href="admin/clasecosto">Clase costo</a></li>
-                            <!--      <li><a class="dropdown-item" href="admin/cuenta1">Cuentas 1</a></li>
+                                    <!--      <li><a class="dropdown-item" href="admin/cuenta1">Cuentas 1</a></li>
                                     <li><a class="dropdown-item" href="admin/cuenta2">Cuentas 2</a></li>
                                     <li><a class="dropdown-item" href="admin/cuenta3">Cuentas 3</a></li> -->
                                     <li><a class="dropdown-item" href="admin/clasecosto/cuentas">Cuentas Total</a></li>
@@ -123,7 +129,7 @@
                             }
                             ?>
 
-                            <?= $_SESSION["personal"]["nombres"]. " ".$_SESSION["personal"]["apellidoPaterno"]." ".$_SESSION["personal"]["apellidoMaterno"]. " - " . $cargo ?>
+                            <?= $_SESSION["personal"]["nombres"] . " " . $_SESSION["personal"]["apellidoPaterno"] . " " . $_SESSION["personal"]["apellidoMaterno"] . " - " . $cargo ?>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark">
                             <li><a class="dropdown-item" href="admin/logout"><i class="bi bi-box-arrow-right"></i> Cerrar sesión</a></li>
@@ -138,7 +144,7 @@
     <div class="container-fluid">
         <?php echo $body ?>
     </div>
-   
+
 
 </body>
 

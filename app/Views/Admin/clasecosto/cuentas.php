@@ -22,26 +22,26 @@
     }
 </style>
 
-<h3>Cuentas</h3>
-
+<h3>Gestión de Cuentas</h3>
+<hr>
 <div class="row">
     <div class="col-md-3">
-        <h3>Clase de costo</h3>
+        <h5>Clase de costo</h5>
         <button id="btn_clasecosto" class="btn btn-success mb-4"><i class="bi bi-plus-lg"></i> Agregar</button>
         <div id="clase"></div>
     </div>
     <div class="col-md-3">
-        <h3>Cuenta 1</h3>
+        <h5>Cuenta 1</h5>
         <button id="btn_cuenta1" class="btn btn-success mb-4"><i class="bi bi-plus-lg"></i> Agregar</button>
         <div id="cuenta1"></div>
     </div>
     <div class="col-md-3">
-        <h3>Cuenta 2</h3>
+        <h5>Cuenta 2</h5>
         <button id="btn_cuenta2" class="btn btn-success mb-4"><i class="bi bi-plus-lg"></i> Agregar</button>
         <div id="cuenta2"></div>
     </div>
     <div class="col-md-3">
-        <h3>Cuenta 3</h3>
+        <h5>Cuenta 3</h5>
         <button id="btn_cuenta3" class="btn btn-success mb-4"><i class="bi bi-plus-lg"></i> Agregar</button>
         <div id="cuenta3"></div>
     </div>

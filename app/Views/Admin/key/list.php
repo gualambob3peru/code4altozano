@@ -3,7 +3,7 @@
 <h3>Listado de <?= $lista ?></h3>
 
 <p>
-    <a href="admin/<?= $lista ?>/agregar" class="btn btn-warning"><i class="bi bi-plus-lg"></i></a>
+    <a href="admin/<?= $lista ?>/agregar" class="btn btn-warning"><i class="bi bi-plus-lg"></i> Agregar Key</a>
 </p>
 
 <table class="table table-bordered">
