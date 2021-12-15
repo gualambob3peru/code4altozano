@@ -59,12 +59,12 @@ $routes->get('admin/banco', 'Admin\Banco::index',['filter'=>'auth']);
 $routes->get('admin/clasecosto', 'Admin\Clasecosto::index',['filter'=>'auth']);  
 
 
-
+ 
 /* 
 $routes->post('admin/clasecosto/ajaxAgregar', 'Admin\Clasecosto::ajaxAgregar',['filter'=>'auth']);  */
 
   
-
+ 
  
 /* 
  * --------------------------------------------------------------------
