@@ -2,7 +2,7 @@
     <h3>Editar <?= $nombre?></h3>
     <?php $validation = \Config\Services::validation(); ?>
     <form action="" method="POST">
-    <div class="mb-3 row">
+        <div class="mb-3 row">
             <label for="nombres" class="col-sm-2 col-form-label">Nombres</label>
             <div class="col-sm-10">
                 <input type="text" name="nombres" class="form-control" id="nombres" value="" required>
@@ -84,7 +84,41 @@
             </div>
         </div>
   
-     
+        <div class="mb-3 row">
+            <label for="password" class="col-sm-2 col-form-label">Contraseña</label>
+            <div class="col-sm-10">
+                <input type="text" name="password" class="form-control" id="password" value="" required>
+                <?php if ($validation->getError('password')) { ?>
+                    <div class='alert alert-danger mt-2'>
+                        <?= $error = $validation->getError('password'); ?>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>   
+        
+        <div class="mb-3 row">
+            <label for="email" class="col-sm-2 col-form-label">Email</label>
+            <div class="col-sm-10">
+                <input type="email" name="email" class="form-control" id="email" value="" required>
+                <?php if ($validation->getError('email')) { ?>
+                    <div class='alert alert-danger mt-2'>
+                        <?= $error = $validation->getError('email'); ?>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label for="telefono" class="col-sm-2 col-form-label">Celular</label>
+            <div class="col-sm-10">
+                <input type="telefono" name="telefono" class="form-control" id="telefono" value="">
+                <?php if ($validation->getError('telefono')) { ?>
+                    <div class='alert alert-danger mt-2'>
+                        <?= $error = $validation->getError('telefono'); ?>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>
 
 
         

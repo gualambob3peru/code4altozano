@@ -14,4 +14,12 @@ class PersonalRules
 
     return password_verify($data['password'], $user['password']);
   }
+
+  public function valideEmailPersonal($email){
+    if((new PersonalModel())->where('email',$email)->first() == NULL){
+        return true;
+    }else{
+        return false;
+    }
+}
 }

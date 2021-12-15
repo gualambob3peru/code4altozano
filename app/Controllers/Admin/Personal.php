@@ -61,11 +61,16 @@ class Personal extends BaseController
                 'idTipoDocumento' => 'required',
                 'nroDocumento' => 'required',
                 'idCargo' => 'required',
+                'password' => 'required',
+                'email' => 'required|valideEmailPersonal'
             ];
 
             $errors = [
                 'nroDocumento' => [
                     'validateRuc' => 'Este Nro de documento ya está registrado'
+                ],
+                'email' => [
+                    'valideEmailPersonal' => 'Este correo ya lo está usando otro personal'
                 ]
             ];
 
@@ -85,7 +90,10 @@ class Personal extends BaseController
                     "apellidoMaterno" => $this->request->getVar('apellidoMaterno'),
                     "idTipoDocumento" => $this->request->getVar('idTipoDocumento'),
                     "nroDocumento" => $this->request->getVar('nroDocumento'),
-                    "idCargo" => $this->request->getVar('idCargo')
+                    "idCargo" => $this->request->getVar('idCargo'),
+                    "password" => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
+                    "email" => $this->request->getVar('email'),
+                    "telefono" => $this->request->getVar('telefono')
                 ];
 
                 $this->model->save($datosInsert);
@@ -120,6 +128,8 @@ class Personal extends BaseController
                 'apellidoMaterno' => 'required',
                 'idTipoDocumento' => 'required',
                 'idCargo' => 'required',
+                'password' => 'required',
+                'email' => 'required'
             ];
 
             if($f_model["nroDocumento"] == $this->request->getVar('nroDocumento'))
@@ -130,6 +140,17 @@ class Personal extends BaseController
             $errors = [
                 'nroDocumento' => [
                     'validateRuc' => 'Este Nro de documento ya está registrado'
+                ]
+            ];
+
+            if($f_model["email"] == $this->request->getVar('email'))
+                $rules["email"] = 'required';
+            else   
+                $rules["email"] = 'required|valideEmailPersonal';
+            
+            $errors = [
+                'email' => [
+                    'valideEmailPersonal' => 'Este correo ya lo está usando otro personal'
                 ]
             ];
 
@@ -151,7 +172,10 @@ class Personal extends BaseController
                     "apellidoMaterno" => $this->request->getVar('apellidoMaterno'),
                     "idTipoDocumento" => $this->request->getVar('idTipoDocumento'),
                     "nroDocumento" => $this->request->getVar('nroDocumento'),
-                    "idCargo" => $this->request->getVar('idCargo')
+                    "idCargo" => $this->request->getVar('idCargo'),
+                    "password" => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
+                    "email" => $this->request->getVar('email'),
+                    "telefono" => $this->request->getVar('telefono')
                 ];
 
                 $this->model->save($datosUpdate);
