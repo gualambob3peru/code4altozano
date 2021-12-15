@@ -87,7 +87,7 @@
 
 
 
-                    <?php if ($_SESSION["personal"]["idCargo"] == "2") : ?>
+                    <?php if ($_SESSION["personal"]["idCargo"] == "2" || $_SESSION["personal"]["idCargo"] == "1") : ?>
                         <ul class="miDrop">
 
                             <li>
