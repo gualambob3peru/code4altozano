@@ -1,0 +1,9 @@
+CRITICAL - 2021-11-21 22:15:04 --> syntax error, unexpected 'print_r' (T_STRING), expecting ';' or ','
+#0 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Autoloader/Autoloader.php(241): CodeIgniter\Autoloader\Autoloader->includeFile()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Autoloader/Autoloader.php(219): CodeIgniter\Autoloader\Autoloader->loadInNamespace()
+#2 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Filters/Filters.php(162): spl_autoload_call()
+#4 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(374): CodeIgniter\Filters\Filters->run()
+#5 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#6 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#7 {main}

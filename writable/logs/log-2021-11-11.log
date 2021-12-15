@@ -1,0 +1,12 @@
+CRITICAL - 2021-11-11 13:42:48 --> Undefined variable: table
+#0 /var/www/html/altozano/code4altozano/app/Views/Admin/oc/list.php(61): CodeIgniter\Debug\Exceptions->errorHandler()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/View/View.php(214): include('/var/www/html/a...')
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/View/View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Common.php(1092): CodeIgniter\View\View->render()
+#4 /var/www/html/altozano/code4altozano/app/Libraries/Template.php(26): view()
+#5 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Oc.php(56): App\Libraries\Template->render()
+#6 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->index()
+#7 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#8 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#9 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}

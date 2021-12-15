@@ -1,0 +1,14 @@
+CRITICAL - 2021-10-27 11:12:53 --> Trying to access array offset on value of type null
+#0 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Clasecosto.php(85): CodeIgniter\Debug\Exceptions->errorHandler()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Clasecosto->ajaxAgregar()
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#4 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-10-27 11:15:49 --> Undefined index: codigo
+#0 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Clasecosto.php(88): CodeIgniter\Debug\Exceptions->errorHandler()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Clasecosto->ajaxAgregar()
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#4 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}

@@ -1,0 +1,35 @@
+CRITICAL - 2021-11-09 10:21:02 --> Call to undefined method App\Models\EmpresaModel::wher
+#0 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Oc.php(58): CodeIgniter\Model->__call()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->agregar()
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#4 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-11-09 10:21:03 --> Call to undefined method App\Models\EmpresaModel::wher
+#0 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Oc.php(58): CodeIgniter\Model->__call()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->agregar()
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#4 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-11-09 10:21:06 --> Call to undefined method App\Models\EmpresaModel::wher
+#0 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Oc.php(58): CodeIgniter\Model->__call()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->agregar()
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#4 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-11-09 10:21:06 --> Call to undefined method App\Models\EmpresaModel::wher
+#0 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Oc.php(58): CodeIgniter\Model->__call()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->agregar()
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#4 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-11-09 10:21:08 --> Call to undefined method App\Models\EmpresaModel::wher
+#0 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Oc.php(58): CodeIgniter\Model->__call()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->agregar()
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#4 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}

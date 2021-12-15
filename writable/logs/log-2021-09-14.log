@@ -1,0 +1,27 @@
+CRITICAL - 2021-09-14 00:04:30 --> Decrypting: authentication failed.
+#0 /var/www/html/mante/vendor/codeigniter4/framework/system/Encryption/Handlers/OpenSSLHandler.php(98): CodeIgniter\Encryption\Exceptions\EncryptionException::forAuthenticationFailed()
+#1 /var/www/html/mante/app/Controllers/Login.php(39): CodeIgniter\Encryption\Handlers\OpenSSLHandler->decrypt()
+#2 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Login->index()
+#3 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#4 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#5 /var/www/html/mante/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#6 /var/www/html/mante/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(43): require_once('/var/www/html/m...')
+#7 {main}
+CRITICAL - 2021-09-14 00:04:32 --> Decrypting: authentication failed.
+#0 /var/www/html/mante/vendor/codeigniter4/framework/system/Encryption/Handlers/OpenSSLHandler.php(98): CodeIgniter\Encryption\Exceptions\EncryptionException::forAuthenticationFailed()
+#1 /var/www/html/mante/app/Controllers/Login.php(39): CodeIgniter\Encryption\Handlers\OpenSSLHandler->decrypt()
+#2 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Login->index()
+#3 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#4 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#5 /var/www/html/mante/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#6 /var/www/html/mante/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(43): require_once('/var/www/html/m...')
+#7 {main}
+CRITICAL - 2021-09-14 00:05:06 --> Decrypting: authentication failed.
+#0 /var/www/html/mante/vendor/codeigniter4/framework/system/Encryption/Handlers/OpenSSLHandler.php(98): CodeIgniter\Encryption\Exceptions\EncryptionException::forAuthenticationFailed()
+#1 /var/www/html/mante/app/Controllers/Login.php(39): CodeIgniter\Encryption\Handlers\OpenSSLHandler->decrypt()
+#2 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Login->index()
+#3 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#4 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#5 /var/www/html/mante/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#6 /var/www/html/mante/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(43): require_once('/var/www/html/m...')
+#7 {main}

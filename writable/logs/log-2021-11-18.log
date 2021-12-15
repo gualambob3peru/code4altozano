@@ -1,0 +1,12 @@
+ERROR - 2021-11-18 21:34:31 --> Table 'altozano.empresaEje' doesn't exist
+CRITICAL - 2021-11-18 21:34:31 --> Table 'altozano.empresaEje' doesn't exist
+#0 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(280): mysqli->query()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Oc.php(52): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->index()
+#6 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#7 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#8 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}

@@ -1,0 +1,20 @@
+CRITICAL - 2021-10-22 13:22:33 --> Invalid file: Admin/clasecosto/list.php
+#0 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/View/View.php(198): CodeIgniter\Exceptions\FrameworkException::forInvalidFile()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Common.php(1092): CodeIgniter\View\View->render()
+#2 /var/www/html/altozano/code4altozano/app/Libraries/Template.php(26): view()
+#3 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Clasecosto.php(40): App\Libraries\Template->render()
+#4 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Clasecosto->index()
+#5 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#6 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#7 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2021-10-22 15:25:07 --> Invalid file: Admin/cuenta2/list.php
+#0 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/View/View.php(198): CodeIgniter\Exceptions\FrameworkException::forInvalidFile()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Common.php(1092): CodeIgniter\View\View->render()
+#2 /var/www/html/altozano/code4altozano/app/Libraries/Template.php(26): view()
+#3 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Cuenta2.php(40): App\Libraries\Template->render()
+#4 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Cuenta2->index()
+#5 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#6 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#7 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}

@@ -1,0 +1,105 @@
+CRITICAL - 2021-12-03 14:24:13 --> Trying to access array offset on value of type null
+#0 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Oc.php(272): CodeIgniter\Debug\Exceptions->errorHandler()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->ver()
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#4 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-12-03 14:24:34 --> Trying to access array offset on value of type null
+#0 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Oc.php(272): CodeIgniter\Debug\Exceptions->errorHandler()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->ver()
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#4 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-12-03 14:25:04 --> Trying to access array offset on value of type null
+#0 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Oc.php(272): CodeIgniter\Debug\Exceptions->errorHandler()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->ver()
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#4 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-12-03 17:22:17 --> Undefined index: personal
+#0 /var/www/html/altozano/code4altozano/app/Views/templates/template2.php(55): CodeIgniter\Debug\Exceptions->errorHandler()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/View/View.php(214): include('/var/www/html/a...')
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/View/View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Common.php(1092): CodeIgniter\View\View->render()
+#4 /var/www/html/altozano/code4altozano/app/Libraries/Template.php(33): view()
+#5 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Oc.php(319): App\Libraries\Template->render()
+#6 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->ver()
+#7 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#8 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#9 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2021-12-03 17:22:18 --> Undefined index: personal
+#0 /var/www/html/altozano/code4altozano/app/Views/templates/template2.php(55): CodeIgniter\Debug\Exceptions->errorHandler()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/View/View.php(214): include('/var/www/html/a...')
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/View/View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Common.php(1092): CodeIgniter\View\View->render()
+#4 /var/www/html/altozano/code4altozano/app/Libraries/Template.php(33): view()
+#5 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Oc.php(319): App\Libraries\Template->render()
+#6 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->ver()
+#7 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#8 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#9 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2021-12-03 17:22:27 --> Undefined index: personal
+#0 /var/www/html/altozano/code4altozano/app/Views/templates/template2.php(55): CodeIgniter\Debug\Exceptions->errorHandler()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/View/View.php(214): include('/var/www/html/a...')
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/View/View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Common.php(1092): CodeIgniter\View\View->render()
+#4 /var/www/html/altozano/code4altozano/app/Libraries/Template.php(33): view()
+#5 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Oc.php(319): App\Libraries\Template->render()
+#6 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->ver()
+#7 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#8 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#9 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2021-12-03 17:22:28 --> Undefined index: personal
+#0 /var/www/html/altozano/code4altozano/app/Views/templates/template2.php(55): CodeIgniter\Debug\Exceptions->errorHandler()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/View/View.php(214): include('/var/www/html/a...')
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/View/View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Common.php(1092): CodeIgniter\View\View->render()
+#4 /var/www/html/altozano/code4altozano/app/Libraries/Template.php(33): view()
+#5 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Oc.php(319): App\Libraries\Template->render()
+#6 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->ver()
+#7 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#8 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#9 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2021-12-03 17:22:28 --> Undefined index: personal
+#0 /var/www/html/altozano/code4altozano/app/Views/templates/template2.php(55): CodeIgniter\Debug\Exceptions->errorHandler()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/View/View.php(214): include('/var/www/html/a...')
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/View/View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Common.php(1092): CodeIgniter\View\View->render()
+#4 /var/www/html/altozano/code4altozano/app/Libraries/Template.php(33): view()
+#5 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Oc.php(319): App\Libraries\Template->render()
+#6 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->ver()
+#7 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#8 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#9 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2021-12-03 17:22:28 --> Undefined index: personal
+#0 /var/www/html/altozano/code4altozano/app/Views/templates/template2.php(55): CodeIgniter\Debug\Exceptions->errorHandler()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/View/View.php(214): include('/var/www/html/a...')
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/View/View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Common.php(1092): CodeIgniter\View\View->render()
+#4 /var/www/html/altozano/code4altozano/app/Libraries/Template.php(33): view()
+#5 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Oc.php(319): App\Libraries\Template->render()
+#6 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->ver()
+#7 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#8 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#9 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2021-12-03 17:22:34 --> Undefined index: personal
+#0 /var/www/html/altozano/code4altozano/app/Views/templates/template2.php(55): CodeIgniter\Debug\Exceptions->errorHandler()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/View/View.php(214): include('/var/www/html/a...')
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/View/View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Common.php(1092): CodeIgniter\View\View->render()
+#4 /var/www/html/altozano/code4altozano/app/Libraries/Template.php(33): view()
+#5 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Oc.php(319): App\Libraries\Template->render()
+#6 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->ver()
+#7 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#8 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#9 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}

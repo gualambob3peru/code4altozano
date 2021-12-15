@@ -1,0 +1,144 @@
+CRITICAL - 2021-11-25 10:37:03 --> Undefined index: personal
+#0 /var/www/html/altozano/code4altozano/app/Views/templates/template2.php(50): CodeIgniter\Debug\Exceptions->errorHandler()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/View/View.php(214): include('/var/www/html/a...')
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/View/View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Common.php(1092): CodeIgniter\View\View->render()
+#4 /var/www/html/altozano/code4altozano/app/Libraries/Template.php(33): view()
+#5 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Oc.php(282): App\Libraries\Template->render()
+#6 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->rendicion()
+#7 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#8 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#9 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2021-11-25 10:40:49 --> Undefined index: personal
+#0 /var/www/html/altozano/code4altozano/app/Views/templates/template2.php(50): CodeIgniter\Debug\Exceptions->errorHandler()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/View/View.php(214): include('/var/www/html/a...')
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/View/View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Common.php(1092): CodeIgniter\View\View->render()
+#4 /var/www/html/altozano/code4altozano/app/Libraries/Template.php(33): view()
+#5 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Oc.php(282): App\Libraries\Template->render()
+#6 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->rendicion()
+#7 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#8 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#9 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2021-11-25 10:40:56 --> Undefined index: personal
+#0 /var/www/html/altozano/code4altozano/app/Views/templates/template2.php(50): CodeIgniter\Debug\Exceptions->errorHandler()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/View/View.php(214): include('/var/www/html/a...')
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/View/View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Common.php(1092): CodeIgniter\View\View->render()
+#4 /var/www/html/altozano/code4altozano/app/Libraries/Template.php(33): view()
+#5 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Oc.php(59): App\Libraries\Template->render()
+#6 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->index()
+#7 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#8 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#9 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2021-11-25 12:28:40 --> Undefined index: tipoOrden
+#0 /var/www/html/altozano/code4altozano/app/Views/Admin/oc/ver.php(19): CodeIgniter\Debug\Exceptions->errorHandler()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/View/View.php(214): include('/var/www/html/a...')
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/View/View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Common.php(1092): CodeIgniter\View\View->render()
+#4 /var/www/html/altozano/code4altozano/app/Libraries/Template.php(26): view()
+#5 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Oc.php(235): App\Libraries\Template->render()
+#6 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->ver()
+#7 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#8 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#9 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2021-11-25 12:28:41 --> Undefined index: tipoOrden
+#0 /var/www/html/altozano/code4altozano/app/Views/Admin/oc/ver.php(19): CodeIgniter\Debug\Exceptions->errorHandler()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/View/View.php(214): include('/var/www/html/a...')
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/View/View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Common.php(1092): CodeIgniter\View\View->render()
+#4 /var/www/html/altozano/code4altozano/app/Libraries/Template.php(26): view()
+#5 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Oc.php(235): App\Libraries\Template->render()
+#6 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->ver()
+#7 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#8 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#9 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2021-11-25 12:32:37 --> Class 'App\Models\TipoSolicitudModel' not found
+#0 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->ver()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#3 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2021-11-25 12:32:38 --> Class 'App\Models\TipoSolicitudModel' not found
+#0 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->ver()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#3 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2021-11-25 17:38:48 --> Undefined index: personal
+#0 /var/www/html/altozano/code4altozano/app/Views/templates/template2.php(50): CodeIgniter\Debug\Exceptions->errorHandler()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/View/View.php(214): include('/var/www/html/a...')
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/View/View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Common.php(1092): CodeIgniter\View\View->render()
+#4 /var/www/html/altozano/code4altozano/app/Libraries/Template.php(33): view()
+#5 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Oc.php(188): App\Libraries\Template->render()
+#6 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->agregar()
+#7 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#8 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#9 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2021-11-25 17:38:54 --> Undefined index: personal
+#0 /var/www/html/altozano/code4altozano/app/Views/templates/template2.php(50): CodeIgniter\Debug\Exceptions->errorHandler()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/View/View.php(214): include('/var/www/html/a...')
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/View/View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Common.php(1092): CodeIgniter\View\View->render()
+#4 /var/www/html/altozano/code4altozano/app/Libraries/Template.php(33): view()
+#5 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Oc.php(188): App\Libraries\Template->render()
+#6 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->agregar()
+#7 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#8 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#9 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2021-11-25 17:50:45 --> Undefined index: personal
+#0 /var/www/html/altozano/code4altozano/app/Views/templates/template2.php(50): CodeIgniter\Debug\Exceptions->errorHandler()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/View/View.php(214): include('/var/www/html/a...')
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/View/View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Common.php(1092): CodeIgniter\View\View->render()
+#4 /var/www/html/altozano/code4altozano/app/Libraries/Template.php(33): view()
+#5 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Empresa.php(215): App\Libraries\Template->render()
+#6 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Empresa->agregarBanco()
+#7 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#8 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#9 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2021-11-25 17:55:01 --> Undefined variable: banco
+#0 /var/www/html/altozano/code4altozano/app/Views/Admin/empresa/editarBanco.php(15): CodeIgniter\Debug\Exceptions->errorHandler()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/View/View.php(214): include('/var/www/html/a...')
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/View/View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Common.php(1092): CodeIgniter\View\View->render()
+#4 /var/www/html/altozano/code4altozano/app/Libraries/Template.php(26): view()
+#5 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Empresa.php(246): App\Libraries\Template->render()
+#6 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Empresa->editarBanco()
+#7 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#8 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#9 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2021-11-25 21:35:07 --> Incorrect TIMESTAMP value: '>'
+CRITICAL - 2021-11-25 21:35:07 --> Incorrect TIMESTAMP value: '>'
+#0 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(280): mysqli->query()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Oc.php(256): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->getExcelOrdenes()
+#6 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#7 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#8 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2021-11-25 21:35:41 --> Incorrect TIMESTAMP value: '>'
+CRITICAL - 2021-11-25 21:35:41 --> Incorrect TIMESTAMP value: '>'
+#0 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(280): mysqli->query()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Oc.php(256): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->getExcelOrdenes()
+#6 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#7 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#8 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}

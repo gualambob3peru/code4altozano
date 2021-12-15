@@ -1,0 +1,255 @@
+CRITICAL - 2021-12-04 21:37:57 --> Call to undefined method App\Models\OcModel::getResult
+#0 /var/www/html/altozano/code4altozano/app/Models/OcModel.php(46): CodeIgniter\Model->__call()
+#1 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Oc.php(60): App\Models\OcModel->getComplete()
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->index()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#4 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#5 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2021-12-04 21:37:58 --> Call to undefined method App\Models\OcModel::getResult
+#0 /var/www/html/altozano/code4altozano/app/Models/OcModel.php(46): CodeIgniter\Model->__call()
+#1 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Oc.php(60): App\Models\OcModel->getComplete()
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->index()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#4 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#5 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2021-12-04 21:38:05 --> Call to undefined method App\Models\OcModel::getResult
+#0 /var/www/html/altozano/code4altozano/app/Models/OcModel.php(46): CodeIgniter\Model->__call()
+#1 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Oc.php(60): App\Models\OcModel->getComplete()
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->index()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#4 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#5 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2021-12-04 21:39:51 --> Call to undefined method App\Models\OcModel::getComplete
+#0 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Oc.php(60): CodeIgniter\Model->__call()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->index()
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#4 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-12-04 21:39:52 --> Call to undefined method App\Models\OcModel::getComplete
+#0 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Oc.php(60): CodeIgniter\Model->__call()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->index()
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#4 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-12-04 21:39:57 --> Call to undefined method App\Models\OcModel::getComplete
+#0 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Oc.php(60): CodeIgniter\Model->__call()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->index()
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#4 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+ERROR - 2021-12-04 21:40:06 --> Column 'id' in where clause is ambiguous
+CRITICAL - 2021-12-04 21:40:06 --> Column 'id' in where clause is ambiguous
+#0 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(280): mysqli->query()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Model.php(720): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/altozano/code4altozano/app/Models/OcModel.php(48): CodeIgniter\Model->__call()
+#6 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Oc.php(60): App\Models\OcModel->findComplete()
+#7 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->index()
+#8 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#9 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#10 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#11 {main}
+ERROR - 2021-12-04 21:40:07 --> Column 'id' in where clause is ambiguous
+CRITICAL - 2021-12-04 21:40:07 --> Column 'id' in where clause is ambiguous
+#0 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(280): mysqli->query()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Model.php(720): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/altozano/code4altozano/app/Models/OcModel.php(48): CodeIgniter\Model->__call()
+#6 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Oc.php(60): App\Models\OcModel->findComplete()
+#7 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->index()
+#8 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#9 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#10 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#11 {main}
+ERROR - 2021-12-04 21:40:07 --> Column 'id' in where clause is ambiguous
+CRITICAL - 2021-12-04 21:40:07 --> Column 'id' in where clause is ambiguous
+#0 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(280): mysqli->query()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Model.php(720): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/altozano/code4altozano/app/Models/OcModel.php(48): CodeIgniter\Model->__call()
+#6 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Oc.php(60): App\Models\OcModel->findComplete()
+#7 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->index()
+#8 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#9 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#10 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#11 {main}
+ERROR - 2021-12-04 21:40:16 --> You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '`id` = '1'' at line 5
+CRITICAL - 2021-12-04 21:40:16 --> You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '`id` = '1'' at line 5
+#0 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(280): mysqli->query()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Model.php(720): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/altozano/code4altozano/app/Models/OcModel.php(48): CodeIgniter\Model->__call()
+#6 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Oc.php(60): App\Models\OcModel->findComplete()
+#7 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->index()
+#8 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#9 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#10 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#11 {main}
+ERROR - 2021-12-04 21:40:17 --> You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '`id` = '1'' at line 5
+CRITICAL - 2021-12-04 21:40:17 --> You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '`id` = '1'' at line 5
+#0 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(280): mysqli->query()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Model.php(720): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/altozano/code4altozano/app/Models/OcModel.php(48): CodeIgniter\Model->__call()
+#6 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Oc.php(60): App\Models\OcModel->findComplete()
+#7 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->index()
+#8 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#9 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#10 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#11 {main}
+ERROR - 2021-12-04 21:40:17 --> You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '`id` = '1'' at line 5
+CRITICAL - 2021-12-04 21:40:17 --> You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '`id` = '1'' at line 5
+#0 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(280): mysqli->query()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Model.php(720): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/altozano/code4altozano/app/Models/OcModel.php(48): CodeIgniter\Model->__call()
+#6 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Oc.php(60): App\Models\OcModel->findComplete()
+#7 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->index()
+#8 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#9 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#10 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#11 {main}
+ERROR - 2021-12-04 21:40:44 --> Unknown column 'orden.id' in 'field list'
+CRITICAL - 2021-12-04 21:40:44 --> Unknown column 'orden.id' in 'field list'
+#0 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(280): mysqli->query()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Model.php(720): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/altozano/code4altozano/app/Models/OcModel.php(48): CodeIgniter\Model->__call()
+#6 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Oc.php(60): App\Models\OcModel->findComplete()
+#7 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->index()
+#8 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#9 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#10 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#11 {main}
+ERROR - 2021-12-04 21:40:45 --> Unknown column 'orden.id' in 'field list'
+CRITICAL - 2021-12-04 21:40:45 --> Unknown column 'orden.id' in 'field list'
+#0 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(280): mysqli->query()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Model.php(720): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/altozano/code4altozano/app/Models/OcModel.php(48): CodeIgniter\Model->__call()
+#6 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Oc.php(60): App\Models\OcModel->findComplete()
+#7 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->index()
+#8 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#9 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#10 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#11 {main}
+ERROR - 2021-12-04 21:40:45 --> Unknown column 'orden.id' in 'field list'
+CRITICAL - 2021-12-04 21:40:45 --> Unknown column 'orden.id' in 'field list'
+#0 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(280): mysqli->query()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Model.php(720): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/altozano/code4altozano/app/Models/OcModel.php(48): CodeIgniter\Model->__call()
+#6 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Oc.php(60): App\Models\OcModel->findComplete()
+#7 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->index()
+#8 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#9 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#10 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#11 {main}
+ERROR - 2021-12-04 21:40:52 --> Unknown column 'orden.id' in 'field list'
+CRITICAL - 2021-12-04 21:40:52 --> Unknown column 'orden.id' in 'field list'
+#0 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(280): mysqli->query()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Model.php(720): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/altozano/code4altozano/app/Models/OcModel.php(48): CodeIgniter\Model->__call()
+#6 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Oc.php(60): App\Models\OcModel->findComplete()
+#7 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->index()
+#8 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#9 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#10 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#11 {main}
+ERROR - 2021-12-04 21:45:52 --> Unknown column 'orden.id' in 'field list'
+CRITICAL - 2021-12-04 21:45:52 --> Unknown column 'orden.id' in 'field list'
+#0 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(280): mysqli->query()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Model.php(720): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/altozano/code4altozano/app/Models/OcModel.php(48): CodeIgniter\Model->__call()
+#6 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Oc.php(60): App\Models\OcModel->findComplete()
+#7 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->index()
+#8 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#9 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#10 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#11 {main}
+ERROR - 2021-12-04 21:45:53 --> Unknown column 'orden.id' in 'field list'
+CRITICAL - 2021-12-04 21:45:53 --> Unknown column 'orden.id' in 'field list'
+#0 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(280): mysqli->query()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Model.php(720): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/altozano/code4altozano/app/Models/OcModel.php(48): CodeIgniter\Model->__call()
+#6 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Oc.php(60): App\Models\OcModel->findComplete()
+#7 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->index()
+#8 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#9 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#10 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#11 {main}
+ERROR - 2021-12-04 21:46:22 --> Table 'altozano.ordeno' doesn't exist
+CRITICAL - 2021-12-04 21:46:22 --> Table 'altozano.ordeno' doesn't exist
+#0 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(280): mysqli->query()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Model.php(720): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/altozano/code4altozano/app/Models/OcModel.php(48): CodeIgniter\Model->__call()
+#6 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Oc.php(60): App\Models\OcModel->findComplete()
+#7 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->index()
+#8 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#9 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#10 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#11 {main}
+ERROR - 2021-12-04 21:46:22 --> Table 'altozano.ordeno' doesn't exist
+CRITICAL - 2021-12-04 21:46:22 --> Table 'altozano.ordeno' doesn't exist
+#0 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(280): mysqli->query()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Model.php(720): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/altozano/code4altozano/app/Models/OcModel.php(48): CodeIgniter\Model->__call()
+#6 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Oc.php(60): App\Models\OcModel->findComplete()
+#7 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->index()
+#8 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#9 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#10 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#11 {main}
+ERROR - 2021-12-04 21:46:23 --> Table 'altozano.ordeno' doesn't exist
+CRITICAL - 2021-12-04 21:46:23 --> Table 'altozano.ordeno' doesn't exist
+#0 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(280): mysqli->query()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Model.php(720): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/altozano/code4altozano/app/Models/OcModel.php(48): CodeIgniter\Model->__call()
+#6 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Oc.php(60): App\Models\OcModel->findComplete()
+#7 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->index()
+#8 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#9 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#10 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#11 {main}

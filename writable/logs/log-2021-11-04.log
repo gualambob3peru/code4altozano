@@ -1,0 +1,186 @@
+CRITICAL - 2021-11-04 13:51:53 --> Undefined property: App\Controllers\Admin\Oc::$model
+#0 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Oc.php(91): CodeIgniter\Debug\Exceptions->errorHandler()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->agregar()
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#4 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-11-04 13:52:52 --> Undefined property: App\Controllers\Admin\Oc::$lista
+#0 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Oc.php(24): CodeIgniter\Debug\Exceptions->errorHandler()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(779): App\Controllers\Admin\Oc->__construct()
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(390): CodeIgniter\CodeIgniter->createController()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#4 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+ERROR - 2021-11-04 13:53:12 --> Unknown column 'idEmpresa' in 'field list'
+CRITICAL - 2021-11-04 13:53:12 --> Unknown column 'idEmpresa' in 'field list'
+#0 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(280): mysqli->query()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1733): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Model.php(239): CodeIgniter\Database\BaseBuilder->insert()
+#5 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/BaseModel.php(738): CodeIgniter\Model->doInsert()
+#6 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Model.php(620): CodeIgniter\BaseModel->insert()
+#7 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/BaseModel.php(658): CodeIgniter\Model->insert()
+#8 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Oc.php(102): CodeIgniter\BaseModel->save()
+#9 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->agregar()
+#10 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#11 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#12 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#13 {main}
+ERROR - 2021-11-04 13:53:50 --> Column 'idCentroCosto' cannot be null
+CRITICAL - 2021-11-04 13:53:50 --> Column 'idCentroCosto' cannot be null
+#0 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(280): mysqli->query()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1733): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Model.php(239): CodeIgniter\Database\BaseBuilder->insert()
+#5 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/BaseModel.php(738): CodeIgniter\Model->doInsert()
+#6 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Model.php(620): CodeIgniter\BaseModel->insert()
+#7 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/BaseModel.php(658): CodeIgniter\Model->insert()
+#8 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Oc.php(102): CodeIgniter\BaseModel->save()
+#9 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->agregar()
+#10 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#11 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#12 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#13 {main}
+ERROR - 2021-11-04 13:55:52 --> Column 'objeto' cannot be null
+CRITICAL - 2021-11-04 13:55:52 --> Column 'objeto' cannot be null
+#0 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(280): mysqli->query()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1733): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Model.php(239): CodeIgniter\Database\BaseBuilder->insert()
+#5 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/BaseModel.php(738): CodeIgniter\Model->doInsert()
+#6 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Model.php(620): CodeIgniter\BaseModel->insert()
+#7 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/BaseModel.php(658): CodeIgniter\Model->insert()
+#8 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Oc.php(101): CodeIgniter\BaseModel->save()
+#9 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->agregar()
+#10 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#11 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#12 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#13 {main}
+CRITICAL - 2021-11-04 13:57:52 --> Undefined property: stdClass::$nro
+#0 /var/www/html/altozano/code4altozano/app/Views/Admin/oc/list.php(16): CodeIgniter\Debug\Exceptions->errorHandler()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/View/View.php(214): include('/var/www/html/a...')
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/View/View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Common.php(1092): CodeIgniter\View\View->render()
+#4 /var/www/html/altozano/code4altozano/app/Libraries/Template.php(26): view()
+#5 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Oc.php(47): App\Libraries\Template->render()
+#6 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->index()
+#7 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#8 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#9 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2021-11-04 13:57:53 --> Undefined property: stdClass::$nro
+#0 /var/www/html/altozano/code4altozano/app/Views/Admin/oc/list.php(16): CodeIgniter\Debug\Exceptions->errorHandler()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/View/View.php(214): include('/var/www/html/a...')
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/View/View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Common.php(1092): CodeIgniter\View\View->render()
+#4 /var/www/html/altozano/code4altozano/app/Libraries/Template.php(26): view()
+#5 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Oc.php(47): App\Libraries\Template->render()
+#6 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->index()
+#7 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#8 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#9 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2021-11-04 14:01:50 --> Undefined property: stdClass::$idTipoSolicitud
+#0 /var/www/html/altozano/code4altozano/app/Views/Admin/oc/list.php(18): CodeIgniter\Debug\Exceptions->errorHandler()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/View/View.php(214): include('/var/www/html/a...')
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/View/View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Common.php(1092): CodeIgniter\View\View->render()
+#4 /var/www/html/altozano/code4altozano/app/Libraries/Template.php(26): view()
+#5 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Oc.php(49): App\Libraries\Template->render()
+#6 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->index()
+#7 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#8 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#9 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2021-11-04 14:03:42 --> Unknown column 'ts.idEmpresa' in 'on clause'
+CRITICAL - 2021-11-04 14:03:42 --> Unknown column 'ts.idEmpresa' in 'on clause'
+#0 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(280): mysqli->query()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Oc.php(43): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->index()
+#6 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#7 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#8 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2021-11-04 14:03:43 --> Unknown column 'ts.idEmpresa' in 'on clause'
+CRITICAL - 2021-11-04 14:03:43 --> Unknown column 'ts.idEmpresa' in 'on clause'
+#0 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(280): mysqli->query()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Oc.php(43): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->index()
+#6 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#7 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#8 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2021-11-04 14:06:57 --> Unknown column 'cu3.cuenta3_cod' in 'field list'
+CRITICAL - 2021-11-04 14:06:57 --> Unknown column 'cu3.cuenta3_cod' in 'field list'
+#0 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(280): mysqli->query()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Oc.php(45): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->index()
+#6 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#7 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#8 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2021-11-04 14:29:40 --> You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.`cargo_desc`
+FROM `personal`
+JOIN `cargo` `c` ON `c`.`id` = `personal`.`idCargo' at line 1
+CRITICAL - 2021-11-04 14:29:40 --> You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.`cargo_desc`
+FROM `personal`
+JOIN `cargo` `c` ON `c`.`id` = `personal`.`idCargo' at line 1
+#0 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(280): mysqli->query()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Personal.php(36): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Personal->index()
+#6 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#7 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#8 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2021-11-04 14:29:58 --> Column 'estado' in where clause is ambiguous
+CRITICAL - 2021-11-04 14:29:58 --> Column 'estado' in where clause is ambiguous
+#0 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(280): mysqli->query()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Personal.php(36): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Personal->index()
+#6 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#7 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#8 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2021-11-04 14:30:09 --> Undefined property: stdClass::$id
+#0 /var/www/html/altozano/code4altozano/app/Views/Admin/personal/list.php(24): CodeIgniter\Debug\Exceptions->errorHandler()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/View/View.php(214): include('/var/www/html/a...')
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/View/View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Common.php(1092): CodeIgniter\View\View->render()
+#4 /var/www/html/altozano/code4altozano/app/Libraries/Template.php(26): view()
+#5 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Personal.php(42): App\Libraries\Template->render()
+#6 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Personal->index()
+#7 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#8 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#9 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2021-11-04 14:30:10 --> Undefined property: stdClass::$id
+#0 /var/www/html/altozano/code4altozano/app/Views/Admin/personal/list.php(24): CodeIgniter\Debug\Exceptions->errorHandler()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/View/View.php(214): include('/var/www/html/a...')
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/View/View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Common.php(1092): CodeIgniter\View\View->render()
+#4 /var/www/html/altozano/code4altozano/app/Libraries/Template.php(26): view()
+#5 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Personal.php(42): App\Libraries\Template->render()
+#6 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Personal->index()
+#7 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#8 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#9 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}

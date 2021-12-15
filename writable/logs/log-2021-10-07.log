@@ -1,0 +1,635 @@
+ERROR - 2021-10-07 01:38:59 --> Unknown column 'v.id_users' in 'on clause'
+CRITICAL - 2021-10-07 01:38:59 --> Unknown column 'v.id_users' in 'on clause'
+#0 /var/www/html/mante/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(280): mysqli->query()
+#1 /var/www/html/mante/vendor/codeigniter4/framework/system/Database/BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/mante/vendor/codeigniter4/framework/system/Database/BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/mante/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/mante/app/Controllers/Admin/Vehiculos.php(26): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Vehiculos->index()
+#6 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#7 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#8 /var/www/html/mante/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#9 /var/www/html/mante/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(43): require_once('/var/www/html/m...')
+#10 {main}
+ERROR - 2021-10-07 01:39:35 --> Unknown column 'v.id_users' in 'on clause'
+CRITICAL - 2021-10-07 01:39:35 --> Unknown column 'v.id_users' in 'on clause'
+#0 /var/www/html/mante/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(280): mysqli->query()
+#1 /var/www/html/mante/vendor/codeigniter4/framework/system/Database/BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/mante/vendor/codeigniter4/framework/system/Database/BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/mante/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/mante/app/Controllers/Admin/Vehiculos.php(26): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Vehiculos->index()
+#6 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#7 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#8 /var/www/html/mante/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#9 /var/www/html/mante/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(43): require_once('/var/www/html/m...')
+#10 {main}
+ERROR - 2021-10-07 01:39:36 --> Unknown column 'v.id_users' in 'on clause'
+CRITICAL - 2021-10-07 01:39:36 --> Unknown column 'v.id_users' in 'on clause'
+#0 /var/www/html/mante/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(280): mysqli->query()
+#1 /var/www/html/mante/vendor/codeigniter4/framework/system/Database/BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/mante/vendor/codeigniter4/framework/system/Database/BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/mante/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/mante/app/Controllers/Admin/Vehiculos.php(26): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Vehiculos->index()
+#6 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#7 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#8 /var/www/html/mante/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#9 /var/www/html/mante/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(43): require_once('/var/www/html/m...')
+#10 {main}
+ERROR - 2021-10-07 01:39:36 --> Unknown column 'v.id_users' in 'on clause'
+CRITICAL - 2021-10-07 01:39:36 --> Unknown column 'v.id_users' in 'on clause'
+#0 /var/www/html/mante/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(280): mysqli->query()
+#1 /var/www/html/mante/vendor/codeigniter4/framework/system/Database/BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/mante/vendor/codeigniter4/framework/system/Database/BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/mante/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/mante/app/Controllers/Admin/Vehiculos.php(26): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Vehiculos->index()
+#6 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#7 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#8 /var/www/html/mante/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#9 /var/www/html/mante/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(43): require_once('/var/www/html/m...')
+#10 {main}
+ERROR - 2021-10-07 01:39:36 --> Unknown column 'v.id_users' in 'on clause'
+CRITICAL - 2021-10-07 01:39:36 --> Unknown column 'v.id_users' in 'on clause'
+#0 /var/www/html/mante/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(280): mysqli->query()
+#1 /var/www/html/mante/vendor/codeigniter4/framework/system/Database/BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/mante/vendor/codeigniter4/framework/system/Database/BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/mante/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/mante/app/Controllers/Admin/Vehiculos.php(26): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Vehiculos->index()
+#6 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#7 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#8 /var/www/html/mante/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#9 /var/www/html/mante/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(43): require_once('/var/www/html/m...')
+#10 {main}
+CRITICAL - 2021-10-07 01:40:29 --> Invalid file: vehiculos/editar.php
+#0 /var/www/html/mante/vendor/codeigniter4/framework/system/View/View.php(198): CodeIgniter\Exceptions\FrameworkException::forInvalidFile()
+#1 /var/www/html/mante/vendor/codeigniter4/framework/system/Common.php(1092): CodeIgniter\View\View->render()
+#2 /var/www/html/mante/app/Libraries/Template.php(26): view()
+#3 /var/www/html/mante/app/Controllers/Admin/Vehiculos.php(98): App\Libraries\Template->render()
+#4 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Vehiculos->editar()
+#5 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#6 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#7 /var/www/html/mante/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#8 /var/www/html/mante/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(43): require_once('/var/www/html/m...')
+#9 {main}
+CRITICAL - 2021-10-07 01:41:25 --> Invalid file: editar.php
+#0 /var/www/html/mante/vendor/codeigniter4/framework/system/View/View.php(198): CodeIgniter\Exceptions\FrameworkException::forInvalidFile()
+#1 /var/www/html/mante/vendor/codeigniter4/framework/system/Common.php(1092): CodeIgniter\View\View->render()
+#2 /var/www/html/mante/app/Libraries/Template.php(26): view()
+#3 /var/www/html/mante/app/Controllers/Admin/Vehiculos.php(95): App\Libraries\Template->render()
+#4 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Vehiculos->editar()
+#5 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#6 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#7 /var/www/html/mante/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#8 /var/www/html/mante/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(43): require_once('/var/www/html/m...')
+#9 {main}
+CRITICAL - 2021-10-07 01:41:26 --> Invalid file: editar.php
+#0 /var/www/html/mante/vendor/codeigniter4/framework/system/View/View.php(198): CodeIgniter\Exceptions\FrameworkException::forInvalidFile()
+#1 /var/www/html/mante/vendor/codeigniter4/framework/system/Common.php(1092): CodeIgniter\View\View->render()
+#2 /var/www/html/mante/app/Libraries/Template.php(26): view()
+#3 /var/www/html/mante/app/Controllers/Admin/Vehiculos.php(95): App\Libraries\Template->render()
+#4 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Vehiculos->editar()
+#5 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#6 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#7 /var/www/html/mante/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#8 /var/www/html/mante/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(43): require_once('/var/www/html/m...')
+#9 {main}
+CRITICAL - 2021-10-07 01:41:34 --> Invalid file: admin/vehiculos/editar.php
+#0 /var/www/html/mante/vendor/codeigniter4/framework/system/View/View.php(198): CodeIgniter\Exceptions\FrameworkException::forInvalidFile()
+#1 /var/www/html/mante/vendor/codeigniter4/framework/system/Common.php(1092): CodeIgniter\View\View->render()
+#2 /var/www/html/mante/app/Libraries/Template.php(26): view()
+#3 /var/www/html/mante/app/Controllers/Admin/Vehiculos.php(95): App\Libraries\Template->render()
+#4 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Vehiculos->editar()
+#5 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#6 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#7 /var/www/html/mante/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#8 /var/www/html/mante/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(43): require_once('/var/www/html/m...')
+#9 {main}
+CRITICAL - 2021-10-07 01:41:35 --> Invalid file: admin/vehiculos/editar.php
+#0 /var/www/html/mante/vendor/codeigniter4/framework/system/View/View.php(198): CodeIgniter\Exceptions\FrameworkException::forInvalidFile()
+#1 /var/www/html/mante/vendor/codeigniter4/framework/system/Common.php(1092): CodeIgniter\View\View->render()
+#2 /var/www/html/mante/app/Libraries/Template.php(26): view()
+#3 /var/www/html/mante/app/Controllers/Admin/Vehiculos.php(95): App\Libraries\Template->render()
+#4 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Vehiculos->editar()
+#5 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#6 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#7 /var/www/html/mante/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#8 /var/www/html/mante/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(43): require_once('/var/www/html/m...')
+#9 {main}
+CRITICAL - 2021-10-07 01:44:45 --> Undefined variable: validation
+#0 /var/www/html/mante/app/Views/Admin/vehiculos/editar.php(9): CodeIgniter\Debug\Exceptions->errorHandler()
+#1 /var/www/html/mante/vendor/codeigniter4/framework/system/View/View.php(214): include('/var/www/html/m...')
+#2 /var/www/html/mante/vendor/codeigniter4/framework/system/View/View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 /var/www/html/mante/vendor/codeigniter4/framework/system/Common.php(1092): CodeIgniter\View\View->render()
+#4 /var/www/html/mante/app/Libraries/Template.php(26): view()
+#5 /var/www/html/mante/app/Controllers/Admin/Vehiculos.php(95): App\Libraries\Template->render()
+#6 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Vehiculos->editar()
+#7 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#8 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#9 /var/www/html/mante/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#10 /var/www/html/mante/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(43): require_once('/var/www/html/m...')
+#11 {main}
+CRITICAL - 2021-10-07 01:46:30 --> Undefined variable: validation
+#0 /var/www/html/mante/app/Views/Admin/vehiculos/editar.php(9): CodeIgniter\Debug\Exceptions->errorHandler()
+#1 /var/www/html/mante/vendor/codeigniter4/framework/system/View/View.php(214): include('/var/www/html/m...')
+#2 /var/www/html/mante/vendor/codeigniter4/framework/system/View/View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 /var/www/html/mante/vendor/codeigniter4/framework/system/Common.php(1092): CodeIgniter\View\View->render()
+#4 /var/www/html/mante/app/Libraries/Template.php(26): view()
+#5 /var/www/html/mante/app/Controllers/Admin/Vehiculos.php(96): App\Libraries\Template->render()
+#6 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Vehiculos->editar()
+#7 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#8 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#9 /var/www/html/mante/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#10 /var/www/html/mante/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(43): require_once('/var/www/html/m...')
+#11 {main}
+CRITICAL - 2021-10-07 01:46:32 --> Undefined variable: validation
+#0 /var/www/html/mante/app/Views/Admin/vehiculos/editar.php(9): CodeIgniter\Debug\Exceptions->errorHandler()
+#1 /var/www/html/mante/vendor/codeigniter4/framework/system/View/View.php(214): include('/var/www/html/m...')
+#2 /var/www/html/mante/vendor/codeigniter4/framework/system/View/View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 /var/www/html/mante/vendor/codeigniter4/framework/system/Common.php(1092): CodeIgniter\View\View->render()
+#4 /var/www/html/mante/app/Libraries/Template.php(26): view()
+#5 /var/www/html/mante/app/Controllers/Admin/Vehiculos.php(96): App\Libraries\Template->render()
+#6 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Vehiculos->editar()
+#7 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#8 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#9 /var/www/html/mante/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#10 /var/www/html/mante/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(43): require_once('/var/www/html/m...')
+#11 {main}
+CRITICAL - 2021-10-07 01:47:22 --> Undefined variable: validation
+#0 /var/www/html/mante/app/Views/Admin/vehiculos/editar.php(9): CodeIgniter\Debug\Exceptions->errorHandler()
+#1 /var/www/html/mante/vendor/codeigniter4/framework/system/View/View.php(214): include('/var/www/html/m...')
+#2 /var/www/html/mante/vendor/codeigniter4/framework/system/View/View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 /var/www/html/mante/vendor/codeigniter4/framework/system/Common.php(1092): CodeIgniter\View\View->render()
+#4 /var/www/html/mante/app/Libraries/Template.php(26): view()
+#5 /var/www/html/mante/app/Controllers/Admin/Vehiculos.php(96): App\Libraries\Template->render()
+#6 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Vehiculos->editar()
+#7 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#8 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#9 /var/www/html/mante/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#10 /var/www/html/mante/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(43): require_once('/var/www/html/m...')
+#11 {main}
+CRITICAL - 2021-10-07 01:49:51 --> Undefined variable: validation
+#0 /var/www/html/mante/app/Views/Admin/vehiculos/editar.php(9): CodeIgniter\Debug\Exceptions->errorHandler()
+#1 /var/www/html/mante/vendor/codeigniter4/framework/system/View/View.php(214): include('/var/www/html/m...')
+#2 /var/www/html/mante/vendor/codeigniter4/framework/system/View/View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 /var/www/html/mante/vendor/codeigniter4/framework/system/Common.php(1092): CodeIgniter\View\View->render()
+#4 /var/www/html/mante/app/Libraries/Template.php(26): view()
+#5 /var/www/html/mante/app/Controllers/Admin/Vehiculos.php(96): App\Libraries\Template->render()
+#6 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Vehiculos->editar()
+#7 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#8 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#9 /var/www/html/mante/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#10 /var/www/html/mante/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(43): require_once('/var/www/html/m...')
+#11 {main}
+CRITICAL - 2021-10-07 01:50:05 --> Invalid file: vehiculos/editar.php
+#0 /var/www/html/mante/vendor/codeigniter4/framework/system/View/View.php(198): CodeIgniter\Exceptions\FrameworkException::forInvalidFile()
+#1 /var/www/html/mante/vendor/codeigniter4/framework/system/Common.php(1092): CodeIgniter\View\View->render()
+#2 /var/www/html/mante/app/Libraries/Template.php(26): view()
+#3 /var/www/html/mante/app/Controllers/Admin/Vehiculos.php(96): App\Libraries\Template->render()
+#4 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Vehiculos->editar()
+#5 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#6 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#7 /var/www/html/mante/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#8 /var/www/html/mante/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(43): require_once('/var/www/html/m...')
+#9 {main}
+CRITICAL - 2021-10-07 01:50:23 --> Undefined variable: validation
+#0 /var/www/html/mante/app/Views/Admin/vehiculos/editar.php(9): CodeIgniter\Debug\Exceptions->errorHandler()
+#1 /var/www/html/mante/vendor/codeigniter4/framework/system/View/View.php(214): include('/var/www/html/m...')
+#2 /var/www/html/mante/vendor/codeigniter4/framework/system/View/View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 /var/www/html/mante/vendor/codeigniter4/framework/system/Common.php(1092): CodeIgniter\View\View->render()
+#4 /var/www/html/mante/app/Libraries/Template.php(26): view()
+#5 /var/www/html/mante/app/Controllers/Admin/Vehiculos.php(96): App\Libraries\Template->render()
+#6 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Vehiculos->editar()
+#7 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#8 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#9 /var/www/html/mante/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#10 /var/www/html/mante/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(43): require_once('/var/www/html/m...')
+#11 {main}
+CRITICAL - 2021-10-07 01:50:56 --> Undefined variable: validation
+#0 /var/www/html/mante/app/Views/Admin/vehiculos/editar.php(9): CodeIgniter\Debug\Exceptions->errorHandler()
+#1 /var/www/html/mante/vendor/codeigniter4/framework/system/View/View.php(214): include('/var/www/html/m...')
+#2 /var/www/html/mante/vendor/codeigniter4/framework/system/View/View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 /var/www/html/mante/vendor/codeigniter4/framework/system/Common.php(1092): CodeIgniter\View\View->render()
+#4 /var/www/html/mante/app/Libraries/Template.php(26): view()
+#5 /var/www/html/mante/app/Controllers/Admin/Vehiculos.php(96): App\Libraries\Template->render()
+#6 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Vehiculos->editar()
+#7 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#8 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#9 /var/www/html/mante/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#10 /var/www/html/mante/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(43): require_once('/var/www/html/m...')
+#11 {main}
+CRITICAL - 2021-10-07 01:50:59 --> Undefined variable: validation
+#0 /var/www/html/mante/app/Views/Admin/vehiculos/editar.php(9): CodeIgniter\Debug\Exceptions->errorHandler()
+#1 /var/www/html/mante/vendor/codeigniter4/framework/system/View/View.php(214): include('/var/www/html/m...')
+#2 /var/www/html/mante/vendor/codeigniter4/framework/system/View/View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 /var/www/html/mante/vendor/codeigniter4/framework/system/Common.php(1092): CodeIgniter\View\View->render()
+#4 /var/www/html/mante/app/Libraries/Template.php(26): view()
+#5 /var/www/html/mante/app/Controllers/Admin/Vehiculos.php(96): App\Libraries\Template->render()
+#6 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Vehiculos->editar()
+#7 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#8 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#9 /var/www/html/mante/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#10 /var/www/html/mante/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(43): require_once('/var/www/html/m...')
+#11 {main}
+CRITICAL - 2021-10-07 01:52:07 --> Undefined variable: validation
+#0 /var/www/html/mante/app/Views/Admin/vehiculos/editar.php(9): CodeIgniter\Debug\Exceptions->errorHandler()
+#1 /var/www/html/mante/vendor/codeigniter4/framework/system/View/View.php(214): include('/var/www/html/m...')
+#2 /var/www/html/mante/vendor/codeigniter4/framework/system/View/View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 /var/www/html/mante/vendor/codeigniter4/framework/system/Common.php(1092): CodeIgniter\View\View->render()
+#4 /var/www/html/mante/app/Libraries/Template.php(26): view()
+#5 /var/www/html/mante/app/Controllers/Admin/Vehiculos.php(96): App\Libraries\Template->render()
+#6 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Vehiculos->editar()
+#7 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#8 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#9 /var/www/html/mante/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#10 /var/www/html/mante/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(43): require_once('/var/www/html/m...')
+#11 {main}
+CRITICAL - 2021-10-07 01:52:08 --> Undefined variable: validation
+#0 /var/www/html/mante/app/Views/Admin/vehiculos/editar.php(9): CodeIgniter\Debug\Exceptions->errorHandler()
+#1 /var/www/html/mante/vendor/codeigniter4/framework/system/View/View.php(214): include('/var/www/html/m...')
+#2 /var/www/html/mante/vendor/codeigniter4/framework/system/View/View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 /var/www/html/mante/vendor/codeigniter4/framework/system/Common.php(1092): CodeIgniter\View\View->render()
+#4 /var/www/html/mante/app/Libraries/Template.php(26): view()
+#5 /var/www/html/mante/app/Controllers/Admin/Vehiculos.php(96): App\Libraries\Template->render()
+#6 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Vehiculos->editar()
+#7 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#8 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#9 /var/www/html/mante/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#10 /var/www/html/mante/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(43): require_once('/var/www/html/m...')
+#11 {main}
+CRITICAL - 2021-10-07 01:52:09 --> Undefined variable: validation
+#0 /var/www/html/mante/app/Views/Admin/vehiculos/editar.php(9): CodeIgniter\Debug\Exceptions->errorHandler()
+#1 /var/www/html/mante/vendor/codeigniter4/framework/system/View/View.php(214): include('/var/www/html/m...')
+#2 /var/www/html/mante/vendor/codeigniter4/framework/system/View/View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 /var/www/html/mante/vendor/codeigniter4/framework/system/Common.php(1092): CodeIgniter\View\View->render()
+#4 /var/www/html/mante/app/Libraries/Template.php(26): view()
+#5 /var/www/html/mante/app/Controllers/Admin/Vehiculos.php(96): App\Libraries\Template->render()
+#6 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Vehiculos->editar()
+#7 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#8 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#9 /var/www/html/mante/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#10 /var/www/html/mante/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(43): require_once('/var/www/html/m...')
+#11 {main}
+CRITICAL - 2021-10-07 01:52:10 --> Undefined variable: validation
+#0 /var/www/html/mante/app/Views/Admin/vehiculos/editar.php(9): CodeIgniter\Debug\Exceptions->errorHandler()
+#1 /var/www/html/mante/vendor/codeigniter4/framework/system/View/View.php(214): include('/var/www/html/m...')
+#2 /var/www/html/mante/vendor/codeigniter4/framework/system/View/View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 /var/www/html/mante/vendor/codeigniter4/framework/system/Common.php(1092): CodeIgniter\View\View->render()
+#4 /var/www/html/mante/app/Libraries/Template.php(26): view()
+#5 /var/www/html/mante/app/Controllers/Admin/Vehiculos.php(96): App\Libraries\Template->render()
+#6 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Vehiculos->editar()
+#7 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#8 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#9 /var/www/html/mante/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#10 /var/www/html/mante/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(43): require_once('/var/www/html/m...')
+#11 {main}
+CRITICAL - 2021-10-07 01:52:11 --> Undefined variable: validation
+#0 /var/www/html/mante/app/Views/Admin/vehiculos/editar.php(9): CodeIgniter\Debug\Exceptions->errorHandler()
+#1 /var/www/html/mante/vendor/codeigniter4/framework/system/View/View.php(214): include('/var/www/html/m...')
+#2 /var/www/html/mante/vendor/codeigniter4/framework/system/View/View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 /var/www/html/mante/vendor/codeigniter4/framework/system/Common.php(1092): CodeIgniter\View\View->render()
+#4 /var/www/html/mante/app/Libraries/Template.php(26): view()
+#5 /var/www/html/mante/app/Controllers/Admin/Vehiculos.php(96): App\Libraries\Template->render()
+#6 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Vehiculos->editar()
+#7 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#8 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#9 /var/www/html/mante/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#10 /var/www/html/mante/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(43): require_once('/var/www/html/m...')
+#11 {main}
+CRITICAL - 2021-10-07 02:01:26 --> validatePlaca is not a valid rule.
+#0 /var/www/html/mante/vendor/codeigniter4/framework/system/Validation/Validation.php(285): CodeIgniter\Validation\Exceptions\ValidationException::forRuleNotFound()
+#1 /var/www/html/mante/vendor/codeigniter4/framework/system/Validation/Validation.php(151): CodeIgniter\Validation\Validation->processRules()
+#2 /var/www/html/mante/vendor/codeigniter4/framework/system/Controller.php(160): CodeIgniter\Validation\Validation->run()
+#3 /var/www/html/mante/app/Controllers/Admin/Vehiculos.php(57): CodeIgniter\Controller->validate()
+#4 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Vehiculos->editar()
+#5 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#6 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#7 /var/www/html/mante/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#8 /var/www/html/mante/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(43): require_once('/var/www/html/m...')
+#9 {main}
+CRITICAL - 2021-10-07 02:04:25 --> validatePlaca is not a valid rule.
+#0 /var/www/html/mante/vendor/codeigniter4/framework/system/Validation/Validation.php(285): CodeIgniter\Validation\Exceptions\ValidationException::forRuleNotFound()
+#1 /var/www/html/mante/vendor/codeigniter4/framework/system/Validation/Validation.php(151): CodeIgniter\Validation\Validation->processRules()
+#2 /var/www/html/mante/vendor/codeigniter4/framework/system/Controller.php(160): CodeIgniter\Validation\Validation->run()
+#3 /var/www/html/mante/app/Controllers/Admin/Vehiculos.php(57): CodeIgniter\Controller->validate()
+#4 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Vehiculos->editar()
+#5 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#6 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#7 /var/www/html/mante/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#8 /var/www/html/mante/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(43): require_once('/var/www/html/m...')
+#9 {main}
+CRITICAL - 2021-10-07 02:04:29 --> validatePlaca is not a valid rule.
+#0 /var/www/html/mante/vendor/codeigniter4/framework/system/Validation/Validation.php(285): CodeIgniter\Validation\Exceptions\ValidationException::forRuleNotFound()
+#1 /var/www/html/mante/vendor/codeigniter4/framework/system/Validation/Validation.php(151): CodeIgniter\Validation\Validation->processRules()
+#2 /var/www/html/mante/vendor/codeigniter4/framework/system/Controller.php(160): CodeIgniter\Validation\Validation->run()
+#3 /var/www/html/mante/app/Controllers/Admin/Vehiculos.php(57): CodeIgniter\Controller->validate()
+#4 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Vehiculos->editar()
+#5 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#6 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#7 /var/www/html/mante/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#8 /var/www/html/mante/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(43): require_once('/var/www/html/m...')
+#9 {main}
+CRITICAL - 2021-10-07 02:06:52 --> Class 'Config\VehiculosRules' not found
+#0 /var/www/html/mante/vendor/codeigniter4/framework/system/Validation/Validation.php(115): CodeIgniter\Validation\Validation->loadRuleSets()
+#1 /var/www/html/mante/vendor/codeigniter4/framework/system/Controller.php(160): CodeIgniter\Validation\Validation->run()
+#2 /var/www/html/mante/app/Controllers/Admin/Vehiculos.php(57): CodeIgniter\Controller->validate()
+#3 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Vehiculos->editar()
+#4 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#5 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#6 /var/www/html/mante/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#7 /var/www/html/mante/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(43): require_once('/var/www/html/m...')
+#8 {main}
+CRITICAL - 2021-10-07 02:08:18 --> Invalid file: vehiculos/editar.php
+#0 /var/www/html/mante/vendor/codeigniter4/framework/system/View/View.php(198): CodeIgniter\Exceptions\FrameworkException::forInvalidFile()
+#1 /var/www/html/mante/vendor/codeigniter4/framework/system/Common.php(1092): CodeIgniter\View\View->render()
+#2 /var/www/html/mante/app/Libraries/Template.php(26): view()
+#3 /var/www/html/mante/app/Controllers/Admin/Vehiculos.php(70): App\Libraries\Template->render()
+#4 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Vehiculos->editar()
+#5 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#6 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#7 /var/www/html/mante/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#8 /var/www/html/mante/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(43): require_once('/var/www/html/m...')
+#9 {main}
+ERROR - 2021-10-07 02:08:36 --> Column 'idUsers' cannot be null
+CRITICAL - 2021-10-07 02:08:36 --> Column 'idUsers' cannot be null
+#0 /var/www/html/mante/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(280): mysqli->query()
+#1 /var/www/html/mante/vendor/codeigniter4/framework/system/Database/BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/mante/vendor/codeigniter4/framework/system/Database/BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/mante/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1733): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/mante/app/Controllers/Admin/Vehiculos.php(81): CodeIgniter\Database\BaseBuilder->insert()
+#5 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Vehiculos->editar()
+#6 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#7 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#8 /var/www/html/mante/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#9 /var/www/html/mante/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(43): require_once('/var/www/html/m...')
+#10 {main}
+CRITICAL - 2021-10-07 02:17:05 --> Trying to get property 'idMarcas' of non-object
+#0 /var/www/html/mante/app/Views/Admin/vehiculos/editar.php(25): CodeIgniter\Debug\Exceptions->errorHandler()
+#1 /var/www/html/mante/vendor/codeigniter4/framework/system/View/View.php(214): include('/var/www/html/m...')
+#2 /var/www/html/mante/vendor/codeigniter4/framework/system/View/View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 /var/www/html/mante/vendor/codeigniter4/framework/system/Common.php(1092): CodeIgniter\View\View->render()
+#4 /var/www/html/mante/app/Libraries/Template.php(26): view()
+#5 /var/www/html/mante/app/Controllers/Admin/Vehiculos.php(96): App\Libraries\Template->render()
+#6 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Vehiculos->editar()
+#7 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#8 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#9 /var/www/html/mante/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#10 /var/www/html/mante/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(43): require_once('/var/www/html/m...')
+#11 {main}
+CRITICAL - 2021-10-07 02:17:06 --> Trying to get property 'idMarcas' of non-object
+#0 /var/www/html/mante/app/Views/Admin/vehiculos/editar.php(25): CodeIgniter\Debug\Exceptions->errorHandler()
+#1 /var/www/html/mante/vendor/codeigniter4/framework/system/View/View.php(214): include('/var/www/html/m...')
+#2 /var/www/html/mante/vendor/codeigniter4/framework/system/View/View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 /var/www/html/mante/vendor/codeigniter4/framework/system/Common.php(1092): CodeIgniter\View\View->render()
+#4 /var/www/html/mante/app/Libraries/Template.php(26): view()
+#5 /var/www/html/mante/app/Controllers/Admin/Vehiculos.php(96): App\Libraries\Template->render()
+#6 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Vehiculos->editar()
+#7 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#8 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#9 /var/www/html/mante/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#10 /var/www/html/mante/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(43): require_once('/var/www/html/m...')
+#11 {main}
+ERROR - 2021-10-07 17:48:36 --> Error connecting to the database: Unknown database 'altozano'
+CRITICAL - 2021-10-07 17:48:36 --> Unable to connect to the database.
+Main connection [MySQLi]: Unknown database 'altozano'
+#0 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(570): CodeIgniter\Database\BaseConnection->initialize()
+#1 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query()
+#2 /var/www/html/altozano/vendor/codeigniter4/framework/system/Model.php(210): CodeIgniter\Database\BaseBuilder->get()
+#3 /var/www/html/altozano/vendor/codeigniter4/framework/system/BaseModel.php(622): CodeIgniter\Model->doFirst()
+#4 /var/www/html/altozano/app/Validation/UserRules.php(10): CodeIgniter\BaseModel->first()
+#5 /var/www/html/altozano/vendor/codeigniter4/framework/system/Validation/Validation.php(277): App\Validation\UserRules->validateUser()
+#6 /var/www/html/altozano/vendor/codeigniter4/framework/system/Validation/Validation.php(151): CodeIgniter\Validation\Validation->processRules()
+#7 /var/www/html/altozano/vendor/codeigniter4/framework/system/Controller.php(160): CodeIgniter\Validation\Validation->run()
+#8 /var/www/html/altozano/app/Controllers/Login.php(36): CodeIgniter\Controller->validate()
+#9 /var/www/html/altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Login->index()
+#10 /var/www/html/altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#11 /var/www/html/altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#12 /var/www/html/altozano/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#13 /var/www/html/altozano/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(43): require_once('/var/www/html/a...')
+#14 {main}
+ERROR - 2021-10-07 17:50:03 --> Table 'altozano.vehiculos' doesn't exist
+CRITICAL - 2021-10-07 17:50:03 --> Table 'altozano.vehiculos' doesn't exist
+#0 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(280): mysqli->query()
+#1 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/altozano/app/Controllers/Admin/Vehiculos.php(26): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Vehiculos->index()
+#6 /var/www/html/altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#7 /var/www/html/altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#8 /var/www/html/altozano/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#9 /var/www/html/altozano/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(43): require_once('/var/www/html/a...')
+#10 {main}
+ERROR - 2021-10-07 17:50:25 --> Table 'altozano.vehiculos' doesn't exist
+CRITICAL - 2021-10-07 17:50:25 --> Table 'altozano.vehiculos' doesn't exist
+#0 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(280): mysqli->query()
+#1 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/altozano/app/Controllers/Admin/Vehiculos.php(26): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Vehiculos->index()
+#6 /var/www/html/altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#7 /var/www/html/altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#8 /var/www/html/altozano/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#9 /var/www/html/altozano/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(43): require_once('/var/www/html/a...')
+#10 {main}
+ERROR - 2021-10-07 17:50:28 --> Table 'altozano.vehiculos' doesn't exist
+CRITICAL - 2021-10-07 17:50:28 --> Table 'altozano.vehiculos' doesn't exist
+#0 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(280): mysqli->query()
+#1 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/altozano/app/Controllers/Admin/Vehiculos.php(26): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Vehiculos->index()
+#6 /var/www/html/altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#7 /var/www/html/altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#8 /var/www/html/altozano/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#9 /var/www/html/altozano/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(43): require_once('/var/www/html/a...')
+#10 {main}
+ERROR - 2021-10-07 17:50:30 --> Table 'altozano.vehiculos' doesn't exist
+CRITICAL - 2021-10-07 17:50:30 --> Table 'altozano.vehiculos' doesn't exist
+#0 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(280): mysqli->query()
+#1 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/altozano/app/Controllers/Admin/Vehiculos.php(26): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Vehiculos->index()
+#6 /var/www/html/altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#7 /var/www/html/altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#8 /var/www/html/altozano/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#9 /var/www/html/altozano/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(43): require_once('/var/www/html/a...')
+#10 {main}
+ERROR - 2021-10-07 17:50:30 --> Table 'altozano.vehiculos' doesn't exist
+CRITICAL - 2021-10-07 17:50:30 --> Table 'altozano.vehiculos' doesn't exist
+#0 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(280): mysqli->query()
+#1 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/altozano/app/Controllers/Admin/Vehiculos.php(26): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Vehiculos->index()
+#6 /var/www/html/altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#7 /var/www/html/altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#8 /var/www/html/altozano/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#9 /var/www/html/altozano/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(43): require_once('/var/www/html/a...')
+#10 {main}
+ERROR - 2021-10-07 17:50:31 --> Table 'altozano.vehiculos' doesn't exist
+CRITICAL - 2021-10-07 17:50:31 --> Table 'altozano.vehiculos' doesn't exist
+#0 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(280): mysqli->query()
+#1 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/altozano/app/Controllers/Admin/Vehiculos.php(26): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Vehiculos->index()
+#6 /var/www/html/altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#7 /var/www/html/altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#8 /var/www/html/altozano/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#9 /var/www/html/altozano/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(43): require_once('/var/www/html/a...')
+#10 {main}
+ERROR - 2021-10-07 17:50:31 --> Table 'altozano.vehiculos' doesn't exist
+CRITICAL - 2021-10-07 17:50:31 --> Table 'altozano.vehiculos' doesn't exist
+#0 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(280): mysqli->query()
+#1 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/altozano/app/Controllers/Admin/Vehiculos.php(26): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Vehiculos->index()
+#6 /var/www/html/altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#7 /var/www/html/altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#8 /var/www/html/altozano/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#9 /var/www/html/altozano/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(43): require_once('/var/www/html/a...')
+#10 {main}
+ERROR - 2021-10-07 17:50:31 --> Table 'altozano.vehiculos' doesn't exist
+CRITICAL - 2021-10-07 17:50:31 --> Table 'altozano.vehiculos' doesn't exist
+#0 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(280): mysqli->query()
+#1 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/altozano/app/Controllers/Admin/Vehiculos.php(26): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Vehiculos->index()
+#6 /var/www/html/altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#7 /var/www/html/altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#8 /var/www/html/altozano/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#9 /var/www/html/altozano/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(43): require_once('/var/www/html/a...')
+#10 {main}
+ERROR - 2021-10-07 17:50:31 --> Table 'altozano.vehiculos' doesn't exist
+CRITICAL - 2021-10-07 17:50:31 --> Table 'altozano.vehiculos' doesn't exist
+#0 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(280): mysqli->query()
+#1 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/altozano/app/Controllers/Admin/Vehiculos.php(26): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Vehiculos->index()
+#6 /var/www/html/altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#7 /var/www/html/altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#8 /var/www/html/altozano/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#9 /var/www/html/altozano/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(43): require_once('/var/www/html/a...')
+#10 {main}
+ERROR - 2021-10-07 18:10:16 --> Table 'altozano.vehiculos' doesn't exist
+CRITICAL - 2021-10-07 18:10:16 --> Table 'altozano.vehiculos' doesn't exist
+#0 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(280): mysqli->query()
+#1 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/altozano/app/Controllers/Admin/Vehiculos.php(26): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Vehiculos->index()
+#6 /var/www/html/altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#7 /var/www/html/altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#8 /var/www/html/altozano/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#9 /var/www/html/altozano/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(43): require_once('/var/www/html/a...')
+#10 {main}
+ERROR - 2021-10-07 18:10:18 --> Table 'altozano.vehiculos' doesn't exist
+CRITICAL - 2021-10-07 18:10:18 --> Table 'altozano.vehiculos' doesn't exist
+#0 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(280): mysqli->query()
+#1 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/altozano/app/Controllers/Admin/Vehiculos.php(26): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Vehiculos->index()
+#6 /var/www/html/altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#7 /var/www/html/altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#8 /var/www/html/altozano/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#9 /var/www/html/altozano/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(43): require_once('/var/www/html/a...')
+#10 {main}
+ERROR - 2021-10-07 18:14:43 --> Table 'altozano.vehiculos' doesn't exist
+CRITICAL - 2021-10-07 18:14:43 --> Table 'altozano.vehiculos' doesn't exist
+#0 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(280): mysqli->query()
+#1 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/altozano/app/Controllers/Admin/Vehiculos.php(26): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Vehiculos->index()
+#6 /var/www/html/altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#7 /var/www/html/altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#8 /var/www/html/altozano/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#9 /var/www/html/altozano/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(43): require_once('/var/www/html/a...')
+#10 {main}
+ERROR - 2021-10-07 18:14:59 --> Table 'altozano.vehiculos' doesn't exist
+CRITICAL - 2021-10-07 18:14:59 --> Table 'altozano.vehiculos' doesn't exist
+#0 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(280): mysqli->query()
+#1 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/altozano/app/Controllers/Admin/Vehiculos.php(26): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Vehiculos->index()
+#6 /var/www/html/altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#7 /var/www/html/altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#8 /var/www/html/altozano/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#9 /var/www/html/altozano/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(43): require_once('/var/www/html/a...')
+#10 {main}
+ERROR - 2021-10-07 18:17:52 --> Table 'altozano.vehiculos' doesn't exist
+CRITICAL - 2021-10-07 18:17:52 --> Table 'altozano.vehiculos' doesn't exist
+#0 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(280): mysqli->query()
+#1 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/altozano/app/Controllers/Admin/Vehiculos.php(26): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Vehiculos->index()
+#6 /var/www/html/altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#7 /var/www/html/altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#8 /var/www/html/altozano/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#9 /var/www/html/altozano/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(43): require_once('/var/www/html/a...')
+#10 {main}
+ERROR - 2021-10-07 18:26:06 --> Table 'altozano.vehiculos' doesn't exist
+CRITICAL - 2021-10-07 18:26:06 --> Table 'altozano.vehiculos' doesn't exist
+#0 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(280): mysqli->query()
+#1 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/altozano/app/Controllers/Admin/Oc.php(26): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->index()
+#6 /var/www/html/altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#7 /var/www/html/altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#8 /var/www/html/altozano/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#9 /var/www/html/altozano/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(43): require_once('/var/www/html/a...')
+#10 {main}
+ERROR - 2021-10-07 18:26:07 --> Table 'altozano.vehiculos' doesn't exist
+CRITICAL - 2021-10-07 18:26:07 --> Table 'altozano.vehiculos' doesn't exist
+#0 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(280): mysqli->query()
+#1 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/altozano/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/altozano/app/Controllers/Admin/Oc.php(26): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->index()
+#6 /var/www/html/altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#7 /var/www/html/altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#8 /var/www/html/altozano/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#9 /var/www/html/altozano/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(43): require_once('/var/www/html/a...')
+#10 {main}
+CRITICAL - 2021-10-07 18:29:37 --> Undefined variable: oc
+#0 /var/www/html/altozano/app/Controllers/Admin/Oc.php(28): CodeIgniter\Debug\Exceptions->errorHandler()
+#1 /var/www/html/altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->index()
+#2 /var/www/html/altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#3 /var/www/html/altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#4 /var/www/html/altozano/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#5 /var/www/html/altozano/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(43): require_once('/var/www/html/a...')
+#6 {main}
+CRITICAL - 2021-10-07 18:29:38 --> Undefined variable: oc
+#0 /var/www/html/altozano/app/Controllers/Admin/Oc.php(28): CodeIgniter\Debug\Exceptions->errorHandler()
+#1 /var/www/html/altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Oc->index()
+#2 /var/www/html/altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#3 /var/www/html/altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#4 /var/www/html/altozano/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#5 /var/www/html/altozano/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(43): require_once('/var/www/html/a...')
+#6 {main}

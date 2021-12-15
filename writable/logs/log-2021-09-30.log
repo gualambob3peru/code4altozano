@@ -1,0 +1,28 @@
+CRITICAL - 2021-09-30 12:41:48 --> Undefined variable: marcas
+#0 /var/www/html/mante/app/Views/Admin/vehiculos/editar.php(19): CodeIgniter\Debug\Exceptions->errorHandler()
+#1 /var/www/html/mante/vendor/codeigniter4/framework/system/View/View.php(214): include('/var/www/html/m...')
+#2 /var/www/html/mante/vendor/codeigniter4/framework/system/View/View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 /var/www/html/mante/vendor/codeigniter4/framework/system/Common.php(1092): CodeIgniter\View\View->render()
+#4 /var/www/html/mante/app/Libraries/Template.php(26): view()
+#5 /var/www/html/mante/app/Controllers/Admin/Vehiculos.php(41): App\Libraries\Template->render()
+#6 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Vehiculos->editar()
+#7 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#8 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#9 /var/www/html/mante/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#10 /var/www/html/mante/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(43): require_once('/var/www/html/m...')
+#11 {main}
+ERROR - 2021-09-30 12:54:59 --> Table 'mantenimiento.modelosmodels' doesn't exist
+CRITICAL - 2021-09-30 12:54:59 --> Table 'mantenimiento.modelosmodels' doesn't exist
+#0 /var/www/html/mante/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(280): mysqli->query()
+#1 /var/www/html/mante/vendor/codeigniter4/framework/system/Database/BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/mante/vendor/codeigniter4/framework/system/Database/BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/mante/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/mante/vendor/codeigniter4/framework/system/Model.php(183): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/mante/vendor/codeigniter4/framework/system/BaseModel.php(584): CodeIgniter\Model->doFindAll()
+#6 /var/www/html/mante/app/Controllers/Admin/Vehiculos.php(42): CodeIgniter\BaseModel->findAll()
+#7 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Vehiculos->editar()
+#8 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#9 /var/www/html/mante/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#10 /var/www/html/mante/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#11 /var/www/html/mante/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(43): require_once('/var/www/html/m...')
+#12 {main}
