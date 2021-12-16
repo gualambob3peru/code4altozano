@@ -133,8 +133,8 @@ class Key extends BaseController
         $centros = $this->db->table($this->table)
             //->select("key.id,key.descripcion,centro.codigo,centro.descripcion centro_descripcion")
             ->join("centro",$this->table.".id = centro.idKey")
-            ->where("centro.idKey","1")
-            ->where("centro.estado",$idKey)
+            ->where("centro.idKey",$idKey)
+            ->where("centro.estado","1")
             ->get()->getResult();
 
         $f_model = $this->model->find($idKey);
