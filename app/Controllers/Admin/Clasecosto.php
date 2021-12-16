@@ -120,7 +120,7 @@ class Clasecosto extends BaseController
         }
     }
 
-    public function ajaxEl(){
+    public function ajaxEditar(){
         $f_model = $this->model->find($this->request->getVar('id'));
 
         if ($_POST) {
