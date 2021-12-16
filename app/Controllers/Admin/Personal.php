@@ -31,7 +31,7 @@ class Personal extends BaseController
 
        
         $lista_datos = $this->db->table($this->table)
-            ->select("personal.id,personal.nombres,personal.apellidoPaterno,personal.apellidoMaterno,personal.nroDocumento,tp.descripcion tipo_desc,c.descripcion cargo_desc")
+            ->select("personal.id,personal.nombres,personal.apellidoPaterno,personal.apellidoMaterno,personal.email,personal.nroDocumento,tp.descripcion tipo_desc,c.descripcion cargo_desc")
             ->join("cargo c","c.id = personal.idCargo")
             ->join("tipo_documento tp","tp.id = personal.idTipoDocumento")
             ->where("personal.estado","1")
@@ -92,6 +92,7 @@ class Personal extends BaseController
                     "nroDocumento" => $this->request->getVar('nroDocumento'),
                     "idCargo" => $this->request->getVar('idCargo'),
                     "password" => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
+                    "password2" => $this->request->getVar('password'),
                     "email" => $this->request->getVar('email'),
                     "telefono" => $this->request->getVar('telefono')
                 ];
@@ -174,6 +175,7 @@ class Personal extends BaseController
                     "nroDocumento" => $this->request->getVar('nroDocumento'),
                     "idCargo" => $this->request->getVar('idCargo'),
                     "password" => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
+                    "password2" => $this->request->getVar('password'),
                     "email" => $this->request->getVar('email'),
                     "telefono" => $this->request->getVar('telefono')
                 ];

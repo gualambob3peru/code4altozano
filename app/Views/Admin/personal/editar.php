@@ -87,7 +87,7 @@
         <div class="mb-3 row">
             <label for="password" class="col-sm-2 col-form-label">Contraseña</label>
             <div class="col-sm-10">
-                <input type="text" name="password" class="form-control" id="password" value="" required>
+                <input type="text" name="password" class="form-control" id="password" value="<?= $f_model["password2"] ?>" required>
                 <?php if ($validation->getError('password')) { ?>
                     <div class='alert alert-danger mt-2'>
                         <?= $error = $validation->getError('password'); ?>

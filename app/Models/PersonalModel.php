@@ -14,7 +14,7 @@ class PersonalModel extends Model
     protected $returnType           = 'array';
     protected $useSoftDeletes       = false;
     protected $protectFields        = true;
-    protected $allowedFields        = ['nombres','apellidoPaterno','apellidoMaterno','password','email','telefono','idCargo','estado','idTipoDocumento','nroDocumento'];
+    protected $allowedFields        = ['nombres','apellidoPaterno','apellidoMaterno','password','password2','email','telefono','idCargo','estado','idTipoDocumento','nroDocumento'];
 
     // Dates
     protected $useTimestamps        = false;
