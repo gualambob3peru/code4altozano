@@ -245,7 +245,12 @@
 <form method="POST" action="" enctype="multipart/form-data">
 
     <div class="text-center mb-4">
-        <h4>Orden de Compra / Servicio</h4>
+        <h4 >
+        <span class="<?= (($o_orden["estado"]==1)?"bg-success":"bg-warning")?>" style="padding: 7px;">
+
+            Orden de Compra / Servicio
+        </span>
+    </h4>
     </div>
 
     <div class="row">

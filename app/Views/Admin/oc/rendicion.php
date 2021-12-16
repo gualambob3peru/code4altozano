@@ -295,6 +295,13 @@
                     Reembolso
                 </label>
             </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="idTipoSolicitud" id="flexRadioDefault3" value="4" required>
+                <label class="form-check-label" for="flexRadioDefault3">
+                    Tarjeta de crédito
+                </label>
+            </div>
         </div>
     </div>
 
