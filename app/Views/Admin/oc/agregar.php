@@ -694,9 +694,9 @@
         let miId = parseInt(Math.random() * 1000000);
         let fila = '<tr>';
 
-        fila += '<td class="pe-5"><input  type="text" id="i_' + miId + '"><input type="hidden" name="varioskeys[]" id="l_' + miId + '"></td>';
-        fila += '<td class="pe-5"><input  type="text" id="ci_' + miId + '"><input type="hidden" name="varioscentros[]" id="cl_' + miId + '"></td>';
-        fila += '<td><input type="text" name="porcentajecentro[]"></td>';
+        fila += '<td class="pe-5"><input  class="form-control" type="text" id="i_' + miId + '"><input type="hidden" name="varioskeys[]" id="l_' + miId + '"></td>';
+        fila += '<td class="pe-5"><input  class="form-control" type="text" id="ci_' + miId + '"><input type="hidden" name="varioscentros[]" id="cl_' + miId + '"></td>';
+        fila += '<td><input class="form-control" type="text" name="porcentajecentro[]"></td>';
         fila += '<td> <button class="btn btn-danger btnEliminarCentroFila"><i class="bi bi-trash"></i></button> </td>';
 
 

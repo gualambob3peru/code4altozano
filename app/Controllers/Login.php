@@ -28,7 +28,7 @@ class Login extends BaseController
 
 			$errors = [
 				'password' => [
-					'validateUser' => 'El email o contraseña no coincide'
+					'validateUserPe' => 'El email o contraseña no coincide'
 				]
 			];
 

@@ -20,6 +20,9 @@
         padding: 5px 10px;
         width: 100%;
     }
+    .no-close .ui-dialog-titlebar-close {
+  display: none;
+}
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
@@ -59,11 +62,11 @@
         let total_empresas = [];
 
         for (let i = 0; i < empresas_total.length; i++) {
-            let empresa3 = {};   
+            let empresa3 = {};
             empresa3.value = empresas_total[i].id;
-            empresa3.label = empresas_total[i].ruc + " - " + empresas_total[i].nombre;        
-            empresa3.ruc = empresas_total[i].ruc;        
-            empresa3.nombre = empresas_total[i].nombre;        
+            empresa3.label = empresas_total[i].ruc + " - " + empresas_total[i].nombre;
+            empresa3.ruc = empresas_total[i].ruc;
+            empresa3.nombre = empresas_total[i].nombre;
 
             total_empresas.push(empresa3);
         }
@@ -186,27 +189,11 @@
             }
         });
 
-        $("#idCuenta3_auto").combobox({
-            source : total_cuentas3,
-            focus: function(event, ui) {
-                $("#idCuenta3_auto").val(ui.item.c3_codigo + " - " + ui.item.c3_descripcion);
-                $("#idCuenta3_auto").next().find(".custom-combobox-input").val(ui.item.c3_codigo + " - " + ui.item.c3_descripcion);
-                return false;
-            },
-            select: function(event, ui) {
-                $("#idCuenta3").val(ui.item.c3_id);
-                $("#idCuenta3_auto").val(ui.item.c3_codigo + " - " + ui.item.c3_descripcion);
-                $("#idCuenta3_auto").next().find(".custom-combobox-input").val(ui.item.c3_codigo + " - " + ui.item.c3_descripcion);
-                $("#idCuenta1").val(ui.item.c1_codigo + " - " + ui.item.c1_descripcion);
-                $("#idCuenta2").val(ui.item.c2_codigo + " - " + ui.item.c2_descripcion);
-                $("#idClaseCosto").val(ui.item.ca_codigo + " - " + ui.item.ca_descripcion);
-                return false;
-            }
-        });
+
         $("#ejecutado_com").combobox({
-            source : total_empresas,
+            source: total_empresas,
             focus: function(event, ui) {
-                
+
                 $("#ejecutado_com").next().find(".custom-combobox-input").val(ui.item.ruc + " - " + ui.item.nombre);
                 return false;
             },
@@ -233,7 +220,7 @@
                     .then(function(response) {
                         document.querySelectorAll("#idBanco option").forEach(option => option.remove());
                         idBanco.add(new Option("Seleccionar", ""));
-                 
+
                         for (let i = 0; i < response.response.length; i++) {
                             idBanco.add(new Option(response.response[i].descripcion, response.response[i].nroCuenta));
                         }
@@ -277,8 +264,8 @@
                     <option value="">Seleccionar Orden</option>
                     <?php foreach ($ordenes as $key => $value) : ?>
                         <option value="<?php echo $value["id"] ?>"><?php echo $value["codigo"] ?></option>
-                    <?php endforeach; ?>    
-                   
+                    <?php endforeach; ?>
+
                 </select>
             </div>
             <!-- <div class="mb-3">
@@ -375,111 +362,72 @@
         <hr>
         <h5>Detalles</h5>
         <button type="button" class="btn btn-success" id="btnAgregarDetalle">Agregar detalle</button>
-        <table class="table table-striped">
+        <table class="table table-striped" style="font-size: 14px;">
             <thead>
                 <tr>
                     <th>Nº Doc</th>
                     <th>Proveedor</th>
                     <th>Detalle</th>
+                    <th>Varios</th>
                     <th>Key</th>
                     <th>Centro Costo</th>
-                    <th>Clase Costo</th>
-                    <th>Cuenta 3</th>
-                    <th>Cuenta 1</th>
+
+                    <th>Nivel 3</th>
+                    <th>Nivel 1</th>
                     <th>Monto</th>
+                    <th>Acción</th>
                 </tr>
             </thead>
 
             <tbody id="tbodyDetalles">
-                <tr>
-                    <td><input type="text" name="nro[]"></td>
-                    <td>
-                        <select name="proveedor[]">
-                            <option value="" selected>Seleccionar</option>
-                        <?php foreach ($empresas_total as $key => $value) : ?>
-                            <option value="<?php echo $value["id"] ?>"><?php echo $value["nombre"] ?></option>
-                        <?php endforeach; ?>
-                        </select>
-                    </td>
-                    <td><input type="text" name="detalle[]"></td>
-                    <td>
-                        <select name="keys[]" class="t_key">
-                            <option value="" selected>Seleccionar</option>
-                        <?php foreach ($keys as $key => $value) : ?>
-                            <option value="<?php echo $value["id"] ?>"><?php echo $value["descripcion"] ?></option>
-                        <?php endforeach; ?>
-                        </select>
-                    </td>
-                    <td class="td_centro">
-                        <select name="centro[]" class="t_centro">
-                            <option value="" selected>Seleccionar</option>
-                        </select>
-                    </td>
-                    <td class="td_clase">
-                        <select name="clase[]" class="t_clase">
-                        <option value="" selected>Seleccionar</option>
-                        </select>
-                    </td>
-                    <td class="td_cuenta3">
-                        <select name="cuenta3[]" class="t_cuenta3">
-                        <option value="" selected>Seleccionar</option>
-                        </select>
-                    </td>
-                    <td class="td_cuenta1">-</td>
-                    <td><input type="text" name="monto[]"></td>
-                </tr>
+
             </tbody>
         </table>
 
         <table style="display:none">
             <tbody id="miFilaDetalle">
-            <tr>
-                    <td><input type="text" name="nro[]"></td>
+                <tr>
                     <td>
-                        <select name="proveedor[]">
-                            <option value="" selected>Seleccionar</option>
-                        <?php foreach ($empresas_total as $key => $value) : ?>
-                            <option value="<?php echo $value["id"] ?>"><?php echo $value["nombre"] ?></option>
-                        <?php endforeach; ?>
-                        </select>
+                        <input type="hidden" class="td_total" name="varioscentros_t[]" value="">
+                        <input type="text" name="nro[]" class="form-control">
+
                     </td>
-                    <td><input type="text" name="detalle[]"></td>
                     <td>
-                        <select name="keys[]" class="t_key">
+                        <select name="proveedor[]"  class="form-select">
                             <option value="" selected>Seleccionar</option>
-                        <?php foreach ($keys as $key => $value) : ?>
-                            <option value="<?php echo $value["id"] ?>"><?php echo $value["descripcion"] ?></option>
-                        <?php endforeach; ?>
+                            <?php foreach ($empresas_total as $key => $value) : ?>
+                                <option value="<?php echo $value["id"] ?>"><?php echo $value["nombre"] ?></option>
+                            <?php endforeach; ?>
                         </select>
                     </td>
-                    <td class="td_centro">
-                        <select name="centro[]" class="t_centro">
-                            <option value="" selected>Seleccionar</option>
-                        </select>
+                    <td><input type="text" name="detalle[]"  class="form-control"></td>
+                    <td> <button type="button" class="btnVarios btn btn-info"><i class="bi bi-journal-plus"></i></button> </td>
+                    <td class="n_t_key pe-5">
+                        <input type="text" class="n_td_ke form-control"><input type="hidden" name="varioskeys[]" class="n_l_td_ke">
                     </td>
-                    <td class="td_clase">
-                        <select name="clase[]" class="t_clase">
-                        <option value="" selected>Seleccionar</option>
-                        </select>
+                    <td class="n_t_centro pe-5">
+                        <input type="text" class="n_td_ce form-control" ><input type="hidden" name="varioscentros[]" class="n_l_td_ce">
                     </td>
-                    <td class="td_cuenta3">
-                        <select name="cuenta3[]" class="t_cuenta3">
-                        <option value="" selected>Seleccionar</option>
-                        </select>
+                    <td class="n_t_cuenta pe-5">
+                        <input type="text" class="n_td_cu form-control"><input type="hidden" name="variosCuentas[]" class="n_l_td_cu">
                     </td>
                     <td class="td_cuenta1">-</td>
-                    <td><input type="text" name="monto[]"></td>
+                    <td><input type="text" name="monto[]" class="form-control"></td>
+
+                    <td>
+                        <button class="btn btn-danger n_td_delete"><i class="bi bi-trash"></i></button>
+                    </td>
                 </tr>
             </tbody>
         </table>
 
-     
+
     </div>
     <br>
     <br>
     <br>
     <hr>
-   
+
     <div class="row">
         <div class="col-md-2"></div>
         <div class="col-md-4">
@@ -487,9 +435,9 @@
                 <label for="ejecutado" class="col-sm-4 col-form-label">Ejecutado por</label>
                 <div class="col-sm-8">
                     <input type="hidden" name="ejecutado" id="ejecutado">
-                    
+
                     <input type="text" id="ejecutado_com">
-                  <!--   <select class="form-select" name="ejecutado_com" id="ejecutado_com" required>
+                    <!--   <select class="form-select" name="ejecutado_com" id="ejecutado_com" required>
                         
                     </select> -->
                 </div>
@@ -522,10 +470,8 @@
         </div>
 
         <div class="col-md-2"></div>
-    </div>                        
-  
+    </div>
 
-  
     <h5>Referencia</h5>
 
     <div class="row">
@@ -585,88 +531,425 @@
     <br>
 </form>
 
+<table style="display: none;">
+    <tbody id="cloneTrKeyCentro">
+        <tr>
+            <td class="t_key pe-5">
+                <input type="text" class="td_ke form-control"><input type="hidden" class="l_td_ke">
+            </td>
+            <td class="t_centro pe-5">
+                <input type="text" class="td_ce  form-control"><input type="hidden" class="l_td_ce">
+            </td>
+            <td class="t_cuenta pe-5">
+                <input type="text" class="td_cu  form-control"><input type="hidden" class="l_td_cu">
+            </td>
+            <td class="t_monto pe-5">
+                <input type="text" class="form-control l_td_monto">
+            </td>
+            <td>
+
+                <button class="btn btn-danger btn-sm l_td_delete"><i class="bi bi-trash"></i></button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div id="divCloneModalVarios">
+    <div class="modalVarios" title="Varios Centros" style="font-size: 14px;">
+        <div>
+            <button type="button" class="btn btn-info btn-sm btnAgregarCentro"><i class="bi bi-plus-lg"></i></button>
+        </div>
+        <div id="tablaCentro">
+            <table class="table table-bordered">
+
+                <thead>
+                    <th>Key</th>
+                    <th>Centro</th>
+                    <th>Nivel 3</th>
+                    <th>Monto S./</th>
+                    <th>Acción</th>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
 <script>
-    $("#btnAgregarDetalle").click(function(){
-        let miFila = $("#miFilaDetalle").html();
-        $("#tbodyDetalles").append(miFila);
-    });
+    $(function(){
 
-    $("body").on("change",".t_key",function(){
-        let val = $(this).val();
-        let select = $(this).parents("tr").eq(0).find(".td_centro select");
-        $.ajax({
-            url:"admin/centro/ajaxGet_key",
-            data : {"idKey": val},
-            dataType:"json",
-            type:"post",
-            success : function(response){
-               
-                console.log(select);
-                let options = '<option value="">Seleccionar</option>';
-                for (let i = 0; i < response.keys.length; i++) {
-                    options += '<option value="'+ response.keys[i].id +'">'+ response.keys[i].descripcion +'</option>';
-                } 
-                console.log(options);
-                $(select).html(options);
-            }
-        });
-    });
-
-    $("body").on("change",".t_centro",function(){
-        let val = $(this).val();
-        let select = $(this).parents("tr").eq(0).find(".td_clase select");
-        $.ajax({
-            url:"admin/clasecosto/ajaxGetCentro",
-            data : {"idCentro": val},
-            dataType:"json",
-            type:"post",
-            success : function(response){
-               
-                console.log(response);
-                let options = '<option value="">Seleccionar</option>';
-                for (let i = 0; i < response.clasecosto_centro.length; i++) {
-                    options += '<option value="'+ response.clasecosto_centro[i].id +'">'+ response.clasecosto_centro[i].clasecosto_descripcion +'</option>';
-                } 
-                console.log(options);
-                $(select).html(options);
-            }
-        });
-    });
+        let keys_all = JSON.parse('<?php echo json_encode($keys) ?>');
     
-    $("body").on("change",".t_clase",function(){
-        let val = $(this).val();
-        let select = $(this).parents("tr").eq(0).find(".td_cuenta3 select");
-        $.ajax({
-            url:"admin/cuenta3/ajaxGetClase",
-            data : {"idCuenta": val},
-            dataType:"json",
-            type:"post",
-            success : function(response){
-               
-                console.log(response);
-                let options = '<option value="">Seleccionar</option>';
-                for (let i = 0; i < response.response.length; i++) {
-                    options += '<option idCuenta1="'+response.response[i].cuenta1_descripcion+'" value="'+ response.response[i].id +'">'+ response.response[i].descripcion +'</option>';
-                } 
-                console.log(options);
-                $(select).html(options);
-            }
-        });
-    });
+        let total_keys = [];
     
-    $("body").on("change",".t_cuenta3",function(){
-        let val = $(this).find("option:selected").attr("idCuenta1");
-        console.log(val);
-        $(this).parents("tr").find(".td_cuenta1").text(val);
-      
+        for (let i = 0; i < keys_all.length; i++) {
+            let key = {};
+            key.label = keys_all[i].descripcion;
+            key.value = keys_all[i].id;
+    
+            key.id = keys_all[i].id;
+            key.descripcion = keys_all[i].descripcion;
+    
+            total_keys.push(key);
+        }
+    
+        let cuentas3 = JSON.parse('<?php echo json_encode($cuentas3) ?>');
+    
+    
+    
+    
+        $("#btnAgregarDetalle").click(function() {
+            let miFila = $("#miFilaDetalle").html();
+            let miId = parseInt(Math.random() * 1000000);
+            miFila = $(miFila).attr("id", "fila_m_" + miId);
+            $(miFila).attr("elId", miId);
+            $(miFila).find(".btnVarios").attr("elId", miId);
+    
+            
+    
+            let modal = $("#divCloneModalVarios").html();
+            modal = $(modal).attr("id", "m_" + miId)
+            $(modal).find(".btnAgregarCentro").attr("elId", miId)
+            $("body").append($(modal));
+    
+            $("#m_" + miId).dialog({
+                autoOpen: false,
+                closeOnEscape: false,
+                modal: true,
+                width: 1000,
+                dialogClass: "no-close",
+                buttons: {
+                    "Aceptar": function() {
+                        let cuentas3 = $(this).find(".l_td_cu"),
+                            cecos = $(this).find(".l_td_ce"),
+                            keys = $(this).find(".l_td_ke"),
+                            montos = $(this).find(".l_td_monto"),
+                            arr_centros = [];
+                        console.log(cuentas3);
+                        for (let i = 0; i < cuentas3.length; i++) {
+                            if (cuentas3.eq(i).val() != "") {
+                                let cu3 = $(cuentas3.eq(i)).val(),
+                                    ceco = $(cecos.eq(i)).val(),
+                                    key = $(keys.eq(i)).val(),
+                                    monto = $(montos.eq(i)).val();
+
+                                mifCeco = new Object();
+    
+                                mifCeco.key = key;
+                                mifCeco.centro = ceco;
+                                mifCeco.cuenta3 = cu3;
+                                mifCeco.monto = monto;
+    
+                                arr_centros.push(mifCeco);
+                            }
+                        }
+    
+                        console.log(arr_centros);
+    
+    
+                        $("#fila_m_" + miId).find(".td_total").val(JSON.stringify(arr_centros));
+                        $(this).dialog("close");
+                    }
+                }
+            });
+    
+            $(miFila).find(".n_td_ke").attr("id", "n_ke_" + miId);
+            $(miFila).find(".n_l_td_ke").attr("id", "n_l_ke_" + miId);
+    
+            $(miFila).find(".n_td_ce").attr("id", "n_ce_" + miId);
+            $(miFila).find(".n_l_td_ce").attr("id", "n_l_ce_" + miId);
+    
+            $(miFila).find(".n_td_cu").attr("id", "n_cu_" + miId);
+            $(miFila).find(".n_l_td_cu").attr("id", "n_l_cu_" + miId);
+            $("#tbodyDetalles").append(miFila);
+            $("#n_ke_" + miId).combobox({
+                source: total_keys,
+                focus: function(event, ui) {
+                    $("#n_ke_" + miId).val(ui.item.descripcion);
+                    $("#n_ke_" + miId).next().find(".custom-combobox-input").val(ui.item.descripcion);
+                    return false;
+                },
+                select: function(event, ui) {
+                    $("#n_l_ke_" + miId).val(ui.item.id);
+                    $("#n_ke_" + miId).val(ui.item.descripcion);
+                    $("#n_ke_" + miId).next().find(".custom-combobox-input").val(ui.item.descripcion);
+    
+    
+    
+                    $.ajax({
+                        url: "admin/centro/ajaxGet_key",
+                        data: {
+                            idKey: ui.item.id
+                        },
+                        type: "post",
+                        dataType: "json",
+                        success: function(response) {
+    
+                            let total_centro = [];
+    
+                            for (let i = 0; i < response.keys.length; i++) {
+                                let key = {};
+                                key.label = response.keys[i].codigo + " " + response.keys[i].descripcion;
+                                key.value = response.keys[i].id;
+    
+                                key.id = response.keys[i].id;
+                                key.descripcion = response.keys[i].descripcion;
+                                key.codigo = response.keys[i].codigo;
+    
+                                total_centro.push(key);
+                            }
+    
+                            $("#n_ce_" + miId).next(".custom-combobox").remove();
+                            let miTr = $("#n_ce_" + miId).parent();
+                            $("#n_ce_" + miId).remove();
+                            miTr.prepend('<input type="text" id="n_ce_' + miId + '">');
+    
+                            $("#n_ce_" + miId).combobox({
+                                source: total_centro,
+                                focus: function(event, ui) {
+                                    $("#n_ce_" + miId).val(ui.item.descripcion);
+                                    $("#n_ce_" + miId).next().find(".custom-combobox-input").val(ui.item.codigo + " " + ui.item.descripcion);
+                                    return false;
+                                },
+                                select: function(event, ui) {
+                                    $("#n_l_ce_" + miId).val(ui.item.id);
+                                    $("#n_ce_" + miId).val(ui.item.descripcion);
+                                    $("#n_ce_" + miId).next().find(".custom-combobox-input").val(ui.item.codigo + " " + ui.item.descripcion);
+    
+                                    $.ajax({
+                                        url: "admin/oc/getAjaxCuenta3_centro",
+                                        type: "POST",
+                                        dataType: "json",
+                                        data: {
+                                            idCentro: ui.item.id
+                                        },
+                                        success: function(response) {
+    
+                                            console.log(response);
+                                            cuentas3 = response.response;
+                                            let total_cuentas3 = [];
+    
+                                            for (let i = 0; i < cuentas3.length; i++) {
+                                                let cuenta3 = {};
+                                                cuenta3.value = cuentas3[i].c3_id;
+                                                cuenta3.label = cuentas3[i].c3_codigo + " - " + cuentas3[i].c3_descripcion;
+    
+                                                cuenta3.c3_id = cuentas3[i].c3_id;
+                                                cuenta3.c3_codigo = cuentas3[i].c3_codigo;
+                                                cuenta3.c3_descripcion = cuentas3[i].c3_descripcion;
+    
+                                                cuenta3.c2_id = cuentas3[i].c2_id;
+                                                cuenta3.c2_codigo = cuentas3[i].c2_codigo;
+                                                cuenta3.c2_descripcion = cuentas3[i].c2_descripcion;
+    
+                                                cuenta3.c1_id = cuentas3[i].c1_id;
+                                                cuenta3.c1_codigo = cuentas3[i].c1_codigo;
+                                                cuenta3.c1_descripcion = cuentas3[i].c1_descripcion;
+    
+                                                cuenta3.ca_id = cuentas3[i].ca_id;
+                                                cuenta3.ca_codigo = cuentas3[i].ca_codigo;
+                                                cuenta3.ca_descripcion = cuentas3[i].ca_descripcion;
+    
+                                                total_cuentas3.push(cuenta3);
+                                            }
+    
+                                            $("#n_cu_" + miId).next(".custom-combobox").remove();
+                                            let miTr = $("#n_cu_" + miId).parent();
+                                            $("#n_cu_" + miId).remove();
+                                            miTr.prepend('<input type="text" id="n_cu_' + miId + '">');
+    
+    
+    
+                                            $("#n_cu_" + miId).combobox({
+                                                source: total_cuentas3,
+                                                focus: function(event, ui) {
+                                                    $("#n_cu_" + miId).val(ui.item.c3_descripcion);
+                                                    $("#n_cu_" + miId).next().find(".custom-combobox-input").val(ui.item.c3_codigo + " " + ui.item.c3_descripcion);
+                                                    return false;
+                                                },
+                                                select: function(event, ui) {
+                                                    $("#n_l_cu_" + miId).val(ui.item.c3_id);
+                                                    $("#n_cu_" + miId).val(ui.item.c3_descripcion);
+                                                    $("#n_cu_" + miId).next().find(".custom-combobox-input").val(ui.item.c3_codigo + " " + ui.item.c3_descripcion);
+                                                    return false;
+                                                }
+                                            });
+                                        }
+                                    });
+                                    return false;
+                                }
+                            });
+                        }
+                    });
+                    return false;
+                }
+            });
+    
+        });
+    
+    
+    
+        $("body").on("click", ".btnVarios", function() {
+            let elId = $(this).attr("elId");
+    
+            $("#m_" + elId).dialog("open");
+        });
+    
+        $("body").on("click", ".btnAgregarCentro", function() {
+            let miId = parseInt(Math.random() * 1000000);
+            let modalId = $(this).attr("elId");
+    
+            let fila = $("#cloneTrKeyCentro").html();
+            fila = $(fila).attr("id", "fila_" + miId);
+    
+            $(fila).find(".td_ke").attr("id", "ke_" + miId);
+            $(fila).find(".l_td_ke").attr("id", "l_ke_" + miId);
+    
+            $(fila).find(".td_ce").attr("id", "ce_" + miId);
+            $(fila).find(".l_td_ce").attr("id", "l_ce_" + miId);
+    
+            $(fila).find(".td_cu").attr("id", "cu_" + miId);
+            $(fila).find(".l_td_cu").attr("id", "l_cu_" + miId);
+    
+            $("#m_" + modalId).find("tbody").append($(fila));
+    
+            $("#ke_" + miId).combobox({
+                source: total_keys,
+                focus: function(event, ui) {
+                    $("#ke_" + miId).val(ui.item.descripcion);
+                    $("#ke_" + miId).next().find(".custom-combobox-input").val(ui.item.descripcion);
+                    return false;
+                },
+                select: function(event, ui) {
+                    $("#l_ke_" + miId).val(ui.item.id);
+                    $("#ke_" + miId).val(ui.item.descripcion);
+                    $("#ke_" + miId).next().find(".custom-combobox-input").val(ui.item.descripcion);
+    
+    
+    
+                    $.ajax({
+                        url: "admin/centro/ajaxGet_key",
+                        data: {
+                            idKey: ui.item.id
+                        },
+                        type: "post",
+                        dataType: "json",
+                        success: function(response) {
+    
+                            let total_centro = [];
+    
+                            for (let i = 0; i < response.keys.length; i++) {
+                                let key = {};
+                                key.label = response.keys[i].codigo + " " + response.keys[i].descripcion;
+                                key.value = response.keys[i].id;
+    
+                                key.id = response.keys[i].id;
+                                key.descripcion = response.keys[i].descripcion;
+                                key.codigo = response.keys[i].codigo;
+    
+                                total_centro.push(key);
+                            }
+    
+                            $("#ce_" + miId).next(".custom-combobox").remove();
+                            let miTr = $("#ce_" + miId).parent();
+                            $("#ce_" + miId).remove();
+                            miTr.prepend('<input type="text" id="ce_' + miId + '">');
+    
+                            $("#ce_" + miId).combobox({
+                                source: total_centro,
+                                focus: function(event, ui) {
+                                    $("#ce_" + miId).val(ui.item.descripcion);
+                                    $("#ce_" + miId).next().find(".custom-combobox-input").val(ui.item.codigo + " " + ui.item.descripcion);
+                                    return false;
+                                },
+                                select: function(event, ui) {
+                                    $("#l_ce_" + miId).val(ui.item.id);
+                                    $("#ce_" + miId).val(ui.item.descripcion);
+                                    $("#ce_" + miId).next().find(".custom-combobox-input").val(ui.item.codigo + " " + ui.item.descripcion);
+    
+                                    $.ajax({
+                                        url: "admin/oc/getAjaxCuenta3_centro",
+                                        type: "POST",
+                                        dataType: "json",
+                                        data: {
+                                            idCentro: ui.item.id
+                                        },
+                                        success: function(response) {
+    
+                                            console.log(response);
+                                            cuentas3 = response.response;
+                                            let total_cuentas3 = [];
+    
+                                            for (let i = 0; i < cuentas3.length; i++) {
+                                                let cuenta3 = {};
+                                                cuenta3.value = cuentas3[i].c3_id;
+                                                cuenta3.label = cuentas3[i].c3_codigo + " - " + cuentas3[i].c3_descripcion;
+    
+                                                cuenta3.c3_id = cuentas3[i].c3_id;
+                                                cuenta3.c3_codigo = cuentas3[i].c3_codigo;
+                                                cuenta3.c3_descripcion = cuentas3[i].c3_descripcion;
+    
+                                                cuenta3.c2_id = cuentas3[i].c2_id;
+                                                cuenta3.c2_codigo = cuentas3[i].c2_codigo;
+                                                cuenta3.c2_descripcion = cuentas3[i].c2_descripcion;
+    
+                                                cuenta3.c1_id = cuentas3[i].c1_id;
+                                                cuenta3.c1_codigo = cuentas3[i].c1_codigo;
+                                                cuenta3.c1_descripcion = cuentas3[i].c1_descripcion;
+    
+                                                cuenta3.ca_id = cuentas3[i].ca_id;
+                                                cuenta3.ca_codigo = cuentas3[i].ca_codigo;
+                                                cuenta3.ca_descripcion = cuentas3[i].ca_descripcion;
+    
+                                                total_cuentas3.push(cuenta3);
+                                            }
+    
+                                            $("#cu_" + miId).next(".custom-combobox").remove();
+                                            let miTr = $("#cu_" + miId).parent();
+                                            $("#cu_" + miId).remove();
+                                            miTr.prepend('<input type="text" id="cu_' + miId + '">');
+    
+    
+    
+                                            $("#cu_" + miId).combobox({
+                                                source: total_cuentas3,
+                                                focus: function(event, ui) {
+                                                    $("#cu_" + miId).val(ui.item.c3_descripcion);
+                                                    $("#cu_" + miId).next().find(".custom-combobox-input").val(ui.item.c3_codigo + " " + ui.item.c3_descripcion);
+                                                    return false;
+                                                },
+                                                select: function(event, ui) {
+                                                    $("#l_cu_" + miId).val(ui.item.c3_id);
+                                                    $("#cu_" + miId).val(ui.item.c3_descripcion);
+                                                    $("#cu_" + miId).next().find(".custom-combobox-input").val(ui.item.c3_codigo + " " + ui.item.c3_descripcion);
+                                                    return false;
+                                                }
+                                            });
+                                        }
+                                    });
+                                    return false;
+                                }
+                            });
+                        }
+                    });
+                    return false;
+                }
+            });
+    
+    
+        });
+        $("#btnAgregarDetalle").click();
+
+        $("body").on("click",".n_td_delete",function(){
+            $(this).parents("tr").eq(0).remove();
+        })
+        
+        $("body").on("click",".l_td_delete",function(){
+            $(this).parents("tr").eq(0).remove();
+        })
+        
+        
     });
-
-
-
-
-
-  
-
-
-
 </script>

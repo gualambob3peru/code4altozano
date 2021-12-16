@@ -15,7 +15,7 @@
                 </div>
                 <div class="mb-3 mt-4">
                     <label for="email" class="form-label">Correo</label>
-                    <input type="email" name="email" class="form-control" id="email">
+                    <input type="email" name="email" class="form-control" id="email" required>
 
                     <?php if ($validation->getError('email')) { ?>
                         <div class='alert alert-danger mt-2'>
@@ -26,7 +26,7 @@
 
                 <div class="mb-3">
                     <label for="password" class="form-label">Contraseña</label>
-                    <input type="password" name="password" class="form-control" id="password">
+                    <input type="password" name="password" class="form-control" id="password" required>
 
                     <?php if ($validation->getError('password')) { ?>
                         <div class='alert alert-danger mt-2'>
