@@ -259,8 +259,8 @@
             </div>
 
             <div class="mb-3">
-                <input type="hidden" name="corden" value="corden">
-                <select name="corden" id="corden" class="form-select">
+                <input type="hidden" name="otro" value="idOrden">
+                <select name="idOrden" id="idOrden" class="form-select">
                     <option value="">Seleccionar Orden</option>
                     <?php foreach ($ordenes as $key => $value) : ?>
                         <option value="<?php echo $value["id"] ?>"><?php echo $value["codigo"] ?></option>

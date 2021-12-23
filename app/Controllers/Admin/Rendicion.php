@@ -19,15 +19,15 @@ use App\Models\RendicionItemModel;
 use App\Models\TipoOrdenModel;
 use App\Models\TipoSolicitudModel;
 use App\Models\RendicionModel;
-
+use App\Models\TipoSolicitudRenModel;
 use Config\Database;
 
-class Oc extends BaseController
+class Rendicion extends BaseController
 {
     private $db = "";
-    private $table = "orden";
-    private $nombre = "oc";
-    private $lista = "ocs";
+    private $table = "rendicion";
+    private $nombre = "rendicion";
+    private $lista = "rendiciones";
     private $dataView = [];
     private $model = "";
 
@@ -45,21 +45,182 @@ class Oc extends BaseController
     public function index()
     {
         $data = $this->dataView;
-        $ocs = $this->db->table("orden o")
-            ->select('o.estado orden_estado,o.idPersonal,o.id,o.codigo orden_codigo,o.fecha,ts.descripcion tipoSolicitud_desc,e.nombre empresa_nombre,c.descripcion centro_desc,cu3.codigo cuenta3_cod,cu3.descripcion cuenta3_desc,peso.nombres peso_nombres, peso.apellidoPaterno peso_apellidoPaterno,peso.apellidoMaterno peso_apellidoMaterno,eje.nombre eje_nombre,o.importe,m.descripcion moneda_descripcion')
-            ->join("personal peso", 'peso.id = o.idPersonalSoli')
-            ->join("tipoSolicitud ts", 'o.idTipoSolicitud = ts.id')
-            ->join("empresa e", 'e.id = o.idEmpresa')
-            ->join("empresa eje", 'eje.id = o.idEmpresaEje')
-            ->join("moneda m", 'm.id = o.idMoneda')
-            ->join("centro c", 'c.id = o.idCentroCosto', 'left')
-            ->join("cuenta3 cu3", 'cu3.id = o.idCuenta', 'left')
-            ->where("o.estado !=", "5")
+
+        $data["rendiciones"] = (new RendicionModel())->getList();
+        $this->template->setTemplate('templates/template2');
+        $this->template->render('Admin/rendicion/list', $data);
+        
+    }
+
+    public function agregar()
+    {
+        $cuentas3 = $this->db->table("cuenta3 c3")
+            ->select('c3.id c3_id, c3.descripcion c3_descripcion, c3.codigo c3_codigo, c2.id c2_id, c2.descripcion c2_descripcion, c2.codigo c2_codigo,c1.id c1_id, c1.descripcion c1_descripcion, c1.codigo c1_codigo, ca.id ca_id, ca.descripcion ca_descripcion, ca.codigo ca_codigo')
+            ->join("cuenta2 c2", 'c3.idCuenta = c2.id')
+            ->join("cuenta1 c1", 'c2.idCuenta = c1.id')
+            ->join("clasecosto ca", 'c1.idCuenta = ca.id')
+
+            ->where("c3.estado", "1")
             ->get()->getResult();
 
-        $data["ocs"] = $ocs;
-        $this->template->setTemplate('templates/template2');
-        $this->template->render('Admin/oc/list', $data);
+        $data =  [
+            'empresas'   => (new EmpresaModel())->where("estado", "1")->where("idTipoEmpresa", "1")->findAll(),
+            'empresas_total'   => (new EmpresaModel())->where("estado", "1")->findAll(),
+            'keys'       => (new KeyModel())->where("estado", "1")->findAll(),
+            'personal'   => (new PersonalModel())->where("estado", "1")->findAll(),
+            'claseCosto'   => (new ClasecostoModel())->where("estado", "1")->findAll(),
+            'banco'   => (new BancoModel())->where("estado", "1")->findAll(),
+            'tipoOrden' => (new TipoOrdenModel())->where("estado", "1")->findAll(),
+            'ordenes' => (new OcModel())->where("estado!=", "3")->findAll(),
+            'cuentas3' => $cuentas3,
+        ];
+
+        if ($this->request->getPost('submit')) {
+            $rules = [
+                'idEmpresa' => 'required'
+            ];
+
+            $errors = [
+                'ruc' => [
+                    'validateRuc' => 'Este RUC ya está registrado'
+                ]
+            ];
+
+           
+
+            //if (!$validation->withRequest($this->request)->run()) {
+            if (!$this->validate($rules, $errors)) {
+                $datosView = $this->dataView;
+                $data['validation'] = $this->validator;
+
+                $this->template->setTemplate('templates/template2');
+                $this->template->render('Admin/rendicion/agregar', $data);
+            } else {
+
+         
+
+                $cantOrden = $this->db->table("rendicion")
+                    ->select('count(*) cant')
+                    ->where("idTipoOrden", $this->request->getVar('idTipoOrden'))
+                    ->get()->getRow();
+
+                $cantOrden = $cantOrden->cant + 1;
+
+                if ($cantOrden < 10) {
+                    $cantOrden = "00" . $cantOrden;
+                } else if ($cantOrden < 100) {
+                    $cantOrden = "0" . $cantOrden;
+                }
+
+                $tipoOrden = $this->db->table("tipoOrden")
+                    ->where("id", $this->request->getVar('idTipoOrden'))
+                    ->get()->getRow();
+
+                $codTipoOrden = $tipoOrden->codigo;
+
+                $codigo = "Rend.".$codTipoOrden . $cantOrden . "-2021";
+
+                //calculando importe total
+                $importeTotal = 0;
+                $arr_v = $this->request->getVar('varioscentros_t');
+                
+                foreach($arr_v as $key => $value ){
+                  
+
+                    if(json_decode($value)){
+                        $centros = json_decode($value);
+                        foreach($centros as $key2 => $value2){
+                            $importeTotal += $value2->monto;
+                        }
+                    }else{ //un solo centro
+                        $importeTotal += floatval($this->request->getVar('monto')[$key]);
+                    }
+                }
+        
+                $datosInsert = [
+                    "codigo" => $codigo,
+                    "idPersonal" => $_SESSION["personal"]["id"],
+                    "importe" => $importeTotal,
+                    "idTipoSolicitudRen" => $this->request->getVar('idTipoSolicitud'),
+                    "idTipoOrden" => $this->request->getVar('idTipoOrden'),
+                    "idEmpresa" => $this->request->getVar('idEmpresa'),
+                    "idPersonalSoli" => $this->request->getVar('solicitado'),
+                    "idPersonalJefe" => $this->request->getVar('jefe'),
+                    "idOrden" => 1,
+                    "idEmpresaEje" => $this->request->getVar('ejecutado'),
+                    "idBanco_empresa" => $this->request->getVar('idBanco'),
+                    "idMoneda" => 1,
+                    "referencia" => $this->request->getVar('referencia'),
+                ];
+                $newRendicion = new RendicionModel();
+                $newRendicion->save($datosInsert);
+                $miIdRendicion = $newRendicion->getInsertID();
+
+                //agregando Items
+                $arr_v = $this->request->getVar('varioscentros_t');
+                
+                foreach($arr_v as $key => $value ){
+                    $datosItem = [
+                        "idRendicion" => $miIdRendicion,
+                        "nroDoc" =>$this->request->getVar('nro')[$key],
+                        "idEmpresaProv" =>$this->request->getVar('proveedor')[$key],
+                        "detalle" =>$this->request->getVar('detalle')[$key],
+                        "idCentro" =>$this->request->getVar('variosCentros')[$key],
+                        "idCuenta" =>$this->request->getVar('variosCuentas')[$key],
+                        "monto" =>$this->request->getVar('monto')[$key]
+                    ];
+                    $newRendicionItem = new RendicionItemModel();
+                    $newRendicionItem->save($datosItem);
+                    $idRendicionItem = $newRendicionItem->getInsertID();
+
+                    if(json_decode($value)){ // varios centros
+                        $centros = json_decode($value);
+                        foreach($centros as $key2 => $value2){
+                            $itemCentro = [
+                                "idRendicionItem" => $idRendicionItem,
+                                "detalle" => $value2->detalle,
+                                "idCentro" => $value2->centro,
+                                "idCuenta" => $value2->cuenta3,
+                                "monto" => $value2->monto,
+                            ];
+                            $newRendicionItemCentro = new RendicionItemCentroModel();
+                            $newRendicionItemCentro->save($itemCentro);
+                        }
+                    }
+                }
+
+                if ($_FILES["docs"]["name"][0] != "") {
+
+
+
+                    foreach ($this->request->getFileMultiple('docs') as $file) {
+
+
+                        $name = uniqid().'.'.$file->guessExtension();
+                        $file->move('uploads/rendicion/'.$miIdRendicion,$name);
+
+
+                        $data = [
+                            'name' =>  $file->getClientName(),
+                            'type'  => $file->getClientMimeType()
+                        ];
+
+                        $this->db->table("rendicion_imagen")
+                            ->insert(array(
+                                "idRendicion" => $miIdRendicion,
+                                "imagen" => $name
+                            ));
+
+                        $msg = 'Files has been uploaded';
+                    }
+                }
+
+                return redirect()->to(site_url('admin/oc/index'));
+            }
+        } else {
+            $this->template->setTemplate('templates/template2');
+            $this->template->render('Admin/rendicion/agregar', $data);
+        }
     }
 
     public function aprobar($idOrden)
@@ -88,7 +249,7 @@ class Oc extends BaseController
         }
     }
 
-    public function agregar()
+    public function editar($idRendicion)
     {
 
         $cuentas3 = $this->db->table("cuenta3 c3")
@@ -108,172 +269,8 @@ class Oc extends BaseController
             'claseCosto'   => (new ClasecostoModel())->where("estado", "1")->findAll(),
             'banco'   => (new BancoModel())->where("estado", "1")->findAll(),
             'tipoOrden' => (new TipoOrdenModel())->where("estado", "1")->findAll(),
-            'cuentas3' => $cuentas3,
-        ];
-
-        if ($this->request->getPost('submit')) {
-
-
-            $rules = [
-                'idEmpresa' => 'required'
-            ];
-
-            $errors = [
-                'ruc' => [
-                    'validateRuc' => 'Este RUC ya está registrado'
-                ]
-            ];
-
-            //if (!$validation->withRequest($this->request)->run()) {
-            if (!$this->validate($rules, $errors)) {
-                $datosView = $this->dataView;
-                $data['validation'] = $this->validator;
-
-                $this->template->setTemplate('templates/template2');
-                $this->template->render('Admin/oc/agregar', $data);
-            } else {
-
-                $cantOrden = $this->db->table("orden")
-                    ->select('count(*) cant')
-                    ->where("idTipoOrden", $this->request->getVar('idTipoOrden'))
-                    ->get()->getRow();
-
-                $cantOrden = $cantOrden->cant + 1;
-
-                if ($cantOrden < 10) {
-                    $cantOrden = "00" . $cantOrden;
-                } else if ($cantOrden < 100) {
-                    $cantOrden = "0" . $cantOrden;
-                }
-
-                $tipoOrden = $this->db->table("tipoOrden")
-                    ->where("id", $this->request->getVar('idTipoOrden'))
-                    ->get()->getRow();
-
-                $codTipoOrden = $tipoOrden->codigo;
-
-                $codigo = $codTipoOrden . $cantOrden . "-2021";
-
-                //hallando monto
-                $detalles = $this->request->getVar('detalle');
-                $monedas = $this->request->getVar('moneda');
-                $monto = 0;
-
-                
-                foreach ($detalles as $key => $value) {
-                    if($monedas[$key]!=""){
-
-                        $monto += $monedas[$key];
-                    }
-                }
-     
-
-                $datosInsert = [
-                    "codigo" => $codigo,
-                    "idPersonal" => $_SESSION["personal"]["id"],
-                    "texto" => $this->request->getVar('texto'),
-                    "importe" => $monto,
-                    "idTipoSolicitud" => $this->request->getVar('idTipoSolicitud'),
-                    "fecha" => date("Y-m-d"),
-                    "nombre" => $this->request->getVar('nombre'),
-                    "idTipoOrden" => $this->request->getVar('idTipoOrden'),
-                    "idEmpresa" => $this->request->getVar('idEmpresa'),
-                    "idCentroCosto" => $this->request->getVar('idCentroCosto'),
-                    "idPersonalSoli" => $this->request->getVar('solicitado'),
-                    "idPersonalJefe" => $this->request->getVar('jefe'),
-                    "idCuenta" => $this->request->getVar('idCuenta3'),
-                    "objeto" => $this->request->getVar('objeto'),
-                    "idEmpresaEje" => $this->request->getVar('ejecutado'),
-                    "idBanco_empresa" => $this->request->getVar('idBanco'),
-                    "idMoneda" => $this->request->getVar('idMoneda'),
-                    "referencia" => $this->request->getVar('referencia'),
-                ];
-                $this->model->save($datosInsert);
-                $miId = $this->model->getInsertID();
-
-
-
-                //insertando detalles
-                foreach ($detalles as $key => $value) {
-                    $datosDetalles = array();
-                    $datosDetalles["idOrden"] = $miId;
-                    $datosDetalles["descripcion"] = $value;
-                    $datosDetalles["monto"] = $monedas[$key];
-                    (new OrdenDetalleModel())->save($datosDetalles);
-                }
-
-                $varioscentros = $this->request->getVar('varioscentros');
-                $porcentajecentro = $this->request->getVar('porcentajecentro');
-                
-                if($varioscentros){
-                    foreach ($varioscentros as $key => $value) {
-                        $orden_centro = array();
-                        $orden_centro["idOrden"] = $miId;
-                        $orden_centro["idCentro"] = $varioscentros[$key];
-                        $orden_centro["porcentaje"] = $porcentajecentro[$key];
-    
-                        $this->db->table("orden_centro")->insert($orden_centro);
-                    }
-                }
-
-                if ($_FILES["docs"]["name"][0] != "") {
-
-
-
-                    foreach ($this->request->getFileMultiple('docs') as $file) {
-
-
-                        $name = uniqid().'.'.$file->guessExtension();
-                        $file->move('uploads/'.$miId,$name);
-
-
-                        $data = [
-                            'name' =>  $file->getClientName(),
-                            'type'  => $file->getClientMimeType()
-                        ];
-
-                        $this->db->table("orden_imagen")
-                            ->insert(array(
-                                "idOrden" => $miId,
-                                "imagen" => $name
-                            ));
-                       // $save = $builder->insert($data);
-
-                        $msg = 'Files has been uploaded';
-                    }
-                }
-
-
-
-                return redirect()->to(site_url('admin/oc/index'));
-            }
-        } else {
-
-            $this->template->setTemplate('templates/template2');
-            $this->template->render('Admin/oc/agregar', $data);
-        }
-    }
-
-    public function editar($idOrden)
-    {
-
-        $cuentas3 = $this->db->table("cuenta3 c3")
-            ->select('c3.id c3_id, c3.descripcion c3_descripcion, c3.codigo c3_codigo, c2.id c2_id, c2.descripcion c2_descripcion, c2.codigo c2_codigo,c1.id c1_id, c1.descripcion c1_descripcion, c1.codigo c1_codigo, ca.id ca_id, ca.descripcion ca_descripcion, ca.codigo ca_codigo')
-            ->join("cuenta2 c2", 'c3.idCuenta = c2.id')
-            ->join("cuenta1 c1", 'c2.idCuenta = c1.id')
-            ->join("clasecosto ca", 'c1.idCuenta = ca.id')
-
-            ->where("c3.estado", "1")
-            ->get()->getResult();
-
-        $data =  [
-            'empresas'   => (new EmpresaModel())->where("estado", "1")->where("idTipoEmpresa", "1")->findAll(),
-            'empresas_total'   => (new EmpresaModel())->where("estado", "1")->findAll(),
-            'keys'       => (new KeyModel())->where("estado", "1")->findAll(),
-            'personal'   => (new PersonalModel())->where("estado", "1")->findAll(),
-            'claseCosto'   => (new ClasecostoModel())->where("estado", "1")->findAll(),
-            'banco'   => (new BancoModel())->where("estado", "1")->findAll(),
-            'tipoOrden' => (new TipoOrdenModel())->where("estado", "1")->findAll(),
+            'ordenes' => (new OcModel())->where("estado!=", "3")->findAll(),
+            'tipoSolicitudRen_all' => (new TipoSolicitudRenModel())->where("estado","1")->findAll(),
             'cuentas3' => $cuentas3,
         ];
 
@@ -296,92 +293,99 @@ class Oc extends BaseController
                 $data['validation'] = $this->validator;
 
                 $this->template->setTemplate('templates/template2');
-                $this->template->render('Admin/oc/agregar', $data);
+                $this->template->render('Admin/rendicion/editar', $data);
             } else {
 
-                $cantOrden = $this->db->table("orden")
-                    ->select('count(*) cant')
-                    ->where("idTipoOrden", $this->request->getVar('idTipoOrden'))
-                    ->get()->getRow();
-
-                $cantOrden = $cantOrden->cant + 1;
-
-                if ($cantOrden < 10) {
-                    $cantOrden = "00" . $cantOrden;
-                } else if ($cantOrden < 100) {
-                    $cantOrden = "0" . $cantOrden;
-                }
-
-                $tipoOrden = $this->db->table("tipoOrden")
-                    ->where("id", $this->request->getVar('idTipoOrden'))
-                    ->get()->getRow();
-
-                $codTipoOrden = $tipoOrden->codigo;
-
-                $codigo = $codTipoOrden . $cantOrden . "-2021";
-
                 //hallando monto
-                $detalles = $this->request->getVar('detalle');
-                $monedas = $this->request->getVar('moneda');
-                $monto = 0;
+                //calculando importe total
+                $importeTotal = 0;
+                $arr_v = $this->request->getVar('varioscentros_t');
+                
+                foreach($arr_v as $key => $value ){
+                  
 
-                foreach ($detalles as $key => $value) {
-                    $monto += $monedas[$key];
+                    if(json_decode($value)){
+                        $centros = json_decode($value);
+                        foreach($centros as $key2 => $value2){
+                            $importeTotal += $value2->monto;
+                        }
+                    }else{ //un solo centro
+                        $importeTotal += floatval($this->request->getVar('monto')[$key]);
+                    }
                 }
 
                 $datosInsert = [
-                    "id" => $idOrden,
-                    "codigo" => $codigo,
-                    "texto" => $this->request->getVar('texto'),
-                    "importe" => $monto,
-                    "idTipoSolicitud" => $this->request->getVar('idTipoSolicitud'),
-                    "fecha" => date("Y-m-d"),
-                    "nombre" => $this->request->getVar('nombre'),
+                    "id" => $idRendicion,
+                    "idPersonal" => $_SESSION["personal"]["id"],
+                    "importe" => $importeTotal,
+                    "idTipoSolicitudRen" => $this->request->getVar('idTipoSolicitud'),
                     "idTipoOrden" => $this->request->getVar('idTipoOrden'),
                     "idEmpresa" => $this->request->getVar('idEmpresa'),
-                    "idCentroCosto" => $this->request->getVar('idCentroCosto'),
                     "idPersonalSoli" => $this->request->getVar('solicitado'),
                     "idPersonalJefe" => $this->request->getVar('jefe'),
-                    "idCuenta" => $this->request->getVar('idCuenta3'),
-                    "objeto" => $this->request->getVar('objeto'),
+                    "idOrden" => $this->request->getVar('idOrden'),
                     "idEmpresaEje" => $this->request->getVar('ejecutado'),
                     "idBanco_empresa" => $this->request->getVar('idBanco'),
-                    "idMoneda" => $this->request->getVar('idMoneda'),
+                    "idMoneda" => 1,
                     "referencia" => $this->request->getVar('referencia'),
                 ];
-                $this->model->save($datosInsert);
-                $miId = $idOrden;
-
-                $this->db->table("orden_detalle")
-                    ->where("idOrden",$idOrden)
-                    ->delete();
-
-                //insertando detalles
-                foreach ($detalles as $key => $value) {
-                    $datosDetalles = array();
-                    $datosDetalles["idOrden"] = $miId;
-                    $datosDetalles["descripcion"] = $value;
-                    $datosDetalles["monto"] = $monedas[$key];
-                    (new OrdenDetalleModel())->save($datosDetalles);
-                }
-
-                $varioscentros = $this->request->getVar('varioscentros');
-                $porcentajecentro = $this->request->getVar('porcentajecentro');
+                $newRendicion = new RendicionModel();
+                $newRendicion->save($datosInsert);
+           
+                //borrando items anteriores
+                $itemCentroBorrar = $this->db->table("rendicion_item")
+                    ->where("idRendicion",$idRendicion)
+                    ->get()->getResultArray();
                 
-                $this->db->table("orden_centro")
-                    ->where("idOrden",$idOrden)
+                foreach ($itemCentroBorrar as $key => $value) {
+                    $idRendicionItem = $value["id"];
+                    $this->db->table("rendicion_itemcentro")
+                    ->where("idRendicionItem",$idRendicionItem)
                     ->delete();
-                if($varioscentros){
-                    foreach ($varioscentros as $key => $value) {
-                        $orden_centro = array();
-                        $orden_centro["idOrden"] = $miId;
-                        $orden_centro["idCentro"] = $varioscentros[$key];
-                        $orden_centro["porcentaje"] = $porcentajecentro[$key];
-    
-                        $this->db->table("orden_centro")->insert($orden_centro);
+                }
+                
+                $this->db->table("rendicion_item")
+                    ->where("idRendicion",$idRendicion)
+                    ->delete();
+
+                $this->db->table("rendicion_imagen")
+                    ->where("idRendicion",$idRendicion)
+                    ->delete();
+
+                //agregando Items
+
+                $arr_v = $this->request->getVar('varioscentros_t');
+                
+                foreach($arr_v as $key => $value ){
+                    $datosItem = [
+                        "idRendicion" => $idRendicion,
+                        "nroDoc" =>$this->request->getVar('nro')[$key],
+                        "idEmpresaProv" =>$this->request->getVar('proveedor')[$key],
+                        "detalle" =>$this->request->getVar('detalle')[$key],
+                        "idCentro" =>$this->request->getVar('variosCentros')[$key],
+                        "idCuenta" =>$this->request->getVar('variosCuentas')[$key],
+                        "monto" =>$this->request->getVar('monto')[$key]
+                    ];
+                    $newRendicionItem = new RendicionItemModel();
+                    $newRendicionItem->save($datosItem);
+                    $idRendicionItem = $newRendicionItem->getInsertID();
+
+                    if(json_decode($value)){ // varios centros
+                        $centros = json_decode($value);
+                        foreach($centros as $key2 => $value2){
+                            $itemCentro = [
+                                "idRendicionItem" => $idRendicionItem,
+                                "detalle" => $value2->detalle,
+                                "idCentro" => $value2->centro,
+                                "idCuenta" => $value2->cuenta3,
+                                "monto" => $value2->monto,
+                            ];
+                            $newRendicionItemCentro = new RendicionItemCentroModel();
+                            $newRendicionItemCentro->save($itemCentro);
+                        }
                     }
                 }
-             
+
                 if ($_FILES["docs"]["name"][0] != "") {
 
 
@@ -390,7 +394,7 @@ class Oc extends BaseController
 
 
                         $name = uniqid().'.'.$file->guessExtension();
-                        $file->move('uploads/'.$miId,$name);
+                        $file->move('uploads/rendicion/'.$idRendicion,$name);
 
 
                         $data = [
@@ -398,12 +402,11 @@ class Oc extends BaseController
                             'type'  => $file->getClientMimeType()
                         ];
 
-                        $this->db->table("orden_imagen")
+                        $this->db->table("rendicion_imagen")
                             ->insert(array(
-                                "idOrden" => $miId,
+                                "idRendicion" => $idRendicion,
                                 "imagen" => $name
                             ));
-                       // $save = $builder->insert($data);
 
                         $msg = 'Files has been uploaded';
                     }
@@ -411,30 +414,31 @@ class Oc extends BaseController
 
 
 
-                return redirect()->to(site_url('admin/oc/index'));
+                return redirect()->to(site_url('admin/rendicion/index'));
             }
         } else {
-            $orden = (new OcModel())->find($idOrden);
-            $data["o_orden"] =$orden;
-            $data["o_tipoOrden"] = (new TipoOrdenModel())->find($orden["idTipoOrden"]);
-            $data["o_tipoSolicitud"] = (new TipoSolicitudModel())->find($orden["idTipoSolicitud"]);
-            $data["o_empresa"] = (new EmpresaModel())->find($orden["idEmpresa"]);
-            $data["o_centroCosto"] = (new CentroModel())->find($orden["idCentroCosto"]);
-            $data["o_key"] = (new KeyModel())->find($data["o_centroCosto"]["idKey"]);
-            $data["o_centros"] = $this->db->table("orden_centro oc")
-            ->join("centro c","c.id = oc.idCentro")
-            ->join("key k","k.id = c.idKey")
-            ->where("oc.idOrden",$idOrden)->get()->getResultArray();
+            $rendicion = (new RendicionModel())->find($idRendicion);
+            $data["o_rendicion"] =$rendicion;
 
-            $data["o_detalles"] = $this->db->table("orden_detalle od")
-            ->where("od.idOrden",$idOrden)->get()->getResultArray();
 
-            $data["o_images"] = $this->db->table("orden_imagen")
-                ->where("idOrden",$idOrden)->get()->getResultArray();
+            $data["o_items"] = (new RendicionItemModel())
+                ->get_all($idRendicion);
 
+            //Para varios centros        
+            foreach ($data["o_items"] as $key => $value) {
+                $data["o_items"][$key]["centros"] = (new RendicionItemCentroModel())->get_all($value["id"]);
+            }
+
+            
+
+          
+            $data["o_images"] = $this->db->table("rendicion_imagen")
+                ->where("idRendicion",$idRendicion)->get()->getResultArray();
+
+               
            
             $this->template->setTemplate('templates/template2');
-            $this->template->render('Admin/oc/editar', $data);
+            $this->template->render('Admin/rendicion/editar', $data);
         }
     }
     public function ajaxEliminarImagen(){
@@ -982,179 +986,7 @@ class Oc extends BaseController
         
     }
 
-    public function rendicion()
-    {
-        $cuentas3 = $this->db->table("cuenta3 c3")
-            ->select('c3.id c3_id, c3.descripcion c3_descripcion, c3.codigo c3_codigo, c2.id c2_id, c2.descripcion c2_descripcion, c2.codigo c2_codigo,c1.id c1_id, c1.descripcion c1_descripcion, c1.codigo c1_codigo, ca.id ca_id, ca.descripcion ca_descripcion, ca.codigo ca_codigo')
-            ->join("cuenta2 c2", 'c3.idCuenta = c2.id')
-            ->join("cuenta1 c1", 'c2.idCuenta = c1.id')
-            ->join("clasecosto ca", 'c1.idCuenta = ca.id')
-
-            ->where("c3.estado", "1")
-            ->get()->getResult();
-
-        $data =  [
-            'empresas'   => (new EmpresaModel())->where("estado", "1")->where("idTipoEmpresa", "1")->findAll(),
-            'empresas_total'   => (new EmpresaModel())->where("estado", "1")->findAll(),
-            'keys'       => (new KeyModel())->where("estado", "1")->findAll(),
-            'personal'   => (new PersonalModel())->where("estado", "1")->findAll(),
-            'claseCosto'   => (new ClasecostoModel())->where("estado", "1")->findAll(),
-            'banco'   => (new BancoModel())->where("estado", "1")->findAll(),
-            'tipoOrden' => (new TipoOrdenModel())->where("estado", "1")->findAll(),
-            'ordenes' => (new OcModel())->where("estado!=", "3")->findAll(),
-            'cuentas3' => $cuentas3,
-        ];
-
-        if ($this->request->getPost('submit')) {
-            $rules = [
-                'idEmpresa' => 'required'
-            ];
-
-            $errors = [
-                'ruc' => [
-                    'validateRuc' => 'Este RUC ya está registrado'
-                ]
-            ];
-
-           
-
-            //if (!$validation->withRequest($this->request)->run()) {
-            if (!$this->validate($rules, $errors)) {
-                $datosView = $this->dataView;
-                $data['validation'] = $this->validator;
-
-                $this->template->setTemplate('templates/template2');
-                $this->template->render('Admin/oc/rendicion', $data);
-            } else {
-
-         
-
-                $cantOrden = $this->db->table("rendicion")
-                    ->select('count(*) cant')
-                    ->where("idTipoOrden", $this->request->getVar('idTipoOrden'))
-                    ->get()->getRow();
-
-                $cantOrden = $cantOrden->cant + 1;
-
-                if ($cantOrden < 10) {
-                    $cantOrden = "00" . $cantOrden;
-                } else if ($cantOrden < 100) {
-                    $cantOrden = "0" . $cantOrden;
-                }
-
-                $tipoOrden = $this->db->table("tipoOrden")
-                    ->where("id", $this->request->getVar('idTipoOrden'))
-                    ->get()->getRow();
-
-                $codTipoOrden = $tipoOrden->codigo;
-
-                $codigo = "Rend.".$codTipoOrden . $cantOrden . "-2021";
-
-                //calculando importe total
-                $importeTotal = 0;
-                $arr_v = $this->request->getVar('varioscentros_t');
-                
-                foreach($arr_v as $key => $value ){
-                  
-
-                    if(json_decode($value)){
-                        $centros = json_decode($value);
-                        foreach($centros as $key2 => $value2){
-                            $importeTotal += $value2->monto;
-                        }
-                    }else{ //un solo centro
-                        $importeTotal += floatval($this->request->getVar('monto')[$key]);
-                    }
-                }
-        
-                $datosInsert = [
-                    "codigo" => $codigo,
-                    "idPersonal" => $_SESSION["personal"]["id"],
-                    "importe" => $importeTotal,
-                    "idTipoSolicitudRen" => $this->request->getVar('idTipoSolicitud'),
-                    "idTipoOrden" => $this->request->getVar('idTipoOrden'),
-                    "idEmpresa" => $this->request->getVar('idEmpresa'),
-                    "idPersonalSoli" => $this->request->getVar('solicitado'),
-                    "idPersonalJefe" => $this->request->getVar('jefe'),
-                    "idOrden" => 1,
-                    "idEmpresaEje" => $this->request->getVar('ejecutado'),
-                    "idBanco_empresa" => $this->request->getVar('idBanco'),
-                    "idMoneda" => 1,
-                    "referencia" => $this->request->getVar('referencia'),
-                ];
-                $newRendicion = new RendicionModel();
-                $newRendicion->save($datosInsert);
-                $miIdRendicion = $newRendicion->getInsertID();
-
-                //agregando Items
-                $arr_v = $this->request->getVar('varioscentros_t');
-                
-                foreach($arr_v as $key => $value ){
-                    $datosItem = [
-                        "idRendicion" => $miIdRendicion,
-                        "nroDoc" =>$this->request->getVar('nro')[$key],
-                        "idEmpresaProv" =>$this->request->getVar('proveedor')[$key],
-                        "detalle" =>$this->request->getVar('detalle')[$key],
-                        "idCentro" =>$this->request->getVar('variosCentros')[$key],
-                        "idCuenta" =>$this->request->getVar('variosCuentas')[$key],
-                        "monto" =>$this->request->getVar('monto')[$key]
-                    ];
-                    $newRendicionItem = new RendicionItemModel();
-                    $newRendicionItem->save($datosItem);
-                    $idRendicionItem = $newRendicionItem->getInsertID();
-
-                    if(json_decode($value)){ // varios centros
-                        $centros = json_decode($value);
-                        foreach($centros as $key2 => $value2){
-                            $itemCentro = [
-                                "idRendicionItem" => $idRendicionItem,
-                                "detalle" => $value2->detalle,
-                                "idCentro" => $value2->centro,
-                                "idCuenta" => $value2->cuenta3,
-                                "monto" => $value2->monto,
-                            ];
-                            $newRendicionItemCentro = new RendicionItemCentroModel();
-                            $newRendicionItemCentro->save($itemCentro);
-                        }
-                    }
-                }
-
-                if ($_FILES["docs"]["name"][0] != "") {
-
-
-
-                    foreach ($this->request->getFileMultiple('docs') as $file) {
-
-
-                        $name = uniqid().'.'.$file->guessExtension();
-                        $file->move('uploads/rendicion/'.$miIdRendicion,$name);
-
-
-                        $data = [
-                            'name' =>  $file->getClientName(),
-                            'type'  => $file->getClientMimeType()
-                        ];
-
-                        $this->db->table("rendicion_imagen")
-                            ->insert(array(
-                                "idRendicion" => $miIdRendicion,
-                                "imagen" => $name
-                            ));
-                       // $save = $builder->insert($data);
-
-                        $msg = 'Files has been uploaded';
-                    }
-                }
-
-
-
-
-            }
-        } else {
-            $this->template->setTemplate('templates/template2');
-            $this->template->render('Admin/oc/rendicion', $data);
-        }
-    }
+    
 
     public function eliminar($id)
     {

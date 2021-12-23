@@ -73,7 +73,7 @@
 
         $.widget("custom.combobox", {
             _create: function() {
-                console.log(this);
+         
                 this.wrapper = $("<span>")
                     .addClass("custom-combobox")
                     .insertAfter(this.element);
@@ -86,7 +86,7 @@
             _createAutocomplete: function() {
                 var selected = this.element.children(":selected"),
                     value = selected.val() ? selected.text() : "";
-
+                    $this = this;
                 this.input = $("<input>")
                     .appendTo(this.wrapper)
                     .val(value)
@@ -97,7 +97,16 @@
                         minLength: 0,
                         source: this.options.source,
                         focus: this.options.focus,
-                        select: this.options.select
+                        select: this.options.select,
+                        create: function() {
+                            let miId = $this.element[0].getAttribute("id") + "_";
+                            $(this).data('ui-autocomplete')._renderItem = function(ul, item) {
+                                return $("<li>")
+                                    .attr("data-value", miId + item.value)
+                                    .append(item.label)
+                                    .appendTo(ul);
+                            };
+                        }
                     })
                     .tooltip({
                         classes: {
@@ -189,7 +198,7 @@
             }
         });
 
-
+        let f_eje = 1;
         $("#ejecutado_com").combobox({
             source: total_empresas,
             focus: function(event, ui) {
@@ -222,9 +231,19 @@
                         idBanco.add(new Option("Seleccionar", ""));
 
                         for (let i = 0; i < response.response.length; i++) {
-                            idBanco.add(new Option(response.response[i].descripcion, response.response[i].nroCuenta));
+                            let res = response.response[i];
+                            let opcion = new Option(res.descripcion + " - " + res.nroCuenta.substr(-4) + " - " + res.simbolo, res.id);
+                            opcion.setAttribute("nroCuenta", res.nroCuenta);
+                            idBanco.add(opcion);
                         }
                         nroCuenta.value = '';
+
+                        if (f_eje) {
+                            f_eje = 0;
+                            console.log("#idBanco option[value='<?php echo $o_rendicion["idBanco_empresa"] ?>']");
+                            $("#idBanco option[value='<?php echo $o_rendicion["idBanco_empresa"] ?>']").attr("selected", true);
+                            $("#idBanco").change();
+                        }
 
                     })
                     .catch(error => console.log('error', error));
@@ -232,6 +251,9 @@
                 return false;
             }
         });
+
+        $("#ejecutado_com").next().find(".ui-button").click();
+        $("[data-value='ejecutado_com_" + <?php echo $o_rendicion["idEmpresaEje"] ?> + "']").click();
 
     });
 </script>
@@ -253,17 +275,17 @@
                     <option value="">Seleccionar</option>
 
                     <?php foreach ($tipoOrden as $key => $value) : ?>
-                        <option value="<?php echo $value["id"] ?>"><?php echo $value["codigo"] . " - " . $value["descripcion"]  ?></option>
+                        <option value="<?php echo $value["id"] ?>" <?= (($value["id"] == $o_rendicion["idTipoOrden"])?"selected":"") ?>><?php echo $value["codigo"] . " - " . $value["descripcion"]  ?></option>
                     <?php endforeach; ?>
                 </select>
             </div>
 
             <div class="mb-3">
-                <input type="hidden" name="corden" value="corden">
-                <select name="corden" id="corden" class="form-select">
+                <input type="hidden" name="idOrden" value="idOrden">
+                <select name="idOrden" id="idOrden" class="form-select">
                     <option value="">Seleccionar Orden</option>
                     <?php foreach ($ordenes as $key => $value) : ?>
-                        <option value="<?php echo $value["id"] ?>"><?php echo $value["codigo"] ?></option>
+                        <option value="<?php echo $value["id"] ?>" <?= (($value["id"] == $o_rendicion["idOrden"])?"selected":"") ?>><?php echo $value["codigo"] ?></option>
                     <?php endforeach; ?>
 
                 </select>
@@ -277,31 +299,16 @@
             </div> -->
         </div>
         <div class="col-md-4">
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="idTipoSolicitud" id="flexRadioDefault1" checked value="1" required>
-                <label class="form-check-label" for="flexRadioDefault1">
-                    OC / Entrega a rendir
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="idTipoSolicitud" id="flexRadioDefault2" value="2" required>
-                <label class="form-check-label" for="flexRadioDefault2">
-                    Caja chica
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="idTipoSolicitud" id="flexRadioDefault3" value="3" required>
-                <label class="form-check-label" for="flexRadioDefault3">
-                    Reembolso
-                </label>
-            </div>
+            <?php foreach($tipoSolicitudRen_all as $key=>$value): ?>
+                <div class="form-check">
+                    <input class="form-check-input" <?= (($value["id"] == $o_rendicion["idTipoSolicitudRen"])?"checked":"") ?> type="radio" name="idTipoSolicitud" value="<?= $value["id"] ?>" required>
+                    <label class="form-check-label">
+                       <?= $value["descripcion"] ?>
+                    </label>
+                </div>
+            <?php endforeach; ?>
 
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="idTipoSolicitud" id="flexRadioDefault3" value="4" required>
-                <label class="form-check-label" for="flexRadioDefault3">
-                    Tarjeta de crédito
-                </label>
-            </div>
+        
         </div>
     </div>
 
@@ -317,9 +324,9 @@
                 <label for="idEmpresa" class="col-sm-2 col-form-label">Empresa</label>
                 <div class="col-sm-10">
                     <select class="form-select" name="idEmpresa" id="idEmpresa" required>
-                        <option value="" selected>Seleccionar</option>
+                        <option value="" >Seleccionar</option>
                         <?php foreach ($empresas as $key => $value) : ?>
-                            <option value="<?php echo $value["id"] ?>"><?php echo $value["nombre"] ?></option>
+                            <option value="<?php echo $value["id"] ?>" <?= (($value["id"] == $o_rendicion["idEmpresa"])?"selected":"") ?>><?php echo $value["nombre"] ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>
@@ -330,9 +337,9 @@
                 <label for="solicitado" class="col-sm-2 col-form-label">Solicitado por</label>
                 <div class="col-sm-10">
                     <select class="form-select" name="solicitado" id="solicitado" required>
-                        <option value="" selected>Seleccionar</option>
+                        <option value="">Seleccionar</option>
                         <?php foreach ($personal as $key => $value) : ?>
-                            <option value="<?php echo $value["id"] ?>"><?php echo $value["nombres"] . " " . $value["apellidoPaterno"] . " " . $value["apellidoMaterno"] ?></option>
+                            <option value="<?php echo $value["id"] ?>" <?= (($value["id"] == $o_rendicion["idPersonalSoli"])?"selected":"") ?>><?php echo $value["nombres"] . " " . $value["apellidoPaterno"] . " " . $value["apellidoMaterno"] ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>
@@ -342,9 +349,9 @@
                 <label for="jefe" class="col-sm-2 col-form-label">Jefe inmediato</label>
                 <div class="col-sm-10">
                     <select class="form-select" name="jefe" id="jefe" required>
-                        <option value="" selected>Seleccionar</option>
+                        <option value="">Seleccionar</option>
                         <?php foreach ($personal as $key => $value) : ?>
-                            <option value="<?php echo $value["id"] ?>"><?php echo $value["nombres"] . " " . $value["apellidoPaterno"] . " " . $value["apellidoMaterno"] ?></option>
+                            <option value="<?php echo $value["id"] ?>" <?= (($value["id"] == $o_rendicion["idPersonalJefe"])?"selected":"") ?>><?php echo $value["nombres"] . " " . $value["apellidoPaterno"] . " " . $value["apellidoMaterno"] ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>
@@ -442,7 +449,7 @@
 
                 <label for="referencia" class="col-sm-2 col-form-label">Referencia</label>
                 <div class="col-sm-10">
-                    <input class="form-control" type="text" name="referencia" id="referencia" required>
+                    <input class="form-control" type="text" name="referencia" id="referencia" value="<?= $o_rendicion["referencia"] ?>" required>
                 </div>
             </div>
             <div class="mb-3 row">
@@ -598,7 +605,8 @@
         }
     
         let cuentas3 = JSON.parse('<?php echo json_encode($cuentas3) ?>');
-    
+        let items = JSON.parse('<?php echo json_encode($o_items) ?>');
+        
     
     
     
@@ -630,7 +638,7 @@
                             montos = $(this).find(".l_td_monto"),
                             detalles = $(this).find(".l_td_detalle"),
                             arr_centros = [];
-                        console.log(cuentas3);
+              
                         for (let i = 0; i < cuentas3.length; i++) {
                             if (cuentas3.eq(i).val() != "") {
                                 let cu3 = $(cuentas3.eq(i)).val(),
@@ -651,7 +659,6 @@
                             }
                         }
     
-                        console.log(arr_centros);
     
     
                         $("#fila_m_" + miId).find(".td_total").val(JSON.stringify(arr_centros));
@@ -732,7 +739,7 @@
                                         },
                                         success: function(response) {
     
-                                            console.log(response);
+                                         
                                             cuentas3 = response.response;
                                             let total_cuentas3 = [];
     
@@ -794,7 +801,333 @@
     
         });
     
+        function miclickCentro (id,detalle,idKey,idCentro,idCuenta){
+            let miId = id;
+
+            $("#n_ke_" + miId).next(".custom-combobox").remove();
+            let miTr = $("#n_ke_" + miId).parent();
+            $("#n_ke_" + miId).remove();
+            miTr.prepend('<input type="text" id="n_ke_' + miId + '">');
+
+
+            $("#n_ke_" + miId).combobox({
+                source: total_keys,
+                focus: function(event, ui) {
+                    $("#n_ke_" + miId).val(ui.item.descripcion);
+                    $("#n_ke_" + miId).next().find(".custom-combobox-input").val(ui.item.descripcion);
+                    return false;
+                },
+                select: function(event, ui) {
+                    $("#n_l_ke_" + miId).val(ui.item.id);
+                    $("#n_ke_" + miId).val(ui.item.descripcion);
+                    $("#n_ke_" + miId).next().find(".custom-combobox-input").val(ui.item.descripcion);
     
+    
+    
+                    $.ajax({
+                        url: "admin/centro/ajaxGet_key",
+                        data: {
+                            idKey: ui.item.id
+                        },
+                        type: "post",
+                        dataType: "json",
+                        success: function(response) {
+    
+                            let total_centro = [];
+    
+                            for (let i = 0; i < response.keys.length; i++) {
+                                let key = {};
+                                key.label = response.keys[i].codigo + " " + response.keys[i].descripcion;
+                                key.value = response.keys[i].id;
+    
+                                key.id = response.keys[i].id;
+                                key.descripcion = response.keys[i].descripcion;
+                                key.codigo = response.keys[i].codigo;
+    
+                                total_centro.push(key);
+                            }
+    
+                            $("#n_ce_" + miId).next(".custom-combobox").remove();
+                            let miTr = $("#n_ce_" + miId).parent();
+                            $("#n_ce_" + miId).remove();
+                            miTr.prepend('<input type="text" id="n_ce_' + miId + '">');
+    
+                            $("#n_ce_" + miId).combobox({
+                                source: total_centro,
+                                focus: function(event, ui) {
+                                    $("#n_ce_" + miId).val(ui.item.descripcion);
+                                    $("#n_ce_" + miId).next().find(".custom-combobox-input").val(ui.item.codigo + " " + ui.item.descripcion);
+                                    return false;
+                                },
+                                select: function(event, ui) {
+                                    $("#n_l_ce_" + miId).val(ui.item.id);
+                                    $("#n_ce_" + miId).val(ui.item.descripcion);
+                                    $("#n_ce_" + miId).next().find(".custom-combobox-input").val(ui.item.codigo + " " + ui.item.descripcion);
+    
+                                    $.ajax({
+                                        url: "admin/oc/getAjaxCuenta3_centro",
+                                        type: "POST",
+                                        dataType: "json",
+                                        data: {
+                                            idCentro: ui.item.id
+                                        },
+                                        success: function(response) {
+    
+                                         
+                                            cuentas3 = response.response;
+                                            let total_cuentas3 = [];
+    
+                                            for (let i = 0; i < cuentas3.length; i++) {
+                                                let cuenta3 = {};
+                                                cuenta3.value = cuentas3[i].c3_id;
+                                                cuenta3.label = cuentas3[i].c3_codigo + " - " + cuentas3[i].c3_descripcion;
+    
+                                                cuenta3.c3_id = cuentas3[i].c3_id;
+                                                cuenta3.c3_codigo = cuentas3[i].c3_codigo;
+                                                cuenta3.c3_descripcion = cuentas3[i].c3_descripcion;
+    
+                                                cuenta3.c2_id = cuentas3[i].c2_id;
+                                                cuenta3.c2_codigo = cuentas3[i].c2_codigo;
+                                                cuenta3.c2_descripcion = cuentas3[i].c2_descripcion;
+    
+                                                cuenta3.c1_id = cuentas3[i].c1_id;
+                                                cuenta3.c1_codigo = cuentas3[i].c1_codigo;
+                                                cuenta3.c1_descripcion = cuentas3[i].c1_descripcion;
+    
+                                                cuenta3.ca_id = cuentas3[i].ca_id;
+                                                cuenta3.ca_codigo = cuentas3[i].ca_codigo;
+                                                cuenta3.ca_descripcion = cuentas3[i].ca_descripcion;
+    
+                                                total_cuentas3.push(cuenta3);
+                                            }
+    
+                                            $("#n_cu_" + miId).next(".custom-combobox").remove();
+                                            let miTr = $("#n_cu_" + miId).parent();
+                                            $("#n_cu_" + miId).remove();
+                                            miTr.prepend('<input type="text" id="n_cu_' + miId + '">');
+    
+    
+    
+                                            $("#n_cu_" + miId).combobox({
+                                                source: total_cuentas3,
+                                                focus: function(event, ui) {
+                                                    $("#n_cu_" + miId).val(ui.item.c3_descripcion);
+                                                    $("#n_cu_" + miId).next().find(".custom-combobox-input").val(ui.item.c3_codigo + " " + ui.item.c3_descripcion);
+                                                    return false;
+                                                },
+                                                select: function(event, ui) {
+                                                    $("#n_l_cu_" + miId).val(ui.item.c3_id);
+                                                    $("#n_cu_" + miId).val(ui.item.c3_descripcion);
+                                                    $("#n_cu_" + miId).next().find(".custom-combobox-input").val(ui.item.c3_codigo + " " + ui.item.c3_descripcion);
+                                                    return false;
+                                                }
+                                            });
+
+                                            $("#n_cu_" + miId).next().find(".ui-button").click();
+                                            $("[data-value=n_cu_" + miId + "_" + idCuenta + "]").click();
+
+                                        }
+                                    });
+                                    return false;
+                                }
+                            });
+
+                            $("#n_ce_" + miId).next().find(".ui-button").click();
+                            $("[data-value=n_ce_" + miId + "_" + idCentro + "]").click();
+
+                        }
+                    });
+                    return false;
+                }
+            });
+
+            $("#n_ke_" + miId).next().find(".ui-button").click();
+            $("[data-value=n_ke_" + miId + "_" + idKey + "]").click();
+        }
+
+        
+
+        function miclickModalCentro(idModal,detalle,idKey,idCentro,idCuenta,monto,ultimo){
+
+            let miId = parseInt(Math.random() * 1000000);
+            let modalId = idModal;
+    
+            let fila = $("#cloneTrKeyCentro").html();
+            fila = $(fila).attr("id", "fila_" + miId);
+    
+            $(fila).find(".td_ke").attr("id", "ke_" + miId);
+            $(fila).find(".l_td_ke").attr("id", "l_ke_" + miId);
+    
+            $(fila).find(".td_ce").attr("id", "ce_" + miId);
+            $(fila).find(".l_td_ce").attr("id", "l_ce_" + miId);
+    
+            $(fila).find(".td_cu").attr("id", "cu_" + miId);
+            $(fila).find(".l_td_cu").attr("id", "l_cu_" + miId);
+
+            $(fila).find(".l_td_detalle").val(detalle);
+            $(fila).find(".l_td_monto").val(monto);
+
+            
+    
+            $("#m_" + modalId).find("tbody").append($(fila));
+
+            $("#ke_" + miId).next(".custom-combobox").remove();
+            let miTr = $("#ke_" + miId).parent();
+            $("#ke_" + miId).remove();
+            miTr.prepend('<input type="text" id="ke_' + miId + '">');
+           
+
+            $("#m_" + modalId).dialog("open");
+            miTr.parent().attr("nuevo","1");
+            if(ultimo==1){
+                miTr.parent().attr("ultimo","1");
+            }
+
+            $("#ke_" + miId).combobox({
+                source: total_keys,
+                focus: function(event, ui) {
+                    $("#ke_" + miId).val(ui.item.descripcion);
+                    $("#ke_" + miId).next().find(".custom-combobox-input").val(ui.item.descripcion);
+                    return false;
+                },
+                select: function(event, ui) {
+                    $("#l_ke_" + miId).val(ui.item.id);
+                    $("#ke_" + miId).val(ui.item.descripcion);
+                    $("#ke_" + miId).next().find(".custom-combobox-input").val(ui.item.descripcion);
+    
+    
+    
+                    $.ajax({
+                        url: "admin/centro/ajaxGet_key",
+                        data: {
+                            idKey: ui.item.id
+                        },
+                        type: "post",
+                        dataType: "json",
+                        success: function(response) {
+    
+                            let total_centro = [];
+    
+                            for (let i = 0; i < response.keys.length; i++) {
+                                let key = {};
+                                key.label = response.keys[i].codigo + " " + response.keys[i].descripcion;
+                                key.value = response.keys[i].id;
+    
+                                key.id = response.keys[i].id;
+                                key.descripcion = response.keys[i].descripcion;
+                                key.codigo = response.keys[i].codigo;
+    
+                                total_centro.push(key);
+                            }
+    
+                            $("#ce_" + miId).next(".custom-combobox").remove();
+                            let miTr = $("#ce_" + miId).parent();
+                            $("#ce_" + miId).remove();
+                            miTr.prepend('<input type="text" id="ce_' + miId + '">');
+    
+                            $("#ce_" + miId).combobox({
+                                source: total_centro,
+                                focus: function(event, ui) {
+                                    $("#ce_" + miId).val(ui.item.descripcion);
+                                    $("#ce_" + miId).next().find(".custom-combobox-input").val(ui.item.codigo + " " + ui.item.descripcion);
+                                    return false;
+                                },
+                                select: function(event, ui) {
+                                    $("#l_ce_" + miId).val(ui.item.id);
+                                    $("#ce_" + miId).val(ui.item.descripcion);
+                                    $("#ce_" + miId).next().find(".custom-combobox-input").val(ui.item.codigo + " " + ui.item.descripcion);
+    
+                                    $.ajax({
+                                        url: "admin/oc/getAjaxCuenta3_centro",
+                                        type: "POST",
+                                        dataType: "json",
+                                        data: {
+                                            idCentro: ui.item.id
+                                        },
+                                        success: function(response) {
+    
+                                
+                                            cuentas3 = response.response;
+                                            let total_cuentas3 = [];
+    
+                                            for (let i = 0; i < cuentas3.length; i++) {
+                                                let cuenta3 = {};
+                                                cuenta3.value = cuentas3[i].c3_id;
+                                                cuenta3.label = cuentas3[i].c3_codigo + " - " + cuentas3[i].c3_descripcion;
+    
+                                                cuenta3.c3_id = cuentas3[i].c3_id;
+                                                cuenta3.c3_codigo = cuentas3[i].c3_codigo;
+                                                cuenta3.c3_descripcion = cuentas3[i].c3_descripcion;
+    
+                                                cuenta3.c2_id = cuentas3[i].c2_id;
+                                                cuenta3.c2_codigo = cuentas3[i].c2_codigo;
+                                                cuenta3.c2_descripcion = cuentas3[i].c2_descripcion;
+    
+                                                cuenta3.c1_id = cuentas3[i].c1_id;
+                                                cuenta3.c1_codigo = cuentas3[i].c1_codigo;
+                                                cuenta3.c1_descripcion = cuentas3[i].c1_descripcion;
+    
+                                                cuenta3.ca_id = cuentas3[i].ca_id;
+                                                cuenta3.ca_codigo = cuentas3[i].ca_codigo;
+                                                cuenta3.ca_descripcion = cuentas3[i].ca_descripcion;
+    
+                                                total_cuentas3.push(cuenta3);
+                                            }
+    
+                                            $("#cu_" + miId).next(".custom-combobox").remove();
+                                            let miTr = $("#cu_" + miId).parent();
+                                            $("#cu_" + miId).remove();
+                                            miTr.prepend('<input type="text" id="cu_' + miId + '">');
+    
+    
+    
+                                            $("#cu_" + miId).combobox({
+                                                source: total_cuentas3,
+                                                focus: function(event, ui) {
+                                                    $("#cu_" + miId).val(ui.item.c3_descripcion);
+                                                    $("#cu_" + miId).next().find(".custom-combobox-input").val(ui.item.c3_codigo + " " + ui.item.c3_descripcion);
+                                                    return false;
+                                                },
+                                                select: function(event, ui) {
+                                                    $("#l_cu_" + miId).val(ui.item.c3_id);
+                                                    $("#cu_" + miId).val(ui.item.c3_descripcion);
+                                                    $("#cu_" + miId).next().find(".custom-combobox-input").val(ui.item.c3_codigo + " " + ui.item.c3_descripcion);
+
+                                                    miTr.parent().attr("nuevo","0"); 
+                                                    
+
+                                                    return false;
+                                                }
+                                            });
+                                            
+                                            if(miTr.parent().attr("nuevo") == "1"){
+                                                
+                                                $("#cu_" + miId).next().find(".ui-button").click();
+                                                $("[data-value=cu_" + miId + "_" + idCuenta + "]").click();
+                                                if(miTr.parent().attr("ultimo")=="1"){
+                                                        miTr.parent().attr("ultimo","0");
+                                                        $("#m_" + modalId).parent().find(".ui-dialog-buttonset button").click();
+                                                    }
+                                            }
+                                        }
+                                    });
+                                    return false;
+                                }
+                            });
+                            if(miTr.parent().attr("nuevo") == "1"){
+                                $("#ce_" + miId).next().find(".ui-button").click();
+                                $("[data-value=ce_" + miId + "_" + idCentro + "]").click();
+                            }
+                        }
+                    });
+                    return false;
+                }
+            });
+            if(miTr.parent().attr("nuevo") == "1"){
+                $("#ke_" + miId).next().find(".ui-button").click();
+                $("[data-value=ke_" + miId + "_" + idKey + "]").click();
+            }
+        }
     
         $("body").on("click", ".btnVarios", function() {
             let elId = $(this).attr("elId");
@@ -883,7 +1216,7 @@
                                         },
                                         success: function(response) {
     
-                                            console.log(response);
+                                
                                             cuentas3 = response.response;
                                             let total_cuentas3 = [];
     
@@ -945,7 +1278,36 @@
     
     
         });
-        $("#btnAgregarDetalle").click();
+      
+
+        //agregando items
+        for(let ind in items){
+            $("#btnAgregarDetalle").click();
+            let miTr = $("#tbodyDetalles").find("tr").last();
+
+
+
+            miTr.find("[name='nro[]']").val(items[ind].nroDoc);
+            miTr.find("[name='varioscentros_t[]']").val(JSON.stringify(items[ind].centros));
+            miTr.find("[name='detalle[]']").val(items[ind].detalle);
+            miTr.find("[name='monto[]']").val(items[ind].monto);
+            miTr.find("[name='proveedor[]'] option[value='"+items[ind].idEmpresaProv+"']").attr("selected",true)
+
+            if(items[ind].idCentro!="0"){
+                miclickCentro (miTr.attr("elId"),items[ind].detalle,items[ind].idKey,items[ind].idCentro,items[ind].idCuenta);
+            }else{
+                let centros = items[ind].centros;
+         
+                for(let ind in centros){
+                    if(ind == centros.length -1){
+                        miclickModalCentro(miTr.attr("elId"),centros[ind].detalle,centros[ind].idKey,centros[ind].idCentro,centros[ind].idCuenta,centros[ind].monto,1);
+                    }else{
+                        miclickModalCentro(miTr.attr("elId"),centros[ind].detalle,centros[ind].idKey,centros[ind].idCentro,centros[ind].idCuenta,centros[ind].monto,0);
+                    }
+                }
+        
+            }
+        }
 
         $("body").on("click",".n_td_delete",function(){
             $(this).parents("tr").eq(0).remove();
@@ -955,6 +1317,17 @@
             $(this).parents("tr").eq(0).remove();
         })
         
-        
+        idBanco.onchange = function() {
+            let nroCuenta_text = this.value;
+
+            nroCuenta.value = this.selectedOptions[0].getAttribute('nroCuenta');
+        }
+
+      /*   $("#idBanco").change(function(){
+            $("#nroCuenta").val($(this).attr("nroCuenta"));
+        }); */
+
     });
+
+
 </script>

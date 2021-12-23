@@ -68,7 +68,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="admin/oc/rendicion">Rendición</a>
+                        <a class="nav-link active" aria-current="page" href="admin/rendicion">Rendición</a>
                     </li>
 
                     <ul class="miDrop">
