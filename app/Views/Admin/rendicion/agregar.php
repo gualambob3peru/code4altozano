@@ -222,9 +222,14 @@
                         idBanco.add(new Option("Seleccionar", ""));
 
                         for (let i = 0; i < response.response.length; i++) {
-                            idBanco.add(new Option(response.response[i].descripcion, response.response[i].nroCuenta));
+                            let res = response.response[i];
+                            let opcion = new Option(res.descripcion + " - " + res.nroCuenta.substr(-4) + " - " + res.simbolo, res.id);
+                            opcion.setAttribute("nroCuenta", res.nroCuenta);
+                            idBanco.add(opcion);
                         }
                         nroCuenta.value = '';
+
+                        
 
                     })
                     .catch(error => console.log('error', error));
@@ -394,7 +399,7 @@
         <div class="col-md-4">
             <div class="mb-3 row">
                 <label for="ejecutado" class="col-sm-4 col-form-label">Ejecutado por</label>
-                <div class="col-sm-8">
+                <div class="col-sm-8 pe-5">
                     <input type="hidden" name="ejecutado" id="ejecutado">
 
                     <input type="text" id="ejecutado_com">
@@ -413,7 +418,7 @@
         <div class="col-md-4">
             <div class="mb-3 row">
                 <label for="idBanco" class="col-sm-4 col-form-label">Banco</label>
-                <div class="col-sm-8">
+                <div class="col-sm-8 ">
                     <select class="form-select" name="idBanco" id="idBanco" required>
                         <option value="" selected>Seleccionar</option>
                         <?php foreach ($banco as $key => $value) : ?>
@@ -954,7 +959,12 @@
         $("body").on("click",".l_td_delete",function(){
             $(this).parents("tr").eq(0).remove();
         })
-        
+
+        idBanco.onchange = function() {
+            let nroCuenta_text = this.value;
+
+            nroCuenta.value = this.selectedOptions[0].getAttribute('nroCuenta');
+        }
         
     });
 </script>

@@ -163,7 +163,7 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
                     }
                 ?>
  
-                <a data-bs-toggle="tooltip" data-bs-placement="top" title="Ver Detalles de la orden" elId="<?= $value->id ?>" href="admin/oc/ver/<?= $value->id ?>" class="text-white btn btn-info btn-sm"><i class="bi bi-eye"></i></a>
+                <a data-bs-toggle="tooltip" data-bs-placement="top" title="Ver Detalles de la orden" elId="<?= $value->id ?>" href="admin/rendicion/ver/<?= $value->id ?>" class="text-white btn btn-info btn-sm"><i class="bi bi-eye"></i></a>
 
                 <?php 
                     if(($value->idPersonal==$_SESSION["personal"]["id"] &&  $value->estado == 2) || $_SESSION["personal"]["idCargo"] == "1" ||$_SESSION["personal"]["idCargo"] == "2"){

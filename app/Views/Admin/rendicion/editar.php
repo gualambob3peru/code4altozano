@@ -240,7 +240,7 @@
 
                         if (f_eje) {
                             f_eje = 0;
-                            console.log("#idBanco option[value='<?php echo $o_rendicion["idBanco_empresa"] ?>']");
+                          
                             $("#idBanco option[value='<?php echo $o_rendicion["idBanco_empresa"] ?>']").attr("selected", true);
                             $("#idBanco").change();
                         }
@@ -270,7 +270,7 @@
         </div>
         <div class="col-md-3">
             <div class="mb-3">
-                <input type="hidden" name="nombre" value="nombre">
+             
                 <select name="idTipoOrden" id="idTipoOrden" class="form-select">
                     <option value="">Seleccionar</option>
 
@@ -281,7 +281,7 @@
             </div>
 
             <div class="mb-3">
-                <input type="hidden" name="idOrden" value="idOrden">
+    
                 <select name="idOrden" id="idOrden" class="form-select">
                     <option value="">Seleccionar Orden</option>
                     <?php foreach ($ordenes as $key => $value) : ?>
@@ -401,7 +401,7 @@
         <div class="col-md-4">
             <div class="mb-3 row">
                 <label for="ejecutado" class="col-sm-4 col-form-label">Ejecutado por</label>
-                <div class="col-sm-8">
+                <div class="col-sm-8 pe-5">
                     <input type="hidden" name="ejecutado" id="ejecutado">
 
                     <input type="text" id="ejecutado_com">
@@ -420,7 +420,7 @@
         <div class="col-md-4">
             <div class="mb-3 row">
                 <label for="idBanco" class="col-sm-4 col-form-label">Banco</label>
-                <div class="col-sm-8">
+                <div class="col-sm-8 ">
                     <select class="form-select" name="idBanco" id="idBanco" required>
                         <option value="" selected>Seleccionar</option>
                         <?php foreach ($banco as $key => $value) : ?>
@@ -459,7 +459,20 @@
                     <input class="form-control" name="docs[]" type="file" id="formFile" multiple>
                 </div>
             </div>
-            <div class="mb-3">
+            <div class="mb-3 row">
+                <div class="col-sm-12">
+                    <table>
+
+                        <?php foreach ($o_images as $key => $value) : ?>
+                            <tr>
+                                <td>Doc <?= ($key + 1) ?> : </td>
+                                <td><a target="_blank" href="uploads/rendicion/<?= $value["idRendicion"] ?>/<?= $value["imagen"] ?>">Archivo</a></td>
+                                <td><button elId="<?= $value["id"] ?>" class="btn btn-sm btn-danger btnModalEliImagen text-white" type="button"><i class="bi bi-trash  text-white"></i></button></td>
+                            </tr>
+
+                        <?php endforeach; ?>
+                    </table>
+                </div>
             </div>
         </div>
 
@@ -585,6 +598,17 @@
         </div>
     </div>
 </div>
+
+<div id="modalEliminarArchivo" title="Eliminar archivo">
+        <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>¿Desea eliminar archivo?</p>
+    </div>
+
+    <div id="msgExito" title="Eliminación exitosa">
+        <p>Se eliminó con éxito</p>
+    </div>
+    <div id="msgError" title="Error">
+        <p>No se pudo eliminar, inténtelo nuevamente</p>
+    </div>
 
 <script>
     $(function(){
@@ -1323,9 +1347,68 @@
             nroCuenta.value = this.selectedOptions[0].getAttribute('nroCuenta');
         }
 
-      /*   $("#idBanco").change(function(){
-            $("#nroCuenta").val($(this).attr("nroCuenta"));
-        }); */
+        $("#msgExito").dialog({
+            autoOpen: false,
+            buttons: {
+                "Aceptar": function() {
+                    $(this).dialog("close");
+                }
+            }
+        });
+        $("#msgError").dialog({
+            autoOpen: false,
+            buttons: {
+                "Aceptar": function() {
+                    $(this).dialog("close");
+                }
+            }
+        })
+
+        let modalELiminarArchivo = $("#modalEliminarArchivo").dialog({
+            resizable: false,
+            autoOpen: false,
+            height: "auto",
+            width: 400,
+            modal: true,
+            buttons: {
+                "Aceptar": function() {
+                    $.ajax({
+                        url: "admin/rendicion/ajaxEliminarImagen",
+                        data: {
+                            idRendicionImagen: function() {
+                                return $("#modalEliminarArchivo").attr("elId")
+                            }
+                        },
+                        dataType: "json",
+                        type: "post",
+                        error: function(ee) {
+                            $("#modalEliminarArchivo").dialog("close");
+                            $("#msgError").dialog("open");
+                        },
+                        success: function(response) {
+                            if (response.response == 1) {
+                                $("#modalEliminarArchivo").dialog("close");
+                                $(".btnModalEliImagen[elId='" + $("#modalEliminarArchivo").attr("elId") + "']").parents("tr").remove();
+                                console.log(".btnModalEliImagen[elId='" + $("#modalEliminarArchivo").attr("elId") + "']");
+                                $("#msgExito").dialog("open");
+                            } else {
+                                $("#modalEliminarArchivo").dialog("close");
+                                $("#msgError").dialog("open");
+                            }
+                        }
+
+                    });
+                },
+                "Cancelar": function() {
+                    $(this).dialog("close");
+                }
+            }
+        });
+
+        $(".btnModalEliImagen").click(function() {
+            $("#modalEliminarArchivo").attr("elId", $(this).attr("elId"));
+            modalELiminarArchivo.dialog('open');
+        });
 
     });
 

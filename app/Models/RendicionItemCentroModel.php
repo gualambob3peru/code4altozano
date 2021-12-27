@@ -42,10 +42,15 @@ class RendicionItemCentroModel extends Model
 
     public function get_all($id){
         return $this->select(
-            "rendicion_itemcentro.id, rendicion_itemcentro.idRendicionItem,rendicion_itemcentro.detalle,rendicion_itemcentro.idCentro,rendicion_itemcentro.idCuenta,rendicion_itemcentro.monto,c.idKey
+            "rendicion_itemcentro.id, rendicion_itemcentro.idRendicionItem,rendicion_itemcentro.detalle,rendicion_itemcentro.idCentro,rendicion_itemcentro.idCuenta,rendicion_itemcentro.monto,
+            c.idKey,c.codigo c_codigo,c.descripcion c_descripcion,
+            c3.codigo c3_codigo,c3.descripcion c3_descripcion,
+            k.descripcion k_descripcion,
             ")
             ->where("rendicion_itemcentro.idRendicionItem",$id)
-            ->join("centro c","c.id = rendicion_itemcentro.idCentro","left")
+            ->join("centro c","c.id = rendicion_itemcentro.idCentro")
+            ->join("cuenta3 c3","c3.id = rendicion_itemcentro.idCuenta")
+            ->join("key k","k.id = c.idKey")
             ->get()->getResultArray();
     }
 }

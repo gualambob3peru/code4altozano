@@ -71,7 +71,7 @@ class Rendicion extends BaseController
             'claseCosto'   => (new ClasecostoModel())->where("estado", "1")->findAll(),
             'banco'   => (new BancoModel())->where("estado", "1")->findAll(),
             'tipoOrden' => (new TipoOrdenModel())->where("estado", "1")->findAll(),
-            'ordenes' => (new OcModel())->where("estado!=", "3")->findAll(),
+            'ordenes' => (new OcModel())->where("estado", "1")->findAll(),
             'cuentas3' => $cuentas3,
         ];
 
@@ -269,7 +269,7 @@ class Rendicion extends BaseController
             'claseCosto'   => (new ClasecostoModel())->where("estado", "1")->findAll(),
             'banco'   => (new BancoModel())->where("estado", "1")->findAll(),
             'tipoOrden' => (new TipoOrdenModel())->where("estado", "1")->findAll(),
-            'ordenes' => (new OcModel())->where("estado!=", "3")->findAll(),
+            'ordenes' => (new OcModel())->where("estado", "1")->findAll(),
             'tipoSolicitudRen_all' => (new TipoSolicitudRenModel())->where("estado","1")->findAll(),
             'cuentas3' => $cuentas3,
         ];
@@ -348,9 +348,7 @@ class Rendicion extends BaseController
                     ->where("idRendicion",$idRendicion)
                     ->delete();
 
-                $this->db->table("rendicion_imagen")
-                    ->where("idRendicion",$idRendicion)
-                    ->delete();
+                
 
                 //agregando Items
 
@@ -442,15 +440,15 @@ class Rendicion extends BaseController
         }
     }
     public function ajaxEliminarImagen(){
-        $idOrdenImagen = $this->request->getVar('idOrdenImagen');
-        $orden_imagen = $this->db->table("orden_imagen")->where("id",$idOrdenImagen)->get()->getRowArray();
+        $idRendicionImagen = $this->request->getVar('idRendicionImagen');
+        $rendicion_imagen = $this->db->table("rendicion_imagen")->where("id",$idRendicionImagen)->get()->getRowArray();
 
-        if($orden_imagen){
+        if($rendicion_imagen){
 
-            $this->db->table("orden_imagen")->where("id",$idOrdenImagen)->delete();
+            $this->db->table("rendicion_imagen")->where("id",$idRendicionImagen)->delete();
             
-            if (file_exists("uploads/".$orden_imagen["idOrden"]."/".$orden_imagen["imagen"])) {
-                unlink("uploads/".$orden_imagen["idOrden"]."/".$orden_imagen["imagen"]);
+            if (file_exists("uploads/rendicion/".$rendicion_imagen["idRendicion"]."/".$rendicion_imagen["imagen"])) {
+                unlink("uploads/rendicion/".$rendicion_imagen["idRendicion"]."/".$rendicion_imagen["imagen"]);
                 echo json_encode(array("response"=>1));
             } else {
                 echo json_encode(array("response"=>0));
@@ -480,56 +478,27 @@ class Rendicion extends BaseController
         echo json_encode(array("response" => $cuentas3));
     }
 
-    public function ver($idOrden)
+    public function ver($idRendicion)
     {
-        $data["orden"] = (new OcModel())->find($idOrden);
-        $data["empresa"] = (new EmpresaModel())->find($data["orden"]["idEmpresa"]);
-        $data["personalSoli"] = (new PersonalModel())->find($data["orden"]["idPersonalSoli"]);
-        $data["personalJefe"] = (new PersonalModel())->find($data["orden"]["idPersonalJefe"]);
-        $data["ejecutado"] = (new EmpresaModel())->find($data["orden"]["idEmpresaEje"]);
-        $data["cuenta"] = (new Cuenta3Model())->find($data["orden"]["idCuenta"]);
-        $data["ordenDetalle"] = (new OrdenDetalleModel())->where("idOrden", $idOrden)->get()->getResult();
-        $data["tipoOrden"] = (new TipoOrdenModel())->find($data["orden"]["idTipoOrden"]);
-        $data["tipoSolicitud"] = (new TipoSolicitudModel())->find($data["orden"]["idTipoSolicitud"]);
-
-        $data["images"] = $this->db->table("orden_imagen")->where("idOrden",$idOrden)->get()->getResult();
-        $data["moneda"] = (new MonedaModel())->find($data["orden"]["idMoneda"]);
-
-        $data["banco"] = $this->db->table("banco_empresa be")
-            ->select("be.id,be.nroCuenta,b.descripcion")
-            ->join("banco b", "b.id = be.idBanco")
-            ->where("be.id", $data["orden"]["idBanco_empresa"])
-            ->get()->getRow();
+        $rendicion = (new RendicionModel())->get_id($idRendicion);
+        $data["o_rendicion"] =$rendicion;
 
 
-        $key = $this->db->table("centro c")
-            ->select("c.descripcion descripcion_centro,c.codigo codigo_centro,k.descripcion key_descripcion")
-            ->join("key k", "k.id = c.idKey")
-            ->where("c.id", $data["orden"]["idCentroCosto"])
-            ->get()->getRow();
+        $data["o_items"] = (new RendicionItemModel())
+            ->get_all($idRendicion);
 
-        if ($data["cuenta"] == NULL) {
-            $orden_centros = $this->db->table("orden_centro oc")
-                ->select("c.codigo codigo_centro,c.descripcion descripcion_centro,oc.porcentaje")
-                ->join("centro c", "c.id = oc.idCentro")
-                ->where("oc.idOrden", $idOrden)
-                ->get()->getResult();
-            $data["orden_centros"] = $orden_centros;
-        } else {
-            $cuenta = $this->db->table("cuenta3 c3")
-                ->select("c3.codigo c3_codigo,c3.descripcion c3_descripcion,c2.codigo c2_codigo,c2.descripcion c2_descripcion,c1.codigo c1_codigo,c1.descripcion c1_descripcion,cc.codigo cc_codigo,cc.descripcion cc_descripcion")
-                ->join("cuenta2 c2", "c3.idCuenta = c2.id")
-                ->join("cuenta1 c1", "c2.idCuenta = c1.id")
-                ->join("clasecosto cc", "c1.idCuenta = cc.id")
-                ->where("c3.id", $data["orden"]["idCuenta"])->get()->getRow();
-            $data["cuenta"] = $cuenta;
+        //Para varios centros        
+        foreach ($data["o_items"] as $key => $value) {
+            $data["o_items"][$key]["centros"] = (new RendicionItemCentroModel())->get_all($value["id"]);
         }
 
+        $data["o_images"] = $this->db->table("rendicion_imagen")
+            ->where("idRendicion",$idRendicion)->get()->getResultArray();
 
-        $data["key"] = $key;
+   
 
         $this->template->setTemplate('templates/template2');
-        $this->template->render('Admin/oc/ver', $data);
+        $this->template->render('Admin/rendicion/ver', $data);
     }
 
     public function reporteOrdenes()
