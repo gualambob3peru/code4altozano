@@ -31,7 +31,7 @@ class Personal extends BaseController
 
        
         $lista_datos = $this->db->table($this->table)
-            ->select("personal.id,personal.nombres,personal.apellidoPaterno,personal.apellidoMaterno,personal.email,personal.nroDocumento,tp.descripcion tipo_desc,c.descripcion cargo_desc")
+            ->select("personal.id,personal.nombres,personal.apellidoPaterno,personal.apellidoMaterno,personal.email,personal.nroDocumento,tp.descripcion tipo_desc,c.descripcion cargo_desc,personal.created_at")
             ->join("cargo c","c.id = personal.idCargo")
             ->join("tipo_documento tp","tp.id = personal.idTipoDocumento")
             ->where("personal.estado","1")
@@ -61,7 +61,7 @@ class Personal extends BaseController
                 'idTipoDocumento' => 'required',
                 'nroDocumento' => 'required',
                 'idCargo' => 'required',
-                'password' => 'required',
+                'password' => 'required|min_length[8]',
                 'email' => 'required|valideEmailPersonal'
             ];
 
@@ -71,6 +71,9 @@ class Personal extends BaseController
                 ],
                 'email' => [
                     'valideEmailPersonal' => 'Este correo ya lo está usando otro personal'
+                ],
+                'password' => [
+                    'min_length' => 'El password debe tener mínimo 8 caracteres'
                 ]
             ];
 
@@ -129,7 +132,7 @@ class Personal extends BaseController
                 'apellidoMaterno' => 'required',
                 'idTipoDocumento' => 'required',
                 'idCargo' => 'required',
-                'password' => 'required',
+                'password' => 'required|min_length[8]',
                 'email' => 'required'
             ];
 
@@ -141,6 +144,9 @@ class Personal extends BaseController
             $errors = [
                 'nroDocumento' => [
                     'validateRuc' => 'Este Nro de documento ya está registrado'
+                ],
+                'password' => [
+                    'min_length' => 'El password debe tener mínimo 8 caracteres'
                 ]
             ];
 

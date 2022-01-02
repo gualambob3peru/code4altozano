@@ -17,7 +17,7 @@
 
     .custom-combobox-input {
         margin: 0;
-        padding: 5px 10px;
+        padding: 7px 10px;
         width: 100%;
     }
     .no-close .ui-dialog-titlebar-close {
@@ -27,49 +27,49 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 <script>
+    let cuentas3 = JSON.parse('<?php echo json_encode($cuentas3) ?>');
+    let empresas_total = JSON.parse('<?php echo json_encode($empresas_total) ?>');
+    let cuentasObje = new Object();
+
+    let total_cuentas3 = [];
+
+    for (let i = 0; i < cuentas3.length; i++) {
+        let cuenta3 = {};
+        cuenta3.value = cuentas3[i].c3_id;
+        cuenta3.label = cuentas3[i].c3_codigo + " - " + cuentas3[i].c3_descripcion;
+
+        cuenta3.c3_id = cuentas3[i].c3_id;
+        cuenta3.c3_codigo = cuentas3[i].c3_codigo;
+        cuenta3.c3_descripcion = cuentas3[i].c3_descripcion;
+
+        cuenta3.c2_id = cuentas3[i].c2_id;
+        cuenta3.c2_codigo = cuentas3[i].c2_codigo;
+        cuenta3.c2_descripcion = cuentas3[i].c2_descripcion;
+
+        cuenta3.c1_id = cuentas3[i].c1_id;
+        cuenta3.c1_codigo = cuentas3[i].c1_codigo;
+        cuenta3.c1_descripcion = cuentas3[i].c1_descripcion;
+
+        cuenta3.ca_id = cuentas3[i].ca_id;
+        cuenta3.ca_codigo = cuentas3[i].ca_codigo;
+        cuenta3.ca_descripcion = cuentas3[i].ca_descripcion;
+
+        total_cuentas3.push(cuenta3);
+    }
+
+    let total_empresas = [];
+
+    for (let i = 0; i < empresas_total.length; i++) {
+        let empresa3 = {};
+        empresa3.value = empresas_total[i].id;
+        empresa3.label = empresas_total[i].ruc + " - " + empresas_total[i].nombre;
+        empresa3.ruc = empresas_total[i].ruc;
+        empresa3.nombre = empresas_total[i].nombre;
+
+        total_empresas.push(empresa3);
+    }
     $(function() {
 
-        let cuentas3 = JSON.parse('<?php echo json_encode($cuentas3) ?>');
-        let empresas_total = JSON.parse('<?php echo json_encode($empresas_total) ?>');
-        let cuentasObje = new Object();
-
-        let total_cuentas3 = [];
-
-        for (let i = 0; i < cuentas3.length; i++) {
-            let cuenta3 = {};
-            cuenta3.value = cuentas3[i].c3_id;
-            cuenta3.label = cuentas3[i].c3_codigo + " - " + cuentas3[i].c3_descripcion;
-
-            cuenta3.c3_id = cuentas3[i].c3_id;
-            cuenta3.c3_codigo = cuentas3[i].c3_codigo;
-            cuenta3.c3_descripcion = cuentas3[i].c3_descripcion;
-
-            cuenta3.c2_id = cuentas3[i].c2_id;
-            cuenta3.c2_codigo = cuentas3[i].c2_codigo;
-            cuenta3.c2_descripcion = cuentas3[i].c2_descripcion;
-
-            cuenta3.c1_id = cuentas3[i].c1_id;
-            cuenta3.c1_codigo = cuentas3[i].c1_codigo;
-            cuenta3.c1_descripcion = cuentas3[i].c1_descripcion;
-
-            cuenta3.ca_id = cuentas3[i].ca_id;
-            cuenta3.ca_codigo = cuentas3[i].ca_codigo;
-            cuenta3.ca_descripcion = cuentas3[i].ca_descripcion;
-
-            total_cuentas3.push(cuenta3);
-        }
-
-        let total_empresas = [];
-
-        for (let i = 0; i < empresas_total.length; i++) {
-            let empresa3 = {};
-            empresa3.value = empresas_total[i].id;
-            empresa3.label = empresas_total[i].ruc + " - " + empresas_total[i].nombre;
-            empresa3.ruc = empresas_total[i].ruc;
-            empresa3.nombre = empresas_total[i].nombre;
-
-            total_empresas.push(empresa3);
-        }
 
         $.widget("custom.combobox", {
             _create: function() {
@@ -91,6 +91,7 @@
                     .appendTo(this.wrapper)
                     .val(value)
                     .attr("title", "")
+                    .attr("required", true)
                     .addClass("custom-combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left")
                     .autocomplete({
                         delay: 0,
@@ -405,9 +406,7 @@
                     <input type="hidden" name="ejecutado" id="ejecutado">
 
                     <input type="text" id="ejecutado_com">
-                    <!--   <select class="form-select" name="ejecutado_com" id="ejecutado_com" required>
-                        
-                    </select> -->
+        
                 </div>
             </div>
             <div class="mb-3 row">
@@ -517,30 +516,36 @@
                 <tr>
                     <td>
                         <input type="hidden" class="td_total" name="varioscentros_t[]" value="">
-                        <input type="text" name="nro[]" class="form-control">
+                        <input type="text" name="nro[]" class="form-control" required>
 
                     </td>
-                    <td>
-                        <select name="proveedor[]"  class="form-select">
+                    <td class="n_t_pro pe-5">
+                    
+                        <input type="hidden" name="proveedor[]" class="n_l_td_pro">
+
+                        <input type="text" class="n_td_pro">
+        
+           
+                        <!-- <select name="proveedor[]"  class="form-select">
                             <option value="" selected>Seleccionar</option>
                             <?php foreach ($empresas_total as $key => $value) : ?>
                                 <option value="<?php echo $value["id"] ?>"><?php echo $value["nombre"] ?></option>
                             <?php endforeach; ?>
-                        </select>
+                        </select> -->
                     </td>
-                    <td><input type="text" name="detalle[]"  class="form-control"></td>
+                    <td><input type="text" name="detalle[]"  class="form-control" required></td>
                     <td> <button type="button" class="btnVarios btn btn-info"><i class="bi bi-journal-plus"></i></button> </td>
                     <td class="n_t_key pe-5">
-                        <input type="text" class="n_td_ke form-control"><input type="hidden" name="varioskeys[]" class="n_l_td_ke">
+                        <input type="text" class="n_td_ke form-control" ><input type="hidden" name="varioskeys[]" class="n_l_td_ke" >
                     </td>
                     <td class="n_t_centro pe-5">
-                        <input type="text" class="n_td_ce form-control" ><input type="hidden" name="variosCentros[]" class="n_l_td_ce">
+                        <input type="text" class="n_td_ce form-control" ><input type="hidden" name="variosCentros[]" class="n_l_td_ce" >
                     </td>
                     <td class="n_t_cuenta pe-5">
-                        <input type="text" class="n_td_cu form-control"><input type="hidden" name="variosCuentas[]" class="n_l_td_cu">
+                        <input type="text" class="n_td_cu form-control" ><input type="hidden" name="variosCuentas[]" class="n_l_td_cu" >
                     </td>
                     <td class="td_cuenta1">-</td>
-                    <td><input type="text" name="monto[]" class="form-control"></td>
+                    <td><input type="number" name="monto[]" class="form-control"></td>
 
                     <td>
                         <button class="btn btn-danger n_td_delete"><i class="bi bi-trash"></i></button>
@@ -612,7 +617,7 @@
 
 <script>
     $(function(){
-
+      
         let keys_all = JSON.parse('<?php echo json_encode($keys) ?>');
     
         let total_keys = [];
@@ -690,6 +695,9 @@
                     }
                 }
             });
+
+            $(miFila).find(".n_td_pro").attr("id", "n_pro_" + miId);
+            $(miFila).find(".n_l_td_pro").attr("id", "n_l_pro_" + miId);
     
             $(miFila).find(".n_td_ke").attr("id", "n_ke_" + miId);
             $(miFila).find(".n_l_td_ke").attr("id", "n_l_ke_" + miId);
@@ -700,6 +708,23 @@
             $(miFila).find(".n_td_cu").attr("id", "n_cu_" + miId);
             $(miFila).find(".n_l_td_cu").attr("id", "n_l_cu_" + miId);
             $("#tbodyDetalles").append(miFila);
+
+            $("#n_pro_" + miId).combobox({
+                source: total_empresas,
+                focus: function(event, ui) {
+                    $("#n_pro_" + miId).val(ui.item.ruc + " - " + ui.item.nombre);
+                    $("#n_pro_" + miId).next().find(".custom-combobox-input").val(ui.item.ruc + " - " + ui.item.nombre);
+                    return false;
+                },
+                select: function(event, ui) {
+                    $("#n_l_pro_" + miId).val(ui.item.value);
+                    $("#n_pro_" + miId).val(ui.item.ruc + " - " + ui.item.nombre);
+                    $("#n_pro_" + miId).next().find(".custom-combobox-input").val(ui.item.ruc + " - " + ui.item.nombre);
+
+                    return false;
+                }
+            });
+
             $("#n_ke_" + miId).combobox({
                 source: total_keys,
                 focus: function(event, ui) {
@@ -1315,7 +1340,12 @@
             miTr.find("[name='varioscentros_t[]']").val(JSON.stringify(items[ind].centros));
             miTr.find("[name='detalle[]']").val(items[ind].detalle);
             miTr.find("[name='monto[]']").val(items[ind].monto);
-            miTr.find("[name='proveedor[]'] option[value='"+items[ind].idEmpresaProv+"']").attr("selected",true)
+
+            //miTr.find("[name='proveedor[]'] option[value='"+items[ind].idEmpresaProv+"']").attr("selected",true)
+
+            $("#n_pro_" + miTr.attr("elId")).next().find(".ui-button").click();
+            $("[data-value=n_pro_" + miTr.attr("elId") + "_" + items[ind].idEmpresaProv + "]").click();
+
 
             if(items[ind].idCentro!="0"){
                 miclickCentro (miTr.attr("elId"),items[ind].detalle,items[ind].idKey,items[ind].idCentro,items[ind].idCuenta);

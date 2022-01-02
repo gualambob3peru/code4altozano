@@ -21,7 +21,7 @@
 <script>
     $(function(){
         $('#miTabla').DataTable({
-            "order": [[ 1, "desc" ]],
+            "order": [[ 5, "desc" ]],
             "language": {
                 "sProcessing": "Procesando...",
                 "sLengthMenu": "Mostrar _MENU_ registros",
@@ -74,6 +74,7 @@
             <th>Cargo</th>
             <th>Tipo Documento</th>
             <th>Nro Documento</th>
+            <th>Fecha de creación</th>
             <th>Acciones</th>
         </tr>
     </thead>
@@ -85,6 +86,7 @@
                     <td><?= $value->cargo_desc; ?></td>
                     <td><?= $value->tipo_desc; ?></td>
                     <td><?= $value->nroDocumento; ?></td>
+                    <td><?= $value->created_at; ?></td>
                     <td>
                         <a href="admin/<?= $table ?>/editar/<?= $value->id ?>" class="btn btn-info"><i class="bi bi-pencil"></i></a>
                         <button elId="<?= $value->id ?>" class="btn btn-danger btnEliminar"><i class="bi bi-trash"></i></button>

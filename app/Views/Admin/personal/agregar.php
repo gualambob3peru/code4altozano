@@ -1,5 +1,5 @@
 <div class="container">
-    <h3>Editar <?= $nombre?></h3>
+    <h3>Agregar <?= $nombre?></h3>
     <?php $validation = \Config\Services::validation(); ?>
     <form action="" method="POST">
         <div class="mb-3 row">
