@@ -20,6 +20,13 @@
     .btnEliminarCuenta {
         display: none;
     }
+    .list-group-item{
+        cursor: pointer;
+    }
+
+    .list-group-item.bg-info{
+        color: white;
+    }
 </style>
 
 <h3>Gestión de Cuentas</h3>
@@ -27,22 +34,22 @@
 <div class="row">
     <div class="col-md-3">
         <h5>Clase de costo</h5>
-        <button id="btn_clasecosto" class="btn btn-success mb-4"><i class="bi bi-plus-lg"></i> Agregar</button>
+        <button id="btn_clasecosto" class="btn btn-success mb-4 text-white"><i class="bi bi-plus-lg"></i> Agregar</button>
         <div id="clase"></div>
     </div>
     <div class="col-md-3">
         <h5>Cuenta 1</h5>
-        <button id="btn_cuenta1" class="btn btn-success mb-4"><i class="bi bi-plus-lg"></i> Agregar</button>
+        <button id="btn_cuenta1" class="btn btn-success mb-4 text-white"><i class="bi bi-plus-lg"></i> Agregar</button>
         <div id="cuenta1"></div>
     </div>
     <div class="col-md-3">
         <h5>Cuenta 2</h5>
-        <button id="btn_cuenta2" class="btn btn-success mb-4"><i class="bi bi-plus-lg"></i> Agregar</button>
+        <button id="btn_cuenta2" class="btn btn-success mb-4 text-white"><i class="bi bi-plus-lg"></i> Agregar</button>
         <div id="cuenta2"></div>
     </div>
     <div class="col-md-3">
         <h5>Cuenta 3</h5>
-        <button id="btn_cuenta3" class="btn btn-success mb-4"><i class="bi bi-plus-lg"></i> Agregar</button>
+        <button id="btn_cuenta3" class="btn btn-success mb-4 text-white"><i class="bi bi-plus-lg"></i> Agregar</button>
         <div id="cuenta3"></div>
     </div>
 </div>
