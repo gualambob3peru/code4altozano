@@ -677,9 +677,9 @@
         idClaseCosto.value = "";
         idCuenta1.value = "";
         idCuenta2.value = "";
-        if ($(this).val() == "15") {
+        if ($(this).find("option:selected").attr("codigo") == "VariosCAD") {
             $("#divVariosCentro").css("display", "block");
-            if (f_cue3) {
+            if (f_cue3 && $("#tbodyvarios tr").length == 0) {
                 let centros = JSON.parse('<?php echo json_encode($o_centros) ?>');
                 for (ind in centros) {
                     miClickCentro(centros[ind].idCentro, centros[ind].idKey, centros[ind].porcentaje);
@@ -939,7 +939,12 @@
                 idCentroCosto.add(new Option("Seleccionar", ""));
 
                 for (let i = 0; i < response.keys.length; i++) {
-                    idCentroCosto.add(new Option(response.keys[i].codigo + " - " + response.keys[i].descripcion, response.keys[i].id));
+                    let myOption = new Option(response.keys[i].codigo + " - " + response.keys[i].descripcion, response.keys[i].id);
+                    myOption.setAttribute('codigo',response.keys[i].codigo);
+
+                    idCentroCosto.add(myOption);
+
+                   
                 }
                 if (f_ce) {
                     $("#idCentroCosto option[value = '<?php echo $o_orden["idCentroCosto"] ?>']").attr("selected", true);

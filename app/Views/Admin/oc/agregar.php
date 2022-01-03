@@ -401,7 +401,7 @@
             </div>
             <div class="col-md-6">
                 <div id="divVariosCentro">
-                    <button type="button" class="btn btn-success ms-4" id="agregarCentroVarios">+</button>
+                    <button type="button" class="btn btn-success ms-4 mb-2 text-white" id="agregarCentroVarios">+ Centro</button>
                     <table class="table table-striped table-bordered ms-4">
                         <thead>
                             <tr>
@@ -622,7 +622,8 @@
     let cuentas3 = JSON.parse('<?php echo json_encode($cuentas3) ?>');
 
     $("#idCentroCosto").change(function() {
-        if ($(this).val() == "15")
+
+        if ($(this).find("option:selected").attr("codigo") == "VariosCAD")
             $("#divVariosCentro").css("display", "block")
         else {
             $("#divVariosCentro").css("display", "none")
@@ -792,7 +793,10 @@
                 idCentroCosto.add(new Option("Seleccionar", ""));
 
                 for (let i = 0; i < response.keys.length; i++) {
-                    idCentroCosto.add(new Option(response.keys[i].codigo + " - " + response.keys[i].descripcion, response.keys[i].id));
+                    let myOption = new Option(response.keys[i].codigo + " - " + response.keys[i].descripcion, response.keys[i].id);
+                    myOption.setAttribute('codigo',response.keys[i].codigo);
+
+                    idCentroCosto.add(myOption);
                 }
 
             })
