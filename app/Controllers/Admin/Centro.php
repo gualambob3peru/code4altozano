@@ -124,6 +124,53 @@ class Centro extends BaseController
         }
     }
 
+    public function ajaxEditarCentro(){
+        $f_model = $this->model->find($this->request->getVar('id'));
+        if ($_POST) {
+            $rules = [
+                'centro' => 'required',
+                'monto' => 'required',
+            ];
+
+            if($f_model["codigo"] == $this->request->getVar('codigo'))
+                $rules["codigo"] = 'required';
+            else   
+                $rules["codigo"] = 'required|validateCodigoCentro';
+
+            $errors = [
+                'codigo' => [
+                    'validateCodigoCentro' => 'Este Código ya está registrado'
+                ]
+            ];
+            
+            if (!$this->validate($rules, $errors)) {
+                $validation = \Config\Services::validation();
+                $data_error = array();
+                $data_error["error_codigo"] = $validation->getError('codigo');
+                $data_error["error_centro"] = $validation->getError('centro');
+                $data_error["error_monto"] = $validation->getError('monto');
+                
+                echo json_encode(array(
+                    "response"=>"0",
+                    "data_error" => $data_error
+                ));
+               
+            } else {
+                $datosInsert= [
+                    "id" => $this->request->getVar('id'),
+                    "codigo" => $this->request->getVar('codigo'),
+                    "descripcion" => $this->request->getVar('centro'),
+                    "monto" => $this->request->getVar('monto'),
+                ];
+
+                $this->model->save($datosInsert);
+                echo json_encode(array("response"=>"1"));
+            }
+        } else{
+            echo json_encode(array("response"=>"3"));
+        }
+    }
+
     public function ajaxGet_key(){
         if ($_POST) {
             $idKey = $this->request->getVar('idKey');

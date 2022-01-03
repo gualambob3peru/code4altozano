@@ -1,0 +1,10 @@
+CRITICAL - 2022-01-03 01:35:03 --> validateCodigoCentro is not a valid rule.
+#0 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Validation/Validation.php(285): CodeIgniter\Validation\Exceptions\ValidationException::forRuleNotFound()
+#1 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Validation/Validation.php(151): CodeIgniter\Validation\Validation->processRules()
+#2 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/Controller.php(160): CodeIgniter\Validation\Validation->run()
+#3 /var/www/html/altozano/code4altozano/app/Controllers/Admin/Centro.php(146): CodeIgniter\Controller->validate()
+#4 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(802): App\Controllers\Admin\Centro->ajaxEditarCentro()
+#5 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController()
+#6 /var/www/html/altozano/code4altozano/vendor/codeigniter4/framework/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest()
+#7 /var/www/html/altozano/public_altozano/altozano/index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
