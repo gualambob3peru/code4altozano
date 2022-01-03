@@ -25,7 +25,7 @@ class Noauth implements FilterInterface
      */
     public function before(RequestInterface $request, $arguments = null)
     {
-        if(session()->has('usuario')){
+        if(session()->has('personal')){
             return redirect()->to("/admin");
         }
     }
