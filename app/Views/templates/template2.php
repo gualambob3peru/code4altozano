@@ -71,8 +71,8 @@
                         <a class="nav-link active" aria-current="page" href="admin/rendicion">Rendición</a>
                     </li>
 
+                    <?php if ( $_SESSION["personal"]["idCargo"] != "4") : ?>
                     <ul class="miDrop">
-
                         <li>
                             <a class="text-white">
                             <i class="bi bi-caret-down-fill"></i> Reportes
@@ -84,7 +84,7 @@
                             </ul>
                         </li>
                     </ul>
-
+                    <?php endif; ?>            
 
 
                     <?php if ($_SESSION["personal"]["idCargo"] == "2" || $_SESSION["personal"]["idCargo"] == "1") : ?>
@@ -124,8 +124,10 @@
                                 $cargo = "GERENCIA";
                             } else if ($_SESSION["personal"]["idCargo"] == "2") {
                                 $cargo = "FINANZAS";
-                            } else {
+                            } else if ($_SESSION["personal"]["idCargo"] == "3") {
                                 $cargo = "JEFE DIRECTO";
+                            } else {
+                                $cargo = "USUARIO";
                             }
                             ?>
 
