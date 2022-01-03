@@ -1,4 +1,64 @@
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.min.css">
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+
+    <script src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.print.min.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js"></script>
+
+
+
+<script>
+    $(function(){
+        $('#miTabla').DataTable({
+            "order": [[ 1, "desc" ]],
+            "language": {
+                "sProcessing": "Procesando...",
+                "sLengthMenu": "Mostrar _MENU_ registros",
+                "sZeroRecords": "No se encontraron resultados",
+                "sEmptyTable": "NingÃºn dato disponible en esta tabla =(",
+                "sInfo": "",
+                "sInfoEmpty": "",
+                "sInfoFiltered": "",
+                "sInfoPostFix": "",
+                "sSearch": "Buscar:",
+                "sUrl": "",
+                "sInfoThousands": ",",
+                "sLoadingRecords": "Cargando...",
+                "oPaginate": {
+                    "sFirst": "Primero",
+                    "sLast": "Ãšltimo",
+                    "sNext": ">",
+                    "sPrevious": "<"
+                },
+                "oAria": {
+                    "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                },
+                "buttons": {
+                    "copy": "Copiar",
+                    "colvis": "Visibilidad"
+                }
+            },
+            dom: 'Bfrtip',
+            buttons: [
+               
+            ]
+        });
+
+    });
+</script>
 
 <h4>Key : <?php echo $f_model["descripcion"] ?></h4>
 <hr>
@@ -10,9 +70,9 @@
 
 
             <div class="input-group mb-3">
-                <input type="text" name="codigo" class="form-control" placeholder="Código">
-                <input type="text" name="descripcion" class="form-control" placeholder="Centro de Costo">
-                <input type="text" name="monto" class="form-control" placeholder="Monto">
+                <input type="text" name="codigo" class="form-control" placeholder="Código" required>
+                <input type="text" name="descripcion" class="form-control" placeholder="Centro de Costo" required>
+                <input type="text" name="monto" class="form-control" placeholder="Monto" required>
                 <input type="hidden" name="idKey" value="<?= $idKey ?>">
                 <button type="submit" name="submit" class="btn btn-success text-white" value="fl"><i class="bi bi-file-plus"></i>Agregar</button>
 
@@ -23,29 +83,35 @@
 
 
 <h5>Listado de Centros</h5>
-<table class="table table-bordered">
-    <tr>
-        <th>Código</th>
-        <th>Descripción</th>
-        <th>Monto</th>
-        <th>Acciones</th>
-    </tr>
+<table class="table" id="miTabla">
+    <thead>
 
-    <?php foreach ($centros as $key => $value) : ?>
         <tr>
-            <td><?= $value->codigo; ?></td>
-            <td><?= $value->descripcion; ?></td>
-            <td><?= $value->monto; ?></td>
-            <td>
-                <!--                 <a href="admin/<?= $table ?>/editar/<?= $value->id ?>" class="btn btn-info">Editar</a>
-                <a href="admin/<?= $table ?>/centro/<?= $value->id ?>" class="btn btn-success">Centro de Costo</a> -->
-                
-                <button elId="<?= $value->id ?>"  class="btn btn-success btnModalClaseCosto text-white"><i class="bi bi-card-checklist"></i> Clase de costo</button>
-                <button elId="<?= $value->id ?>" codigo="<?= $value->codigo; ?>" centro="<?= $value->descripcion; ?>" monto="<?= $value->monto; ?>" class="btn btn-info btnModalEditarCentro text-white"><i class="bi bi-pencil"></i> </button>
-                <button elId="<?= $value->id ?>" class="btn btn-danger btnEliminar text-white"><i class="bi bi-trash"></i></button>
-            </td>
+            <th>Código</th>
+            <th>Descripción</th>
+            <th>Monto</th>
+            <th>Acciones</th>
         </tr>
-    <?php endforeach; ?>
+    </thead>
+
+    <tbody>
+
+        <?php foreach ($centros as $key => $value) : ?>
+            <tr>
+                <td><?= $value->codigo; ?></td>
+                <td><?= $value->descripcion; ?></td>
+                <td><?= $value->monto; ?></td>
+                <td>
+                    <!--                 <a href="admin/<?= $table ?>/editar/<?= $value->id ?>" class="btn btn-info">Editar</a>
+                    <a href="admin/<?= $table ?>/centro/<?= $value->id ?>" class="btn btn-success">Centro de Costo</a> -->
+                    
+                    <button elId="<?= $value->id ?>"  class="btn btn-success btnModalClaseCosto text-white"><i class="bi bi-card-checklist"></i> Clase de costo</button>
+                    <button elId="<?= $value->id ?>" codigo="<?= $value->codigo; ?>" centro="<?= $value->descripcion; ?>" monto="<?= $value->monto; ?>" class="btn btn-info btnModalEditarCentro text-white"><i class="bi bi-pencil"></i> </button>
+                    <button elId="<?= $value->id ?>" class="btn btn-danger btnEliminar text-white"><i class="bi bi-trash"></i></button>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
 </table>
 
 
