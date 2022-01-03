@@ -71,7 +71,7 @@
                         <a class="nav-link active" aria-current="page" href="admin/rendicion">Rendición</a>
                     </li>
 
-                    <?php if ( $_SESSION["personal"]["idCargo"] != "4") : ?>
+                    <?php if ( $_SESSION["personal"]["idCargo"] < 3) : ?>
                     <ul class="miDrop">
                         <li>
                             <a class="text-white">
