@@ -86,7 +86,7 @@ class Cuenta1 extends BaseController
        
         if ($_POST) {
             $rules = [
-                'codigo' => 'required|validateCodigoCuenta1',
+                'codigo' => 'required',
                 'descripcion' => 'required',
             ];
 
@@ -133,7 +133,7 @@ class Cuenta1 extends BaseController
             if($f_model["codigo"] == $this->request->getVar('codigo'))
                 $rules["codigo"] = 'required';
             else   
-                $rules["codigo"] = 'required|validateCodigoCuenta1';
+                $rules["codigo"] = 'required';
 
             $errors = [
                 'codigo' => [
