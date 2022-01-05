@@ -35,7 +35,7 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
                 "sProcessing": "Procesando...",
                 "sLengthMenu": "Mostrar _MENU_ registros",
                 "sZeroRecords": "No se encontraron resultados",
-                "sEmptyTable": "NingÃºn dato disponible en esta tabla =(",
+                "sEmptyTable": "Ningún dato disponible en esta tabla",
                 "sInfo": "",
                 "sInfoEmpty": "",
                 "sInfoFiltered": "",
