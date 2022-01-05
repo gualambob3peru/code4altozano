@@ -408,7 +408,7 @@
                                 <th>Key</th>
                                 <th>Centro</th>
                                 <th>Nivel 3</th>
-                                <th>%</th>
+                                <th style="width:68px">%</th>
                                 <th></th>
                             </tr>
                         </thead>

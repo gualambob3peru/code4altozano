@@ -153,7 +153,7 @@ class Oc extends BaseController
 
                 $codTipoOrden = $tipoOrden->codigo;
 
-                $codigo = $codTipoOrden . $cantOrden . "-2021";
+                $codigo = $codTipoOrden . $cantOrden . "-".date("Y");
 
                 //hallando monto
                 $detalles = $this->request->getVar('detalle');
@@ -165,6 +165,18 @@ class Oc extends BaseController
                     if($monedas[$key]!=""){
 
                         $monto += $monedas[$key];
+                    }
+                }
+
+
+                $idcuenta3 = $this->request->getVar('idCuenta3');
+                $varioscentros = $this->request->getVar('varioscentros');
+                $varioscuentas = $this->request->getVar('varioscuentas');
+                if($varioscentros){
+                    foreach ($varioscentros as $key => $value) {
+
+                        $idcuenta3 = $varioscuentas[$key];
+ 
                     }
                 }
      
@@ -182,7 +194,7 @@ class Oc extends BaseController
                     "idCentroCosto" => $this->request->getVar('idCentroCosto'),
                     "idPersonalSoli" => $this->request->getVar('solicitado'),
                     "idPersonalJefe" => $this->request->getVar('jefe'),
-                    "idCuenta" => $this->request->getVar('idCuenta3'),
+                    "idCuenta" => $idcuenta3,
                     "objeto" => $this->request->getVar('objeto'),
                     "idEmpresaEje" => $this->request->getVar('ejecutado'),
                     "idBanco_empresa" => $this->request->getVar('idBanco'),
@@ -332,6 +344,17 @@ class Oc extends BaseController
                     $monto += $monedas[$key];
                 }
 
+                $idcuenta3 = $this->request->getVar('idCuenta3');
+                $varioscentros = $this->request->getVar('varioscentros');
+                $varioscuentas = $this->request->getVar('varioscuentas');
+                if($varioscentros){
+                    foreach ($varioscentros as $key => $value) {
+
+                        $idcuenta3 = $varioscuentas[$key];
+ 
+                    }
+                }
+
                 $datosInsert = [
                     "id" => $idOrden,
                     "texto" => $this->request->getVar('texto'),
@@ -344,7 +367,7 @@ class Oc extends BaseController
                     "idCentroCosto" => $this->request->getVar('idCentroCosto'),
                     "idPersonalSoli" => $this->request->getVar('solicitado'),
                     "idPersonalJefe" => $this->request->getVar('jefe'),
-                    "idCuenta" => $this->request->getVar('idCuenta3'),
+                    "idCuenta" => $idcuenta3,
                     "objeto" => $this->request->getVar('objeto'),
                     "idEmpresaEje" => $this->request->getVar('ejecutado'),
                     "idBanco_empresa" => $this->request->getVar('idBanco'),
