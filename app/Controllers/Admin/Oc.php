@@ -365,7 +365,7 @@ class Oc extends BaseController
                     $datosDetalles["descripcion"] = $value;
                     $datosDetalles["monto"] = $monedas[$key];
                     (new OrdenDetalleModel())->save($datosDetalles);
-                }
+                } 
 
                 $varioscentros = $this->request->getVar('varioscentros');
                 $varioscuentas = $this->request->getVar('varioscuentas');
