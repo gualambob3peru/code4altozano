@@ -204,12 +204,14 @@ class Oc extends BaseController
 
                 $varioscentros = $this->request->getVar('varioscentros');
                 $porcentajecentro = $this->request->getVar('porcentajecentro');
+                $varioscuentas = $this->request->getVar('varioscuentas');
                 
                 if($varioscentros){
                     foreach ($varioscentros as $key => $value) {
                         $orden_centro = array();
                         $orden_centro["idOrden"] = $miId;
                         $orden_centro["idCentro"] = $varioscentros[$key];
+                        $orden_centro["idCuenta"] = $varioscuentas[$key];
                         $orden_centro["porcentaje"] = $porcentajecentro[$key];
     
                         $this->db->table("orden_centro")->insert($orden_centro);
@@ -366,6 +368,7 @@ class Oc extends BaseController
                 }
 
                 $varioscentros = $this->request->getVar('varioscentros');
+                $varioscuentas = $this->request->getVar('varioscuentas');
                 $porcentajecentro = $this->request->getVar('porcentajecentro');
                 
                 $this->db->table("orden_centro")
@@ -376,6 +379,7 @@ class Oc extends BaseController
                         $orden_centro = array();
                         $orden_centro["idOrden"] = $miId;
                         $orden_centro["idCentro"] = $varioscentros[$key];
+                        $orden_centro["idCuenta"] = $varioscuentas[$key];
                         $orden_centro["porcentaje"] = $porcentajecentro[$key];
     
                         $this->db->table("orden_centro")->insert($orden_centro);

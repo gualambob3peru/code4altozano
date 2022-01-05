@@ -431,6 +431,7 @@
                             <tr>
                                 <th>Key</th>
                                 <th>Centro</th>
+                                <th>Nivel 3</th>
                                 <th>%</th>
                                 <th></th>
                             </tr>
@@ -682,7 +683,7 @@
             if (f_cue3 && $("#tbodyvarios tr").length == 0) {
                 let centros = JSON.parse('<?php echo json_encode($o_centros) ?>');
                 for (ind in centros) {
-                    miClickCentro(centros[ind].idCentro, centros[ind].idKey, centros[ind].porcentaje);
+                    miClickCentro(centros[ind].idCentro, centros[ind].idKey, centros[ind].idCuenta,centros[ind].porcentaje);
                 }
             }
         } else {
@@ -756,12 +757,13 @@
         }
     });
 
-    function miClickCentro(idCentroCosto, idKey, porcentaje) {
+    function miClickCentro(idCentroCosto, idKey,idCuenta, porcentaje) {
         let miId = parseInt(Math.random() * 1000000);
         let fila = '<tr>';
 
         fila += '<td class="pe-5"><input class="form-control" type="text" id="i_' + miId + '"><input type="hidden" name="varioskeys[]" id="l_' + miId + '"></td>';
         fila += '<td class="pe-5"><input class="form-control" type="text" id="ci_' + miId + '"><input type="hidden" name="varioscentros[]" id="cl_' + miId + '"></td>';
+        fila += '<td class="pe-5"><input class="form-control" type="text" id="cui_' + miId + '"><input type="hidden" name="varioscuentas[]" id="cul_' + miId + '"></td>';
         fila += '<td><input class="form-control" type="text" name="porcentajecentro[]" value="' + porcentaje + '"></td>';
         fila += '<td> <button class="btn btn-danger btnEliminarCentroFila"><i class="bi bi-trash text-white"></i></button> </td>';
 
@@ -821,6 +823,68 @@
                                 $("#ci_" + miId).val(ui.item.descripcion);
                                 $("#ci_" + miId).next().find(".custom-combobox-input").val(ui.item.codigo + " " + ui.item.descripcion);
 
+                                $.ajax({
+                                    url: "admin/oc/getAjaxCuenta3_centro",
+                                    type: "POST",
+                                    dataType: "json",
+                                    data: {
+                                        idCentro: ui.item.id
+                                    },
+                                    success: function(response) {
+                                        cuentas3 = response.response;
+                                        let total_cuentas3 = [];
+
+                                        for (let i = 0; i < cuentas3.length; i++) {
+                                            let cuenta3 = {};
+                                            cuenta3.value = cuentas3[i].c3_id;
+                                            cuenta3.label = cuentas3[i].c3_codigo + " - " + cuentas3[i].c3_descripcion;
+
+                                            cuenta3.c3_id = cuentas3[i].c3_id;
+                                            cuenta3.c3_codigo = cuentas3[i].c3_codigo;
+                                            cuenta3.c3_descripcion = cuentas3[i].c3_descripcion;
+
+                                            cuenta3.c2_id = cuentas3[i].c2_id;
+                                            cuenta3.c2_codigo = cuentas3[i].c2_codigo;
+                                            cuenta3.c2_descripcion = cuentas3[i].c2_descripcion;
+
+                                            cuenta3.c1_id = cuentas3[i].c1_id;
+                                            cuenta3.c1_codigo = cuentas3[i].c1_codigo;
+                                            cuenta3.c1_descripcion = cuentas3[i].c1_descripcion;
+
+                                            cuenta3.ca_id = cuentas3[i].ca_id;
+                                            cuenta3.ca_codigo = cuentas3[i].ca_codigo;
+                                            cuenta3.ca_descripcion = cuentas3[i].ca_descripcion;
+
+                                            total_cuentas3.push(cuenta3);
+                                        }
+
+                                        $("#cui_" + miId).next(".custom-combobox").remove();
+                                        let miTr = $("#cui_" + miId).parent();
+                                        $("#cui_" + miId).remove();
+                                        miTr.prepend('<input type="text" id="cui_' + miId + '">');
+
+
+
+                                        $("#cui_" + miId).combobox({
+                                            source: total_cuentas3,
+                                            focus: function(event, ui) {
+                                                $("#cui_" + miId).val(ui.item.c3_descripcion);
+                                                $("#cui_" + miId).next().find(".custom-combobox-input").val(ui.item.c3_codigo + " " + ui.item.c3_descripcion);
+                                                return false;
+                                            },
+                                            select: function(event, ui) {
+                                                $("#cul_" + miId).val(ui.item.c3_id);
+                                                $("#cui_" + miId).val(ui.item.c3_descripcion);
+                                                $("#cui_" + miId).next().find(".custom-combobox-input").val(ui.item.c3_codigo + " " + ui.item.c3_descripcion);
+                                                return false;
+                                            }
+                                        });
+
+                                        $("#cui_" + miId).next().find(".ui-button").click();
+                                        $("[data-value=cui_" + miId + "_" + idCuenta + "]").click();
+                                    }
+                                });
+
                                 return false;
                             }
                         });
@@ -840,15 +904,18 @@
         let miId = parseInt(Math.random() * 1000000);
         let fila = '<tr>';
 
-        fila += '<td class="pe-5"><input  type="text" id="i_' + miId + '"><input type="hidden" name="varioskeys[]" id="l_' + miId + '"></td>';
-        fila += '<td class="pe-5"><input  type="text" id="ci_' + miId + '"><input type="hidden" name="varioscentros[]" id="cl_' + miId + '"></td>';
-        fila += '<td><input type="text" name="porcentajecentro[]"></td>';
+        fila += '<td class="pe-5"><input class="form-control" type="text" id="i_' + miId + '"><input type="hidden" name="varioskeys[]" id="l_' + miId + '"></td>';
+        fila += '<td class="pe-5"><input class="form-control" type="text" id="ci_' + miId + '"><input type="hidden" name="varioscentros[]" id="cl_' + miId + '"></td>';
+       
+        fila += '<td class="pe-5"><input class="form-control" type="text" id="cui_' + miId + '"><input type="hidden" name="varioscuentas[]" id="cul_' + miId + '"></td>';
+        
+        fila += '<td><input type="text" class="form-control" name="porcentajecentro[]"></td>';
         fila += '<td> <button class="btn btn-danger btnEliminarCentroFila"><i class="bi bi-trash text-white"></i></button> </td>';
 
 
         fila += '</tr>';
         $("#tbodyvarios").append(fila);
-
+        console.log(miId);
         $("#i_" + miId).combobox({
             source: total_keys,
             focus: function(event, ui) {
@@ -860,9 +927,7 @@
                 $("#l_" + miId).val(ui.item.id);
                 $("#i_" + miId).val(ui.item.descripcion);
                 $("#i_" + miId).next().find(".custom-combobox-input").val(ui.item.descripcion);
-
-
-
+              
                 $.ajax({
                     url: "admin/centro/ajaxGet_key",
                     data: {
@@ -902,6 +967,67 @@
                                 $("#cl_" + miId).val(ui.item.id);
                                 $("#ci_" + miId).val(ui.item.descripcion);
                                 $("#ci_" + miId).next().find(".custom-combobox-input").val(ui.item.codigo + " " + ui.item.descripcion);
+
+                                $.ajax({
+                                    url: "admin/oc/getAjaxCuenta3_centro",
+                                    type: "POST",
+                                    dataType: "json",
+                                    data: {
+                                        idCentro: ui.item.id
+                                    },
+                                    success: function(response) {
+                                        cuentas3 = response.response;
+                                        let total_cuentas3 = [];
+
+                                        for (let i = 0; i < cuentas3.length; i++) {
+                                            let cuenta3 = {};
+                                            cuenta3.value = cuentas3[i].c3_id;
+                                            cuenta3.label = cuentas3[i].c3_codigo + " - " + cuentas3[i].c3_descripcion;
+
+                                            cuenta3.c3_id = cuentas3[i].c3_id;
+                                            cuenta3.c3_codigo = cuentas3[i].c3_codigo;
+                                            cuenta3.c3_descripcion = cuentas3[i].c3_descripcion;
+
+                                            cuenta3.c2_id = cuentas3[i].c2_id;
+                                            cuenta3.c2_codigo = cuentas3[i].c2_codigo;
+                                            cuenta3.c2_descripcion = cuentas3[i].c2_descripcion;
+
+                                            cuenta3.c1_id = cuentas3[i].c1_id;
+                                            cuenta3.c1_codigo = cuentas3[i].c1_codigo;
+                                            cuenta3.c1_descripcion = cuentas3[i].c1_descripcion;
+
+                                            cuenta3.ca_id = cuentas3[i].ca_id;
+                                            cuenta3.ca_codigo = cuentas3[i].ca_codigo;
+                                            cuenta3.ca_descripcion = cuentas3[i].ca_descripcion;
+
+                                            total_cuentas3.push(cuenta3);
+                                        }
+
+                                        $("#cui_" + miId).next(".custom-combobox").remove();
+                                        let miTr = $("#cui_" + miId).parent();
+                                        $("#cui_" + miId).remove();
+                                        miTr.prepend('<input type="text" id="cui_' + miId + '">');
+
+
+
+                                        $("#cui_" + miId).combobox({
+                                            source: total_cuentas3,
+                                            focus: function(event, ui) {
+                                                $("#cui_" + miId).val(ui.item.c3_descripcion);
+                                                $("#cui_" + miId).next().find(".custom-combobox-input").val(ui.item.c3_codigo + " " + ui.item.c3_descripcion);
+                                                return false;
+                                            },
+                                            select: function(event, ui) {
+                                                $("#cul_" + miId).val(ui.item.c3_id);
+                                                $("#cui_" + miId).val(ui.item.c3_descripcion);
+                                                $("#cui_" + miId).next().find(".custom-combobox-input").val(ui.item.c3_codigo + " " + ui.item.c3_descripcion);
+                                                return false;
+                                            }
+                                        });
+
+                                      
+                                    }
+                                });
 
                                 return false;
                             }
