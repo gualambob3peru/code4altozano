@@ -32,7 +32,7 @@
         </div>
         
         <div class="mb-3 row">
-            <label for="ruc" class="col-sm-2 col-form-label">RUC</label>
+            <label for="ruc" class="col-sm-2 col-form-label">RUC / DNI</label>
             <div class="col-sm-10">
                 <input type="text" name="ruc" class="form-control" id="ruc" value="<?= $f_model["ruc"] ?>">
                 <?php if ($validation->getError('ruc')) { ?>

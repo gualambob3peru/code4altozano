@@ -70,7 +70,7 @@
     <thead>
         <tr>
             <th>Nombre</th>
-            <th>RUC</th>
+            <th>RUC / DNI</th>
             <th>Dirección</th>
             <th>Acciones</th>
         </tr>
