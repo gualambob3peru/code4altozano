@@ -136,6 +136,7 @@ class Oc extends BaseController
                 $cantOrden = $this->db->table("orden")
                     ->select('count(*) cant')
                     ->where("idTipoOrden", $this->request->getVar('idTipoOrden'))
+                    ->where('estado !=','5')
                     ->get()->getRow();
 
                 $cantOrden = $cantOrden->cant + 1;
@@ -333,7 +334,6 @@ class Oc extends BaseController
 
                 $datosInsert = [
                     "id" => $idOrden,
-                    "codigo" => $codigo,
                     "texto" => $this->request->getVar('texto'),
                     "importe" => $monto,
                     "idTipoSolicitud" => $this->request->getVar('idTipoSolicitud'),

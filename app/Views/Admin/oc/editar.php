@@ -541,7 +541,7 @@
                     <input class="form-control" type="text" name="detalle[]">
                 </div>
                 <div class="col-sm-2">
-                    <input class="form-control inputMoneda" type="number" name="moneda[]">
+                    <input class="form-control inputMoneda" type="text" name="moneda[]">
                 </div>
             </div>
         </div>
@@ -1186,7 +1186,7 @@
         miDiv.classList.add('row');
         miDiv.classList.add('filaDetalle');
 
-        miDiv.innerHTML = '<div class="col-sm-9">   <input class="form-control" type="text" name="detalle[]"></div><div class="col-sm-2">    <input class="form-control inputMoneda" type="number" name="moneda[]"></div> <div class="col-sm-1">    <button class="btn btn-danger btnBorrarDetalle" id="idBtnDe' + idBtnDe + '" value="Borrar"> <i class="bi bi-trash text-white"></i> </button></div>';
+        miDiv.innerHTML = '<div class="col-sm-9">   <input class="form-control" type="text" name="detalle[]"></div><div class="col-sm-2">    <input class="form-control inputMoneda" type="text" name="moneda[]"></div> <div class="col-sm-1">    <button class="btn btn-danger btnBorrarDetalle" id="idBtnDe' + idBtnDe + '" value="Borrar"> <i class="bi bi-trash text-white"></i> </button></div>';
 
         //divDetalles.innerHTML += '<div class="mb-3 row filaDetalle"><div class="col-sm-9">   <input class="form-control" type="text" name="detalle[]"></div><div class="col-sm-2">    <input class="form-control inputMoneda" type="number" name="moneda[]"></div> <div class="col-sm-1">    <button class="btn btn-danger btnBorrarDetalle" id="idBtnDe' + idBtnDe + '" value="Borrar"> <i class="bi bi-trash"></i> </button></div> </div>';
 
