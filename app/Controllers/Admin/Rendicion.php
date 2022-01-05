@@ -71,7 +71,7 @@ class Rendicion extends BaseController
             'claseCosto'   => (new ClasecostoModel())->where("estado", "1")->findAll(),
             'banco'   => (new BancoModel())->where("estado", "1")->findAll(),
             'tipoOrden' => (new TipoOrdenModel())->where("estado", "1")->findAll(),
-            'ordenes' => (new OcModel())->where("estado", "1")->findAll(),
+            'ordenes' => (new OcModel())->where("estado!=", "5")->findAll(),
             'cuentas3' => $cuentas3,
         ];
 
