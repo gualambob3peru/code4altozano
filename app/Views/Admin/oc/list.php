@@ -167,7 +167,7 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
 
                 <?php 
                     if(($value->idPersonal==$_SESSION["personal"]["id"] &&  $value->orden_estado == 2) || $_SESSION["personal"]["idCargo"] == "1" ||$_SESSION["personal"]["idCargo"] == "2"){
-                        echo '<button data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar la orden" type="button" elId="<?= $value->id ?>" class="text-white btn btn-danger btn-sm btnEliminar"><i class="bi bi-trash"></i></button>';
+                        echo '<button data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar la orden" type="button" elId="'.$value->id.'" class="text-white btn btn-danger btn-sm btnEliminar"><i class="bi bi-trash"></i></button>';
                     }
                 
                 ?>
