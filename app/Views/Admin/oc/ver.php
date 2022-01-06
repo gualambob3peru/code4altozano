@@ -64,7 +64,7 @@
                 <hr>
                 <h6>Datos del contrato</h6>
 
-                <?php if ($cuenta == NULL) : ?>
+                <?php if ($key->codigo_centro == "VariosCAD") : ?>
                     <table class="table table-bordered f14">
                         <thead>
                             <tr>
@@ -89,8 +89,8 @@
 
 
                             <tr>
-                                <td>Clase Costo</td>
-                                <td><?php echo $cuenta->cc_codigo . " " . $cuenta->cc_descripcion ?></td>
+                                <td>Centro de Costo</td>
+                                <td><?php echo $key->codigo_centro . " " . $key->descripcion_centro ?></td>
                             </tr>
                             <tr>
                                 <td>Cuenta Nivel 1</td>
@@ -139,6 +139,10 @@
                             <td>Nº Cuenta</td>
                             <td><?php echo $banco->nroCuenta ?></td>
                         </tr>
+                        <tr>
+                            <td>Moneda</td>
+                            <td><?php echo $banco->moneda_simbolo." ".$banco->moneda_descripcion ?></td>
+                        </tr>
                     </tbody>
                 </table>
 
@@ -180,7 +184,7 @@
             <h6>Documentos</h6>
             <?php foreach ($images as $key => $value) : ?>
                 <div class="f14">
-                    Doc <?= $key + 1 ?>: <a target="_blank" href="uploads/<?= $value->idOrden ?>/<?= $value->imagen ?>">uploads/<?= $value->idOrden ?>/<?= $value->imagen ?></a>
+                    Doc <?= $key + 1 ?>: <a target="_blank" href="uploads/<?= $value->idOrden ?>/<?= $value->imagen ?>"><?= $value->imagen ?></a>
                 </div>
             <?php endforeach; ?>
 

@@ -231,7 +231,7 @@
         <div class="col-md-3">
             <div class="mb-3">
                 <input type="hidden" name="nombre" value="nombre">
-                <select name="idTipoOrden" id="idTipoOrden" class="form-select">
+                <select name="idTipoOrden" id="idTipoOrden" class="form-select" required>
                     <option value="">Seleccionar</option>
 
                     <?php foreach ($tipoOrden as $key => $value) : ?>

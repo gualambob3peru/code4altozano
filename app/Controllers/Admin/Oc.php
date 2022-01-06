@@ -238,7 +238,7 @@ class Oc extends BaseController
                     foreach ($this->request->getFileMultiple('docs') as $file) {
 
 
-                        $name = uniqid().'.'.$file->guessExtension();
+                        $name = $file->getClientName();
                         $file->move('uploads/'.$miId,$name);
 
 
@@ -416,7 +416,7 @@ class Oc extends BaseController
                     foreach ($this->request->getFileMultiple('docs') as $file) {
 
 
-                        $name = uniqid().'.'.$file->guessExtension();
+                        $name = $file->getClientName();
                         $file->move('uploads/'.$miId,$name);
 
 
@@ -519,8 +519,9 @@ class Oc extends BaseController
         $data["moneda"] = (new MonedaModel())->find($data["orden"]["idMoneda"]);
 
         $data["banco"] = $this->db->table("banco_empresa be")
-            ->select("be.id,be.nroCuenta,b.descripcion")
+            ->select("be.id,be.nroCuenta,b.descripcion,m.descripcion moneda_descripcion,m.simbolo moneda_simbolo")
             ->join("banco b", "b.id = be.idBanco")
+            ->join("moneda m", "m.id = be.idMoneda")
             ->where("be.id", $data["orden"]["idBanco_empresa"])
             ->get()->getRow();
 
@@ -530,8 +531,8 @@ class Oc extends BaseController
             ->join("key k", "k.id = c.idKey")
             ->where("c.id", $data["orden"]["idCentroCosto"])
             ->get()->getRow();
-
-        if ($data["cuenta"] == NULL) {
+      
+        if ($key->codigo_centro=="VariosCAD") {
             $orden_centros = $this->db->table("orden_centro oc")
                 ->select("c.codigo codigo_centro,c.descripcion descripcion_centro,oc.porcentaje")
                 ->join("centro c", "c.id = oc.idCentro")
