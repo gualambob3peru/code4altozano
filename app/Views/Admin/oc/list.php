@@ -103,7 +103,7 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
             <td><span data-bs-toggle="tooltip" data-bs-placement="top" title="<?= $value->peso_nombres." ".$value->peso_apellidoPaterno." ".$value->peso_apellidoMaterno; ?>"><?= substr($value->peso_nombres." ".$value->peso_apellidoPaterno." ".$value->peso_apellidoMaterno,0,17)."..." ; ?></span></td>
             <td><span data-bs-toggle="tooltip" data-bs-placement="top" title="<?= $value->eje_nombre; ?>"><?= substr($value->eje_nombre,0,20); ?></span></td>
             <td><?= $value->moneda_descripcion; ?></td>
-            <td><?= $value->importe; ?></td>
+            <td><?= number_format($value->importe,2); ?></td>
             <td><span data-bs-toggle="tooltip" data-bs-placement="top" title="<?= $value->centro_desc; ?>"><?= substr($value->centro_desc,0,17)."..."; ?></td>
             <td><?= $value->cuenta3_cod."<br>".$value->cuenta3_desc; ?></td>
             <td><?= $value->tipoSolicitud_desc; ?></td>
