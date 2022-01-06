@@ -69,6 +69,7 @@
                         <thead>
                             <tr>
                                 <th>Centro</th>
+                                <th>Nivel 3</th>
                                 <th>Porcentaje</th>
                             </tr>
                         </thead>
@@ -76,6 +77,7 @@
                             <?php foreach ($orden_centros as $key => $value) : ?>
                                 <tr>
                                     <td><?= $value->codigo_centro . " " . $value->descripcion_centro; ?></td>
+                                    <td><?= $value->c3_codigo." ".$value->c3_descripcion; ?></td>
                                     <td><?= $value->porcentaje; ?></td>
                                 </tr>
                             <?php endforeach; ?>

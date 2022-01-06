@@ -534,8 +534,9 @@ class Oc extends BaseController
       
         if ($key->codigo_centro=="VariosCAD") {
             $orden_centros = $this->db->table("orden_centro oc")
-                ->select("c.codigo codigo_centro,c.descripcion descripcion_centro,oc.porcentaje")
+                ->select("c.codigo codigo_centro,c.descripcion descripcion_centro,oc.porcentaje,c3.codigo c3_codigo,c3.descripcion c3_descripcion")
                 ->join("centro c", "c.id = oc.idCentro")
+                ->join("cuenta3 c3", "c3.id = oc.idCuenta")
                 ->where("oc.idOrden", $idOrden)
                 ->get()->getResult();
             $data["orden_centros"] = $orden_centros;
