@@ -160,7 +160,7 @@
             <h6>Documentos</h6>
                 <?php foreach($o_images as $key=>$value): ?>
                     <div class="f14">
-                        Doc <?= $key+1 ?>: <a target="_blank" href="uploads/rendicion/<?= $value["idRendicion"] ?>/<?= $value["imagen"]?>">uploads/rendicion/<?= $value["idRendicion"] ?>/<?= $value["imagen"]?></a>
+                        Doc <?= $key+1 ?>: <a target="_blank" href="uploads/rendicion/<?= $value["idRendicion"] ?>/<?= $value["imagen"]?>"><?= $value["imagen"]?></a>
                     </div>
                 <?php endforeach; ?>                 
         
