@@ -407,7 +407,7 @@
                     <th>Centro Costo</th>
 
                     <th>Nivel 3</th>
-                    <th>Nivel 1</th>
+                    <th>-</th>
                     <th>Monto</th>
                     <th>Acción</th>
                 </tr>
