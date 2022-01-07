@@ -131,16 +131,13 @@
                         <tr>
                             <td>Ejecutado</td>
                             <td><?php echo $ejecutado["ruc"] . " " . $ejecutado["nombre"] ?></td>
-                        </tr>
-                        <tr>
                             <td>Banco</td>
                             <td><?php echo $banco->descripcion ?></td>
                         </tr>
+                     
                         <tr>
                             <td>Nº Cuenta</td>
                             <td><?php echo $banco->nroCuenta ?></td>
-                        </tr>
-                        <tr>
                             <td>Moneda</td>
                             <td><?php echo $banco->moneda_simbolo." ".$banco->moneda_descripcion ?></td>
                         </tr>
@@ -166,7 +163,7 @@
                         <tr>
                             <td class="text-end">Total</td>
                             <td>
-                                <?php echo $orden["importe"] ?>
+                                <?php echo number_format($orden["importe"],2) ?>
                             </td>
                         </tr>
                         <tr>
