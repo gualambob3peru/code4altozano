@@ -34,8 +34,7 @@
             </div>
 
 
-            <br>
-            <br>
+       
             <h6>Datos del solicitado</h6>
 
             <table class="table table-bordered f14">
