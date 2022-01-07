@@ -48,6 +48,10 @@
         .miDrop:hover ul {
             display: block;
         }
+        .ui-menu.ui-widget.ui-widget-content.ui-autocomplete.ui-front{
+            max-height: 250px;
+            overflow-y: auto;
+        }
     </style>
 </head>
 
@@ -78,9 +82,12 @@
                             <i class="bi bi-caret-down-fill"></i> Reportes
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="admin/oc/reporteOrdenes">Reporte Ordenes</a></li>
-                                <li><a class="dropdown-item" href="admin/oc/reporteFinanzas">Reporte Finanzas</a></li>
-                                <li><a class="dropdown-item" href="admin/oc/reporteTesoreria">Reporte Tesorería</a></li>
+                                <!-- <li><a class="dropdown-item" href="admin/oc/reporteOrdenes">Reporte Ordenes</a></li> -->
+                                <li><a class="dropdown-item" href="admin/oc/reporteFinanzas"> Orden Finanzas</a></li>
+                                <li><a class="dropdown-item" href="admin/oc/reporteTesoreria"> Orden  Tesorería</a></li>
+
+                                <li><a class="dropdown-item" href="admin/rendicion/reporteFinanzas"> Rendición Finanzas</a></li>
+                                <li><a class="dropdown-item" href="admin/rendicion/reporteTesoreria"> Rendición  Tesorería</a></li>
                             </ul>
                         </li>
                     </ul>

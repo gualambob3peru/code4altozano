@@ -31,6 +31,7 @@
 
         let cuentas3 = JSON.parse('<?php echo json_encode($cuentas3) ?>');
         let empresas_total = JSON.parse('<?php echo json_encode($empresas_total) ?>');
+        let ordenes = JSON.parse('<?php echo json_encode($ordenes) ?>');
         let cuentasObje = new Object();
 
         let total_cuentas3 = [];
@@ -69,6 +70,15 @@
             empresa3.nombre = empresas_total[i].nombre;
 
             total_empresas.push(empresa3);
+        }
+
+        let total_ordenes = [];
+        for (let i = 0; i < ordenes.length; i++) {
+            let orden = {};
+            orden.value = ordenes[i].id;
+            orden.label = ordenes[i].codigo;
+
+            total_ordenes.push(orden);
         }
 
         $.widget("custom.combobox", {
@@ -238,6 +248,24 @@
             }
         });
 
+       
+
+        $("#idOrden_com").combobox({
+            source: total_ordenes,
+            focus: function(event, ui) {
+
+                $("#idOrden_com").next().find(".custom-combobox-input").val(ui.item.label);
+                return false;
+            },
+            select: function(event, ui) {
+                $("#idOrden").val(ui.item.value);
+                $("#idOrden_com").next().find(".custom-combobox-input").val(ui.item.label);
+
+
+                return false;
+            }
+        });
+
     });
 </script>
 
@@ -252,9 +280,9 @@
             <img src="images/logo1.png" alt="">
         </div>
         <div class="col-md-3">
-            <div class="mb-3">
+            <div class="mb-3 pe-3">
                 <input type="hidden" name="nombre" value="nombre">
-                <select name="idTipoOrden" id="idTipoOrden" class="form-select">
+                <select name="idTipoOrden" id="idTipoOrden" class="form-select" required>
                     <option value="">Seleccionar</option>
 
                     <?php foreach ($tipoOrden as $key => $value) : ?>
@@ -263,15 +291,20 @@
                 </select>
             </div>
 
-            <div class="mb-3">
-                <input type="hidden" name="otro" value="idOrden">
+            <div class="mb-3 pe-5">
+                <input type="hidden" name="idOrden" id="idOrden">
+
+                <input type="text" id="idOrden_com">
+
+                <!-- <input type="hidden" name="otro" value="idOrden">
+
                 <select name="idOrden" id="idOrden" class="form-select">
                     <option value="">Seleccionar Orden</option>
                     <?php foreach ($ordenes as $key => $value) : ?>
                         <option value="<?php echo $value["id"] ?>"><?php echo $value["codigo"] ?></option>
                     <?php endforeach; ?>
 
-                </select>
+                </select> -->
             </div>
             <!-- <div class="mb-3">
                 <input class="form-control" type="date" name="fecha" placeholder="Fecha" required>
@@ -505,13 +538,16 @@
                         <input type="text" name="nro[]" class="form-control">
 
                     </td>
-                    <td>
-                        <select name="proveedor[]"  class="form-select">
+                    <td class="n_t_prov pe-5">
+                    <input type="text" class="n_td_prov form-control">
+                    <input type="hidden" name="proveedor[]" class="n_l_td_prov">
+
+                       <!--  <select name="proveedor[]"  class="form-select">
                             <option value="" selected>Seleccionar</option>
                             <?php foreach ($empresas_total as $key => $value) : ?>
                                 <option value="<?php echo $value["id"] ?>"><?php echo $value["nombre"] ?></option>
                             <?php endforeach; ?>
-                        </select>
+                        </select> -->
                     </td>
                     <td><input type="text" name="detalle[]"  class="form-control"></td>
                     <td> <button type="button" class="btnVarios btn btn-info"><i class="bi bi-journal-plus"></i></button> </td>
@@ -588,6 +624,7 @@
     $(function(){
 
         let keys_all = JSON.parse('<?php echo json_encode($keys) ?>');
+        let proveedor_all = JSON.parse('<?php echo json_encode($empresas_total) ?>');
     
         let total_keys = [];
     
@@ -600,6 +637,18 @@
             key.descripcion = keys_all[i].descripcion;
     
             total_keys.push(key);
+        }
+
+        let total_proveedor = [];
+        for (let i = 0; i < proveedor_all.length; i++) {
+            let proveedor = {};
+            proveedor.label = proveedor_all[i].nombre;
+            proveedor.value = proveedor_all[i].id;
+    
+            proveedor.id = proveedor_all[i].id;
+            proveedor.nombre = proveedor_all[i].nombre;
+    
+            total_proveedor.push(proveedor);
         }
     
         let cuentas3 = JSON.parse('<?php echo json_encode($cuentas3) ?>');
@@ -614,7 +663,9 @@
             $(miFila).attr("elId", miId);
             $(miFila).find(".btnVarios").attr("elId", miId);
     
-            
+            //proveedor
+            $(miFila).find(".n_td_prov").attr("id", "n_prov_" + miId);
+            $(miFila).find(".n_l_td_prov").attr("id", "n_l_prov_" + miId);
     
             let modal = $("#divCloneModalVarios").html();
             modal = $(modal).attr("id", "m_" + miId)
@@ -674,6 +725,23 @@
             $(miFila).find(".n_td_cu").attr("id", "n_cu_" + miId);
             $(miFila).find(".n_l_td_cu").attr("id", "n_l_cu_" + miId);
             $("#tbodyDetalles").append(miFila);
+
+            $("#n_prov_" + miId).combobox({
+                source: total_proveedor,
+                focus: function(event, ui) {
+                    $("#n_prov_" + miId).val(ui.item.nombre);
+                    $("#n_prov_" + miId).next().find(".custom-combobox-input").val(ui.item.nombre);
+                    return false;
+                },
+                select: function(event, ui) {
+                    $("#n_l_prov_" + miId).val(ui.item.id);
+                    $("#n_prov_" + miId).val(ui.item.nombre);
+                    $("#n_prov_" + miId).next().find(".custom-combobox-input").val(ui.item.nombre);
+
+                    return false;
+                }
+            });
+
             $("#n_ke_" + miId).combobox({
                 source: total_keys,
                 focus: function(event, ui) {

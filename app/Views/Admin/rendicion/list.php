@@ -130,7 +130,7 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
 
                  <?php 
                     if(($value->idPersonal==$_SESSION["personal"]["id"] &&  $value->estado == 2) || $_SESSION["personal"]["idCargo"] == "1" ||$_SESSION["personal"]["idCargo"] == "2"){
-                        echo '<a data-bs-toggle="tooltip" data-bs-placement="top" title="Editar Orden" href="admin/rendicion/editar/'. $value->id.'" class="btn btn-primary"><i class="bi bi-pencil"></i></a>  ';
+                        echo '<a data-bs-toggle="tooltip" data-bs-placement="top" title="Editar Orden" href="admin/rendicion/editar/'. $value->id.'" class="btn btn-sm btn-primary"><i class="bi bi-pencil"></i></a>  ';
                     }
                 
                 ?>
@@ -167,7 +167,7 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
 
                 <?php 
                     if(($value->idPersonal==$_SESSION["personal"]["id"] &&  $value->estado == 2) || $_SESSION["personal"]["idCargo"] == "1" ||$_SESSION["personal"]["idCargo"] == "2"){
-                        echo '<button data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar la orden" type="button" elId="<?= $value->id ?>" class="text-white btn btn-danger btn-sm btnEliminar"><i class="bi bi-trash"></i></button>';
+                        echo '<button data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar la orden" type="button" elId="'. $value->id .'" class="text-white btn btn-danger btn-sm btnEliminar"><i class="bi bi-trash"></i></button>';
                     }
                 
                 ?>
@@ -210,7 +210,7 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">¿Desea aprobar OC?</h5>
+                <h5 class="modal-title">¿Desea aprobar Rendición?</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-footer">
@@ -231,7 +231,7 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
         btnEliminarAll[i].onclick = function(){
             let id = this.getAttribute('elId');
 
-            document.getElementById('btnOkEliminar').setAttribute('href','admin/oc/eliminar/'+id);
+            document.getElementById('btnOkEliminar').setAttribute('href','admin/rendicion/eliminar/'+id);
             modalEliminar.show();
 
         }
@@ -241,7 +241,7 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
         btnAprobarAll[i].onclick = function(){
             let id = this.getAttribute('elId');
 
-            document.getElementById('btnOkAprobar').setAttribute('href','admin/oc/aprobar/'+id);
+            document.getElementById('btnOkAprobar').setAttribute('href','admin/rendicion/aprobar/'+id);
             modalAprobar.show();
 
         }

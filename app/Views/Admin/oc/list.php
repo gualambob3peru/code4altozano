@@ -63,7 +63,7 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
             buttons: [
                
             ]
-        });
+        });mb-4
 
     });
     </script>
@@ -71,7 +71,7 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
 
 <h3>Listado de Ordenes de compra</h3>
 
-<a class="btn btn-success mb-4 text-white" href="admin/oc/agregar"><i class="bi bi-plus-lg"></i> Orden de compra</a>
+<a class="btn btn-success text-white" href="admin/oc/agregar"><i class="bi bi-plus-lg"></i> Orden de compra</a>
 
 <table class="table" id="miTabla" style="font-size:14px">
     <thead>
@@ -130,7 +130,7 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
 
                  <?php 
                     if(($value->idPersonal==$_SESSION["personal"]["id"] &&  $value->orden_estado == 2) || $_SESSION["personal"]["idCargo"] == "1" ||$_SESSION["personal"]["idCargo"] == "2"){
-                        echo '<a data-bs-toggle="tooltip" data-bs-placement="top" title="Editar Orden" href="admin/oc/editar/'. $value->id.'" class="btn btn-primary"><i class="bi bi-pencil"></i></a>  ';
+                        echo '<a data-bs-toggle="tooltip" data-bs-placement="top" title="Editar Orden" href="admin/oc/editar/'. $value->id.'" class="btn btn-primary btn-sm"><i class="bi bi-pencil"></i></a>  ';
                     }
                 
                 ?>

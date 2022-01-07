@@ -503,6 +503,23 @@ class Oc extends BaseController
         echo json_encode(array("response" => $cuentas3));
     }
 
+    public function getAjaxClase_centro()
+    {
+        $idCentro = $this->request->getVar('idCentro');
+
+        $clases = $this->db->table("centro_clase cc")
+            ->select('c3.id c3_id, c3.descripcion c3_descripcion, c3.codigo c3_codigo, c2.id c2_id, c2.descripcion c2_descripcion, c2.codigo c2_codigo,c1.id c1_id, c1.descripcion c1_descripcion, c1.codigo c1_codigo, ca.id ca_id, ca.descripcion ca_descripcion, ca.codigo ca_codigo')
+            ->join("clasecosto ca", 'cc.idClaseCosto = ca.id')
+
+
+            ->where("cc.idCentro = " . $idCentro)
+            ->where("ca.estado", "1")
+
+            ->get()->getResult();
+
+        echo json_encode(array("response" => $clases));
+    }
+
     public function ver($idOrden)
     {
         $data["orden"] = (new OcModel())->find($idOrden);

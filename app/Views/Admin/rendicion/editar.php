@@ -29,6 +29,7 @@
 <script>
     let cuentas3 = JSON.parse('<?php echo json_encode($cuentas3) ?>');
     let empresas_total = JSON.parse('<?php echo json_encode($empresas_total) ?>');
+    let ordenes = JSON.parse('<?php echo json_encode($ordenes) ?>');
     let cuentasObje = new Object();
 
     let total_cuentas3 = [];
@@ -56,6 +57,16 @@
 
         total_cuentas3.push(cuenta3);
     }
+
+    let total_ordenes = [];
+    for (let i = 0; i < ordenes.length; i++) {
+        let orden = {};
+        orden.value = ordenes[i].id;
+        orden.label = ordenes[i].codigo;
+
+        total_ordenes.push(orden);
+    }
+
 
     let total_empresas = [];
 
@@ -91,7 +102,7 @@
                     .appendTo(this.wrapper)
                     .val(value)
                     .attr("title", "")
-                    .attr("required", true)
+                   // .attr("required", true)
                     .addClass("custom-combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left")
                     .autocomplete({
                         delay: 0,
@@ -256,6 +267,25 @@
         $("#ejecutado_com").next().find(".ui-button").click();
         $("[data-value='ejecutado_com_" + <?php echo $o_rendicion["idEmpresaEje"] ?> + "']").click();
 
+
+        $("#idOrden_com").combobox({
+            source: total_ordenes,
+            focus: function(event, ui) {
+
+                $("#idOrden_com").next().find(".custom-combobox-input").val(ui.item.label);
+                return false;
+            },
+            select: function(event, ui) {
+                $("#idOrden").val(ui.item.value);
+                $("#idOrden_com").next().find(".custom-combobox-input").val(ui.item.label);
+
+
+                return false;
+            }
+        });
+
+        $("#idOrden_com").next().find(".ui-button").click();
+        $("[data-value='idOrden_com_" + <?php echo $o_rendicion["idOrden"] ?> + "']").click();
     });
 </script>
 
@@ -281,15 +311,17 @@
                 </select>
             </div>
 
-            <div class="mb-3">
-    
-                <select name="idOrden" id="idOrden" class="form-select">
+            <div class="mb-3 pe-5">
+                <input type="hidden" name="idOrden" id="idOrden">
+
+                <input type="text" id="idOrden_com">        
+               <!--  <select name="idOrden" id="idOrden" class="form-select">
                     <option value="">Seleccionar Orden</option>
                     <?php foreach ($ordenes as $key => $value) : ?>
                         <option value="<?php echo $value["id"] ?>" <?= (($value["id"] == $o_rendicion["idOrden"])?"selected":"") ?>><?php echo $value["codigo"] ?></option>
                     <?php endforeach; ?>
 
-                </select>
+                </select> -->
             </div>
             <!-- <div class="mb-3">
                 <input class="form-control" type="date" name="fecha" placeholder="Fecha" required>

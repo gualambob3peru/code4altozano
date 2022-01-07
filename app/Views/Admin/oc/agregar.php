@@ -630,6 +630,19 @@
             $("#divVariosCentro").css("display", "none")
             let cuentas3 = "";
             let idCentro = $(this).val();
+
+            $.ajax({
+                url: "admin/oc/getAjaxClase_centro",
+                type: "POST",
+                dataType: "json",
+                data: {
+                    idCentro: idCentro
+                },
+                success: function(response) {     
+                    console.log(response);
+                }
+            });
+            
             $.ajax({
                 url: "admin/oc/getAjaxCuenta3_centro",
                 type: "POST",

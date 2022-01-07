@@ -174,7 +174,7 @@ class Centro extends BaseController
     public function ajaxGet_key(){
         if ($_POST) {
             $idKey = $this->request->getVar('idKey');
-            $keys = (new CentroModel())->where('idKey',$idKey)->findAll();
+            $keys = (new CentroModel())->where('idKey',$idKey)->where('estado','1')->findAll();
 
             echo json_encode(array("response"=>"1","keys" => $keys));
         }

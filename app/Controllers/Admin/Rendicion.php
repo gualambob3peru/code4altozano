@@ -39,7 +39,7 @@ class Rendicion extends BaseController
             "table" => $this->table,
             "nombre" => $this->nombre,
         ];
-        $this->model = new OcModel();
+        $this->model = new RendicionModel();
     }
 
     public function index()
@@ -71,7 +71,7 @@ class Rendicion extends BaseController
             'claseCosto'   => (new ClasecostoModel())->where("estado", "1")->findAll(),
             'banco'   => (new BancoModel())->where("estado", "1")->findAll(),
             'tipoOrden' => (new TipoOrdenModel())->where("estado", "1")->findAll(),
-            'ordenes' => (new OcModel())->where("estado!=", "5")->findAll(),
+            'ordenes' => $this->db->table("orden")->select("id,codigo")->where("estado!=", "5")->get()->getResultArray(),
             'cuentas3' => $cuentas3,
         ];
 
@@ -146,7 +146,7 @@ class Rendicion extends BaseController
                     "idEmpresa" => $this->request->getVar('idEmpresa'),
                     "idPersonalSoli" => $this->request->getVar('solicitado'),
                     "idPersonalJefe" => $this->request->getVar('jefe'),
-                    "idOrden" => 1,
+                    "idOrden" => $this->request->getVar('idOrden'),
                     "idEmpresaEje" => $this->request->getVar('ejecutado'),
                     "idBanco_empresa" => $this->request->getVar('idBanco'),
                     "idMoneda" => 1,
@@ -215,7 +215,7 @@ class Rendicion extends BaseController
                     }
                 }
 
-                return redirect()->to(site_url('admin/oc/index'));
+                return redirect()->to(site_url('admin/rendicion/index'));
             }
         } else {
             $this->template->setTemplate('templates/template2');
@@ -231,21 +231,21 @@ class Rendicion extends BaseController
                 "estado" => '3'
             ];
             $this->model->save($datosUpdate);
-            return redirect()->to(site_url('admin/oc/index'));
+            return redirect()->to(site_url('admin/rendicion/index'));
         } else if ($_SESSION["personal"]["idCargo"] == "2") {
             $datosUpdate = [
                 "id" => $idOrden,
                 "estado" => '4'
             ];
             $this->model->save($datosUpdate);
-            return redirect()->to(site_url('admin/oc/index'));
+            return redirect()->to(site_url('admin/rendicion/index'));
         } else if ($_SESSION["personal"]["idCargo"] == "1") {
             $datosUpdate = [
                 "id" => $idOrden,
                 "estado" => '1'
             ];
             $this->model->save($datosUpdate);
-            return redirect()->to(site_url('admin/oc/index'));
+            return redirect()->to(site_url('admin/rendicion/index'));
         }
     }
 
@@ -269,7 +269,7 @@ class Rendicion extends BaseController
             'claseCosto'   => (new ClasecostoModel())->where("estado", "1")->findAll(),
             'banco'   => (new BancoModel())->where("estado", "1")->findAll(),
             'tipoOrden' => (new TipoOrdenModel())->where("estado", "1")->findAll(),
-            'ordenes' => (new OcModel())->where("estado", "1")->findAll(),
+            'ordenes' => $this->db->table("orden")->select("id,codigo")->where("estado!=", "5")->get()->getResultArray(),
             'tipoSolicitudRen_all' => (new TipoSolicitudRenModel())->where("estado","1")->findAll(),
             'cuentas3' => $cuentas3,
         ];
@@ -504,13 +504,13 @@ class Rendicion extends BaseController
     public function reporteOrdenes()
     {
         $this->template->setTemplate('templates/template2');
-        $this->template->render('Admin/oc/reporteOrdenes');
+        $this->template->render('Admin/rendicion/reporteOrdenes');
     }
 
     public function reporteFinanzas()
     {
         $this->template->setTemplate('templates/template2');
-        $this->template->render('Admin/oc/reporteFinanzas');
+        $this->template->render('Admin/rendicion/reporteFinanzas');
     }
 
     public function getExcelOrdenes()
@@ -588,9 +588,9 @@ class Rendicion extends BaseController
         echo "\xEF\xBB\xBF";
         
 
-        $ordenesTotal = $this->db->table("orden")
-            ->where("fecha > ", $fechaInicio)
-            ->where("fecha < ", $fechaFinal)
+        $ordenesTotal = $this->db->table("rendicion")
+            ->where("created_at > ", $fechaInicio)
+            ->where("created_at < ", $fechaFinal)
             ->where("estado !=","5")->get()->getResultArray();
 
         $tabla = "";
@@ -620,12 +620,13 @@ class Rendicion extends BaseController
       
         foreach($ordenesTotal as $key => $value){
             if($value["idCuenta"] == "0"){ //multiples centros
-                $orden = $this->db->table("orden o")
+                $orden = $this->db->table("rendicion o")
                     ->select("o.id,e.nombre empresa_nombre, o.codigo orden_codigo,pso.nombres soli_nombres,pso.apellidoPaterno soliAp, pso.apellidoMaterno soliAm, pej.nombres jefe_nombres,pej.apellidoPaterno jefeAp, pej.apellidoMaterno jefeAm, to.descripcion to_descripcion,eje.nombre eje_nombre,o.fecha orden_fecha, m.simbolo, o.objeto,o.idCuenta idCuenta3, o.importe")
                     ->join("empresa e","e.id = o.idEmpresa")
                     ->join("personal pso","pso.id = o.idPersonalSoli")
                     ->join("personal pej","pej.id = o.idPersonalJefe")
                     ->join("tipoOrden to","to.id = o.idTipoOrden")
+                    ->join("orden","orden.id = o.idOrden")
                     ->join("empresa eje","eje.id = o.idEmpresaEje")
                     ->join("moneda m","m.id = o.idMoneda")
                     ->where("o.fecha > ", $fechaInicio)
@@ -691,7 +692,7 @@ class Rendicion extends BaseController
                     ->where("o.fecha > ", $fechaInicio)
                     ->where("o.fecha < ", $fechaFinal)
                     ->where("o.estado !=", "5")
-                    ->where("o.id !=", $value["id"])
+                    ->where("o.id ", $value["id"])
                     ->get()->getResult();
         
                
@@ -739,7 +740,7 @@ class Rendicion extends BaseController
 
     public function reporteTesoreria(){
         $this->template->setTemplate('templates/template2');
-        $this->template->render('Admin/oc/reporteTesoreria');
+        $this->template->render('Admin/rendicion/reporteTesoreria');
     }
 
     public function getExcelTesoreria(){
@@ -964,6 +965,6 @@ class Rendicion extends BaseController
             "estado" => '5'
         ];
         $this->model->save($datosUpdate);
-        return redirect()->to(site_url('admin/oc'));
+        return redirect()->to(site_url('admin/rendicion'));
     }
 }
