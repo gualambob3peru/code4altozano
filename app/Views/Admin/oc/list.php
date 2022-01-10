@@ -105,7 +105,7 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
             <td><?= $value->moneda_descripcion; ?></td>
             <td><?= number_format($value->importe,2); ?></td>
             <td><span data-bs-toggle="tooltip" data-bs-placement="top" title="<?= $value->centro_desc; ?>"><?= substr($value->centro_desc,0,17)."..."; ?></td>
-            <td><?= $value->cuenta3_cod."<br>".$value->cuenta3_desc; ?></td>
+            <td><?= $value->cuenta3_cod."<br>".substr($value->cuenta3_desc,0,14)."..."; ?></td>
             <td><?= $value->tipoSolicitud_desc; ?></td>
             <td>
                 <?php 
