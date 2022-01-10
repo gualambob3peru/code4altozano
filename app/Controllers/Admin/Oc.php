@@ -46,7 +46,7 @@ class Oc extends BaseController
     {
         $data = $this->dataView;
         $ocs = $this->db->table("orden o")
-            ->select('o.estado orden_estado,o.idPersonal,o.id,o.codigo orden_codigo,o.fecha,ts.descripcion tipoSolicitud_desc,e.nombre empresa_nombre,c.descripcion centro_desc,cu3.codigo cuenta3_cod,cu3.descripcion cuenta3_desc,peso.nombres peso_nombres, peso.apellidoPaterno peso_apellidoPaterno,peso.apellidoMaterno peso_apellidoMaterno,eje.nombre eje_nombre,o.importe,m.descripcion moneda_descripcion')
+            ->select('o.created_at,o.estado orden_estado,o.idPersonal,o.id,o.codigo orden_codigo,o.fecha,ts.descripcion tipoSolicitud_desc,e.nombre empresa_nombre,c.descripcion centro_desc,cu3.codigo cuenta3_cod,cu3.descripcion cuenta3_desc,peso.nombres peso_nombres, peso.apellidoPaterno peso_apellidoPaterno,peso.apellidoMaterno peso_apellidoMaterno,eje.nombre eje_nombre,o.importe,m.descripcion moneda_descripcion')
             ->join("personal peso", 'peso.id = o.idPersonalSoli')
             ->join("tipoSolicitud ts", 'o.idTipoSolicitud = ts.id')
             ->join("empresa e", 'e.id = o.idEmpresa')
