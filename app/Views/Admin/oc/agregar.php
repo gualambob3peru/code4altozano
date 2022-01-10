@@ -1036,7 +1036,7 @@
     
     }
     let convFormt = function(number){
-        return (parseFloat(number.replace(/,/g,''))).toLocaleString('en-US', {minimumFractionDigits:2});
+        return number;
     }
 
     

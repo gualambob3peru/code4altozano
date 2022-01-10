@@ -342,7 +342,7 @@ class Oc extends BaseController
                 $monto = 0;
 
                 foreach ($detalles as $key => $value) {
-                    $monto += $monedas[$key];
+                    $monto += floatval($monedas[$key]);
                 }
 
                 $idcuenta3 = $this->request->getVar('idCuenta3');

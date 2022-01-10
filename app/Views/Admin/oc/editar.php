@@ -1218,7 +1218,7 @@
 
     
     function convFormt (number){
-        return (parseFloat(number.replace(/,/g,''))).toLocaleString('en-US', {minimumFractionDigits:2});
+        return number;
     }
     let inputMonedas = document.querySelectorAll(".inputMoneda");
     
@@ -1232,7 +1232,7 @@
             totalDetalle.value = parseFloat(valorTotal) + parseFloat(valorInput);
         });
 
-        totalDetalle.value = convFormt(totalDetalle.value);
+        //totalDetalle.value = convFormt(totalDetalle.value);
     }
 
     inputMonedas.forEach(input => {    
