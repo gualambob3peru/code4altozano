@@ -55,6 +55,7 @@ class Oc extends BaseController
             ->join("centro c", 'c.id = o.idCentroCosto', 'left')
             ->join("cuenta3 cu3", 'cu3.id = o.idCuenta', 'left')
             ->where("o.estado !=", "5")
+            ->orderBy('o.id', 'DESC')
             ->get()->getResult();
 
         $data["ocs"] = $ocs;

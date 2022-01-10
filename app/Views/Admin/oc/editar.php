@@ -1205,25 +1205,46 @@
         let inputMonedas = document.querySelectorAll(".inputMoneda");
 
         inputMonedas.forEach(input => {
-            input.onkeyup = function(ee) {
+            
+            input.onblur = function(ee) {
+                if(isNaN(this.value.replace(/,/g,''))){
+                    this.value = 0;
+                }
+                this.value =  convFormt(this.value);
                 sumaTotal();
             }
         });
-
-
     }
 
+    
+    function convFormt (number){
+        return (parseFloat(number.replace(/,/g,''))).toLocaleString('en-US', {minimumFractionDigits:2});
+    }
+    let inputMonedas = document.querySelectorAll(".inputMoneda");
+    
     let sumaTotal = function() {
         totalDetalle.value = 0;
         document.querySelectorAll(".inputMoneda").forEach(input2 => {
             input2.value = input2.value || 0;
-            totalDetalle.value = parseFloat(totalDetalle.value) + parseFloat(input2.value);
+            let valorInput = input2.value.replace(/,/g,'');
+            let valorTotal = totalDetalle.value.replace(/,/g,'');
+
+            totalDetalle.value = parseFloat(valorTotal) + parseFloat(valorInput);
         });
+
+        totalDetalle.value = convFormt(totalDetalle.value);
     }
 
-    document.querySelector(".inputMoneda").onkeyup = function(ee) {
-        totalDetalle.value = this.value;
-    }
+    inputMonedas.forEach(input => {    
+        input.onblur = function() {
+            if(isNaN(this.value.replace(/,/g,''))){
+                this.value = 0;
+            }
+            this.value = convFormt(this.value);
+            sumaTotal();
+        }
+    });
+    
 
     idTipoOrden.onchange = function() {
 
@@ -1245,7 +1266,7 @@
         $("[name='detalle[]']").eq(-1).val(detalles[i].descripcion);
         $("[name='moneda[]']").eq(-1).val(detalles[i].monto);
     }
-    $("[name='moneda[]']").keyup();
+    $("[name='moneda[]']").blur();
 
 
     $("#msgExito").dialog({
@@ -1265,7 +1286,7 @@
         }
     })
 
-
+    
 
     let modalELiminarArchivo = $("#modalEliminarArchivo").dialog({
         resizable: false,

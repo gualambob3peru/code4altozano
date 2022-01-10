@@ -30,7 +30,7 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
 
 
         $('#miTabla').DataTable({
-            "order": [[ 1, "desc" ]],
+            "order": [],
             "language": {
                 "sProcessing": "Procesando...",
                 "sLengthMenu": "Mostrar _MENU_ registros",
@@ -63,7 +63,7 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
             buttons: [
                
             ]
-        });mb-4
+        });
 
     });
     </script>
