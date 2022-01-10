@@ -159,6 +159,10 @@ class Oc extends BaseController
                 //hallando monto
                 $detalles = $this->request->getVar('detalle');
                 $monedas = $this->request->getVar('moneda');
+                foreach ($monedas as $key => $value) {
+                    $monedas[$key] = (double)filter_var($monedas[$key], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+                }
+
                 $monto = 0;
 
                 
@@ -339,10 +343,15 @@ class Oc extends BaseController
                 //hallando monto
                 $detalles = $this->request->getVar('detalle');
                 $monedas = $this->request->getVar('moneda');
+
+                foreach ($monedas as $key => $value) {
+                    $monedas[$key] = (double)filter_var($monedas[$key], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+                }
+
                 $monto = 0;
 
                 foreach ($detalles as $key => $value) {
-                    $monto += floatval($monedas[$key]);
+                    $monto += $monedas[$key];
                 }
 
                 $idcuenta3 = $this->request->getVar('idCuenta3');
@@ -509,7 +518,7 @@ class Oc extends BaseController
         $idCentro = $this->request->getVar('idCentro');
 
         $clases = $this->db->table("centro_clase cc")
-            ->select('c3.id c3_id, c3.descripcion c3_descripcion, c3.codigo c3_codigo, c2.id c2_id, c2.descripcion c2_descripcion, c2.codigo c2_codigo,c1.id c1_id, c1.descripcion c1_descripcion, c1.codigo c1_codigo, ca.id ca_id, ca.descripcion ca_descripcion, ca.codigo ca_codigo')
+            ->select('ca.id ca_id, ca.descripcion ca_descripcion, ca.codigo ca_codigo')
             ->join("clasecosto ca", 'cc.idClaseCosto = ca.id')
 
 

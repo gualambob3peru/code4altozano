@@ -1012,7 +1012,7 @@
     let inputMonedas = document.querySelectorAll(".inputMoneda");
   
     inputMonedas.forEach(input => {
-        console.log(input);
+    
         input.onblur = function() {
             if(isNaN(this.value.replace(/,/g,''))){
                 this.value = 0;
@@ -1036,7 +1036,7 @@
     
     }
     let convFormt = function(number){
-        return number;
+        return (parseFloat(number.replace(/,/g,''))).toLocaleString('en-US', {minimumFractionDigits:2});
     }
 
     
