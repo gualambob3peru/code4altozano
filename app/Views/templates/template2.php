@@ -102,8 +102,13 @@
                                 <i class="bi bi-caret-down-fill"></i> Maestros
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
+
                                     <li><a class="dropdown-item" href="admin/empresa">Empresas</a></li>
+
+                                    <?php if ($_SESSION["personal"]["idCargo"] == "1") : ?>
                                     <li><a class="dropdown-item" href="admin/personal">Personal</a></li>
+                                    <?php endif; ?>    
+
                                     <li><a class="dropdown-item" href="admin/key">Key</a></li>
                                     <li><a class="dropdown-item" href="admin/banco">Bancos</a></li>
 
