@@ -59,9 +59,9 @@ class RendicionModel extends Model
             ->join("empresa e","e.id = rendicion.idEmpresa")
             ->join("personal pes","pes.id = rendicion.idPersonalSoli")
             ->join("personal pej","pej.id = rendicion.idPersonalJefe")
-            ->join("orden o","o.id = rendicion.idOrden")
             ->join("empresa eje","eje.id = rendicion.idEmpresaEje")
             ->join("moneda m", 'm.id = rendicion.idMoneda')
+            ->join("orden o","o.id = rendicion.idOrden","left")
         
             ->where("rendicion.estado !=","5")
             ->get()->getResult();
@@ -88,11 +88,11 @@ class RendicionModel extends Model
             ->join("empresa e","e.id = rendicion.idEmpresa")
             ->join("personal pes","pes.id = rendicion.idPersonalSoli")
             ->join("personal pej","pej.id = rendicion.idPersonalJefe")
-            ->join("orden o","o.id = rendicion.idOrden")
             ->join("empresa eje","eje.id = rendicion.idEmpresaEje")
             ->join("moneda m", 'm.id = rendicion.idMoneda')
             ->join("banco_empresa be", 'be.id = rendicion.idBanco_empresa')
             ->join("banco b", 'b.id = be.idBanco')
+            ->join("orden o","o.id = rendicion.idOrden")
         
             ->where("rendicion.estado !=","5")
             ->where("rendicion.id ",$idRendicion)

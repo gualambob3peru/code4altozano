@@ -27,6 +27,8 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 <script>
+
+
     let cuentas3 = JSON.parse('<?php echo json_encode($cuentas3) ?>');
     let empresas_total = JSON.parse('<?php echo json_encode($empresas_total) ?>');
     let ordenes = JSON.parse('<?php echo json_encode($ordenes) ?>');
@@ -193,8 +195,9 @@
                 }
 
                 // Remove invalid value
+                console.log(this);
                 this.input
-                    .val("")
+                   // .val("")
                     .attr("title", value + " No encontrado")
                     .tooltip("open");
                 this.element.val("");
@@ -286,6 +289,44 @@
 
         $("#idOrden_com").next().find(".ui-button").click();
         $("[data-value='idOrden_com_" + <?php echo $o_rendicion["idOrden"] ?> + "']").click();
+
+        $(".c_tipoSoli").click(function(){
+            let val = $(this).val();
+            if(val == 2 || val == 4){
+                $("#divOrden").css("display","none");
+                $("#idOrden").val("");
+                $("#divOrden span input").val("");
+            }else{
+                $("#divOrden").css("display","block");
+            }
+        });
+
+        let v_c_tipoSoli = $(".c_tipoSoli:checked").val();
+        if(v_c_tipoSoli == 2 || v_c_tipoSoli == 4){
+            $("#divOrden").css("display","none");
+            $("#idOrden").val("");
+            $("#divOrden span input").val("");
+        }else{
+            $("#divOrden").css("display","block");
+        }
+
+
+        $("body").on("click",".btnAgregarProv",function(){
+            let val = $(this).parents("tr").find(".n_t_pro .custom-combobox-input").val();
+            
+            $.ajax({
+                url : "admin/empresa/ajaxAgregarEmpresaSin",
+                type : "post",
+                dataType : "json",
+                data : {nombre: val},
+                error : function(ee){alert('No se pudo agregar');},
+                success : function (response) {
+                    if(response.state == 5){
+                        alert('Debe agregar un nombre');
+                    }
+                }
+            });
+        });
     });
 </script>
 
@@ -311,8 +352,8 @@
                 </select>
             </div>
 
-            <div class="mb-3 pe-5">
-                <input type="hidden" name="idOrden" id="idOrden">
+            <div class="mb-3 pe-5" id="divOrden">
+                <input type="hidden" name="idOrden" id="idOrden" >
 
                 <input type="text" id="idOrden_com">        
                <!--  <select name="idOrden" id="idOrden" class="form-select">
@@ -334,7 +375,7 @@
         <div class="col-md-4">
             <?php foreach($tipoSolicitudRen_all as $key=>$value): ?>
                 <div class="form-check">
-                    <input class="form-check-input" <?= (($value["id"] == $o_rendicion["idTipoSolicitudRen"])?"checked":"") ?> type="radio" name="idTipoSolicitud" value="<?= $value["id"] ?>" required>
+                    <input class="form-check-input c_tipoSoli" <?= (($value["id"] == $o_rendicion["idTipoSolicitudRen"])?"checked":"") ?> type="radio" name="idTipoSolicitud" value="<?= $value["id"] ?>" required>
                     <label class="form-check-label">
                        <?= $value["descripcion"] ?>
                     </label>
@@ -403,6 +444,9 @@
                 <tr>
                     <th>Nº Doc</th>
                     <th>Proveedor</th>
+                    <th>
+                        
+                    </th>
                     <th>Detalle</th>
                     <th>Varios</th>
                     <th>Key</th>
@@ -552,11 +596,12 @@
 
                     </td>
                     <td class="n_t_pro pe-5">
-                    
-                        <input type="hidden" name="proveedor[]" class="n_l_td_pro">
+                        
+                            <input type="hidden" name="proveedor[]" class="n_l_td_pro">
 
-                        <input type="text" class="n_td_pro">
-        
+                            <input type="text" class="n_td_pro">
+                      
+                      
            
                         <!-- <select name="proveedor[]"  class="form-select">
                             <option value="" selected>Seleccionar</option>
@@ -565,8 +610,11 @@
                             <?php endforeach; ?>
                         </select> -->
                     </td>
+                    <td>
+                        <button type="button" class="btn btn-info text-white btnAgregarProv" ><i class="bi bi-plus-lg"></i></button>
+                    </td>
                     <td><input type="text" name="detalle[]"  class="form-control" required></td>
-                    <td> <button type="button" class="btnVarios btn btn-info"><i class="bi bi-journal-plus"></i></button> </td>
+                    <td> <button type="button" class="btnVarios btn btn-info text-white"><i class="bi bi-journal-plus"></i></button> </td>
                     <td class="n_t_key pe-5">
                         <input type="text" class="n_td_ke form-control" ><input type="hidden" name="varioskeys[]" class="n_l_td_ke" >
                     </td>
@@ -580,7 +628,7 @@
                     <td><input type="number" name="monto[]" class="form-control"></td>
 
                     <td>
-                        <button class="btn btn-danger n_td_delete"><i class="bi bi-trash"></i></button>
+                        <button class="btn btn-danger n_td_delete text-white"><i class="bi bi-trash"></i></button>
                     </td>
                 </tr>
             </tbody>

@@ -274,6 +274,58 @@ class Empresa extends BaseController
         }
     }
 
+    public function ajaxAgregarEmpresaSin(){
+        $nombre = $this->request->getPost('nombre');
+        $nombre = trim($nombre);
+        if(trim($nombre)!= ""){
+            //no debe existir
+            $empresa = (new EmpresaModel())->where('nombre',$nombre)->findAll(); 
+            
+            if(count($empresa)){
+                
+                echo json_encode(array("state"=>1,"msg" => "Ya existe","id"=>$empresa[0]["id"],"nombre" => $nombre));
+            }else{
+                $nombre2 = explode(" - ", $nombre);
+                if(count($nombre2)==2){
+                    $nombre2 = $nombre2[1];
+                    $empresa = (new EmpresaModel())->where('nombre',$nombre2)->findAll();  
+                    if(count($empresa)){
+              
+                        echo json_encode(array("state"=>2,"msg" => "Ya existe", "id"=>$empresa[0]["id"],"nombre" => $nombre2));
+                    }else{
+                        //Tenemos que agregar porque lo más probable es que no existe en la BD
+                        $datosInsert = [
+                            "nombre" => $nombre,
+                            "idTipoEmpresa" => 2,
+                            "ruc" => '',
+                            "direccion" => ''
+                        ];
+        
+                        $this->model->save($datosInsert);    
+                        $miId = $this->model->getInsertID();
+                        echo json_encode(array("state"=>3,"msg" => "Agregado","id"=>$miId,"nombre" => $nombre));
+                    }
+                }else{
+                    //Tenemos que agregar porque lo más probable es que no existe en la BD
+                    $datosInsert = [
+                        "nombre" => $nombre,
+                        "idTipoEmpresa" => 2,
+                        "ruc" => '',
+                        "direccion" => ''
+                    ];
+    
+                    $this->model->save($datosInsert);    
+                    $miId = $this->model->getInsertID();
+                    echo json_encode(array("state"=>4,"msg" => "Agregado","id"=>$miId,"nombre" => $nombre));
+                }
+            }
+      
+        }else{
+            echo json_encode(array("state"=>5,"msg" => "Debe ingresar un nombre"));
+        }
+     
+    }
+
     public function eliminar($id){
         $datosUpdate= [
             "id" => $id,

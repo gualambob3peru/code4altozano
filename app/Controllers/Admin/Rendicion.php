@@ -47,6 +47,7 @@ class Rendicion extends BaseController
         $data = $this->dataView;
 
         $data["rendiciones"] = (new RendicionModel())->getList();
+      
         $this->template->setTemplate('templates/template2');
         $this->template->render('Admin/rendicion/list', $data);
         

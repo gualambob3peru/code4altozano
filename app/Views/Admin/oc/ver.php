@@ -37,7 +37,7 @@
        
             <h6>Datos del solicitado</h6>
 
-            <table class="table table-bordered f14">
+            <table class="table table-bordered f14 table-sm">
                 <tr>
                     <td>Empresa</td>
                     <td><?php echo $empresa["nombre"] ?></td>
@@ -64,7 +64,7 @@
                 <h6>Datos del contrato</h6>
 
                 <?php if ($key->codigo_centro == "VariosCAD") : ?>
-                    <table class="table table-bordered f14">
+                    <table class="table table-bordered f14 table-sm">
                         <thead>
                             <tr>
                                 <th>Centro</th>
@@ -84,7 +84,7 @@
                     </table>
 
                 <?php else : ?>
-                    <table class="table table-bordered f14">
+                    <table class="table table-bordered f14 table-sm">
 
                         <tbody>
 
@@ -126,7 +126,7 @@
             <hr>
             <h6>Datos del contratista</h6>
             <div>
-                <table class="table table-bordered f14">
+                <table class="table table-bordered f14 table-sm">
                     <tbody>
                         <tr>
                             <td>Ejecutado</td>
@@ -151,7 +151,7 @@
             <h6>Detalle del contrato</h6>
 
             <div>
-                <table class="table table-bordered f14">
+                <table class="table table-bordered f14 table-sm">
 
                     <tbody>
                         <?php foreach ($ordenDetalle as $key => $value) : ?>
