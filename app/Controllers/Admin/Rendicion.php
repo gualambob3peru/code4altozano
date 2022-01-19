@@ -100,7 +100,7 @@ class Rendicion extends BaseController
 
          
 
-                $cantOrden = $this->db->table("rendicion")
+                /*$cantOrden = $this->db->table("rendicion")
                     ->select('count(*) cant')
                     ->where("idTipoOrden", $this->request->getVar('idTipoOrden'))
                     ->get()->getRow();
@@ -119,7 +119,39 @@ class Rendicion extends BaseController
 
                 $codTipoOrden = $tipoOrden->codigo;
 
-                $codigo = "Rend.".$codTipoOrden . $cantOrden . "-2021";
+                $codigo = "Rend.".$codTipoOrden . $cantOrden . "-2021";*/
+
+                $idTipoOrden = $this->request->getVar('idTipoOrden');
+                $tipoOrden = $this->db->table("tipoOrden")
+                            ->where("id", $idTipoOrden)
+                            ->get()->getRow();
+
+                $codTipoOrden = $tipoOrden->codigo;
+
+                $a = $this->db->table("rendicion")
+                    ->where("idTipoOrden",$idTipoOrden)
+                    ->like("codigo",date("Y"), "both")
+                    ->orderBy("id","desc")
+                    ->get()->getRowArray();
+
+            
+                if($a){
+                    $arr = explode("-",$a["codigo"]);
+                    $num = substr($arr[0], -3);
+
+                    $cantOrden = $num + 1;
+
+                    if ($cantOrden < 10) {
+                        $cantOrden = "00" . $cantOrden;
+                    } else if ($cantOrden < 100) {
+                        $cantOrden = "0" . $cantOrden;
+                    }
+
+                    $codigo = $codTipoOrden.$cantOrden."-".date("Y");
+            
+                }else{
+                    $codigo = $codTipoOrden."001-".date("Y");
+                }
 
                 //calculando importe total
                 $importeTotal = 0;
@@ -514,70 +546,14 @@ class Rendicion extends BaseController
         $this->template->render('Admin/rendicion/reporteFinanzas');
     }
 
-    public function getExcelOrdenes()
-    {
-
-        $fechaInicio = $_POST["fechaInicio"];
-        $fechaFinal = $_POST["fechaFinal"];
-
-        $filename = $fechaInicio . "_" . $fechaFinal . "_reporte.xls";
-
-
-        $ordenes = $this->db->table("orden")
-            ->where("fecha > ", $fechaInicio)
-            ->where("fecha < ", $fechaFinal)
-            ->where("estado !=", "5")
-            ->get()->getResult();
-
-        foreach ($ordenes as $key => $value) {
-            $detalles = $this->db->table("orden_detalle")
-                ->where("idOrden", $value->id)
-                ->get()->getResult();
-            $ordenes[$key]->detalle = $detalles;
-        }
-
-
-
-        header("Content-type: application/x-msdownload");
-        header("Content-Disposition: attachment; filename=$filename");
-        header("Pragma: no-cache");
-        header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
-
-        $tabla = "<table>
-            <tr>
-                <th>Codigo</th>
-                <th>Importe</th>
-                <th>Fecha</th>
-                <th>Descripcion</th>
-                <th>Detalles</th>
-            </tr>
-        </table>";
-        foreach ($ordenes as $key => $value) {
-            $tabla .=  "<table>";
-            $tabla .= "<tr>";
-            $tabla .= "<td>" . $value->codigo . "</td>";
-            $tabla .= "<td>" . $value->importe . "</td>";
-            $tabla .= "<td>" . $value->fecha . "</td>";
-            $tabla .= "<td>" . $value->texto . "</td>";
-
-            $detalle = $value->detalle;
-
-            foreach ($detalle as $key2 => $value2) {
-                $tabla .= "<td>" . $value2->descripcion . "</td>";
-                $tabla .= "<td>" . $value2->monto . "</td>";
-            }
-
-            $tabla .= "</tr>";
-            $tabla .= "</table>";
-        }
-
-        echo $tabla;
-    }
+   
 
     public function getExcelFinanzas()
     {
         $fechaInicio = $_POST["fechaInicio"];
-        $fechaFinal = $_POST["fechaFinal"];
+        $fechaFinal = $_POST["fechaFinal"]; 
+        
+
 
         $filename = $fechaInicio . "_" . $fechaFinal . "_finanzas_reporte.xls";
 
@@ -589,7 +565,7 @@ class Rendicion extends BaseController
         echo "\xEF\xBB\xBF";
         
 
-        $ordenesTotal = $this->db->table("rendicion")
+        $rendicionTotal = $this->db->table("rendicion")
             ->where("created_at > ", $fechaInicio)
             ->where("created_at < ", $fechaFinal)
             ->where("estado !=","5")->get()->getResultArray();
@@ -607,8 +583,7 @@ class Rendicion extends BaseController
                 <th bgcolor='#002060'><font color='white'>Fecha</fotn></th>
                 <th bgcolor='#002060'><font color='white'>Moneda</fotn></th>
                 <th bgcolor='#002060'><font color='white'>Tipo de Cambio</fotn></th>
-                <th bgcolor='#002060'><font color='white'>Glosa</fotn></th>
-                <th bgcolor='#002060'><font color='white'>Objeto del contrato</fotn></th>
+
                 
                 <th bgcolor='#00b050'><font color='white'>Total S/</fotn></th>
                 <th bgcolor='#00b050'><font color='white'>Total $</fotn></th>
@@ -619,10 +594,25 @@ class Rendicion extends BaseController
             </tr>
         </table>";
       
-        foreach($ordenesTotal as $key => $value){
-            if($value["idCuenta"] == "0"){ //multiples centros
-                $orden = $this->db->table("rendicion o")
-                    ->select("o.id,e.nombre empresa_nombre, o.codigo orden_codigo,pso.nombres soli_nombres,pso.apellidoPaterno soliAp, pso.apellidoMaterno soliAm, pej.nombres jefe_nombres,pej.apellidoPaterno jefeAp, pej.apellidoMaterno jefeAm, to.descripcion to_descripcion,eje.nombre eje_nombre,o.fecha orden_fecha, m.simbolo, o.objeto,o.idCuenta idCuenta3, o.importe")
+        foreach($rendicionTotal as $key => $value){
+            //buscando si tiene centros
+            $idRendicion = $value["id"];
+            
+            $items = $this->db->table("rendicion_item ri")
+            ->select('ri.id ri_id, ri.nroDoc,ri.idEmpresaProv,ri.detalle,ri.monto,c1.descripcion cuenta1_descripcion, c3.descripcion cuenta3_descripcion, c3.codigo cuenta3_codigo,cc.descripcion centro_descripcion, cc.codigo centro_codigo,e.nombre e_nombre')
+            
+            ->join("empresa e","e.id = ri.idEmpresaProv")
+            ->join("centro cc","cc.id = ri.idCentro","left")
+            ->join("cuenta3 c3","c3.id = ri.idCuenta","left")
+            ->join("cuenta2 c2","c2.id = c3.idCuenta","left")
+            ->join("cuenta1 c1","c1.id = c2.idCuenta","left")
+            ->where("ri.idRendicion",$idRendicion)
+            ->get()->getResultArray();
+
+           
+
+            $orden = $this->db->table("rendicion o")
+                    ->select("o.id,e.nombre empresa_nombre, o.codigo orden_codigo,pso.nombres soli_nombres,pso.apellidoPaterno soliAp, pso.apellidoMaterno soliAm, pej.nombres jefe_nombres,pej.apellidoPaterno jefeAp, pej.apellidoMaterno jefeAm, to.descripcion to_descripcion,eje.nombre eje_nombre,o.created_at orden_fecha, m.simbolo, o.importe")
                     ->join("empresa e","e.id = o.idEmpresa")
                     ->join("personal pso","pso.id = o.idPersonalSoli")
                     ->join("personal pej","pej.id = o.idPersonalJefe")
@@ -630,113 +620,80 @@ class Rendicion extends BaseController
                     ->join("orden","orden.id = o.idOrden")
                     ->join("empresa eje","eje.id = o.idEmpresaEje")
                     ->join("moneda m","m.id = o.idMoneda")
-                    ->where("o.fecha > ", $fechaInicio)
-                    ->where("o.fecha < ", $fechaFinal)
+                    ->where("o.created_at > ", $fechaInicio)
+                    ->where("o.created_at < ", $fechaFinal)
                     ->where("o.estado !=", "5")
-                    ->where("o.id =", $value["id"])
+                    ->where("o.id =", $idRendicion)
                     ->get()->getRowArray();
 
-          
 
-                $centros = $this->db->table("orden_centro")
-                        ->where("idOrden",$value["id"])
-                        ->get()->getResultArray();
-                $detalles = $this->db->table("orden_detalle")
-                ->where("idOrden",$value["id"])
-                ->get()->getResultArray();
-     
-                foreach ($centros as $keyC => $valueC) {
-                    $value_cuenta = $this->db->table("centro")
-                        ->where("id",$valueC["idCentro"])->get()->getRowArray();
-                   
-                       
+                
+            foreach ($items as $key2 => $item) {
+            
 
+                $centros = $this->db->table("rendicion_itemcentro ric")
+                    ->select('ric.id ric_id,ric.detalle,ric.monto,c1.descripcion cuenta1_descripcion, c3.descripcion cuenta3_descripcion, c3.codigo cuenta3_codigo,cc.descripcion centro_descripcion, cc.codigo centro_codigo')
+        
+                    ->join("centro cc","cc.id = ric.idCentro","left")
+                    ->join("cuenta3 c3","c3.id = ric.idCuenta","left")
+                    ->join("cuenta2 c2","c2.id = c3.idCuenta","left")
+                    ->join("cuenta1 c1","c1.id = c2.idCuenta","left")
+                    ->where("ric.idRendicionItem",$item["ri_id"])
+                    ->get()->getResultArray();
                     
-                    $tabla .=  "<table>";
+               
+                if(count($centros)){//tiene varios centros el item
+                
+                    foreach ($centros as $key => $centro) {
+                        $tabla .=  "<table class='table'>";
+                        $tabla .= "<tr>";
+                        $tabla .= "<td>" . $orden["empresa_nombre"] . "</td>";
+                        $tabla .= "<td>" . $orden["orden_codigo"] . "</td>";
+                        $tabla .= "<td>" . $orden["soli_nombres"] . "</td>";
+                        $tabla .= "<td>" . $orden["to_descripcion"] . "</td>";
+                        $tabla .= "<td>" . $item["e_nombre"] . "</td>";
+                        $tabla .= "<td>" . substr($orden["orden_fecha"],0,4) . "</td>";
+                        $tabla .= "<td>" . substr($orden["orden_fecha"],5,2) . "</td>";
+                        $tabla .= "<td>" . date("d/m/Y", strtotime($orden["orden_fecha"]) ) . "</td>";
+                        $tabla .= "<td>" . $orden["simbolo"] . "</td>";
+                        $tabla .= "<td>0.00</td>";
+                        $tabla .= "<td>" . $centro["monto"]  . "</td>";
+                        $tabla .= "<td>0.00</td>";
+                        $tabla .= "<td>".$centro["centro_codigo"]."</td>";
+                        $tabla .= "<td>" . $centro["centro_descripcion"]  . "</td>";
+                        $tabla .= "<td>" . $centro["cuenta3_codigo"] . "</td>";
+                        $tabla .= "<td>" . $centro["cuenta3_descripcion"] . "</td>";
+                        $tabla .= "</tr>";
+                        $tabla .= "</table>"; 
+                    }
+                }else{
+              
+                    $tabla .=  "<table class='table'>";
                     $tabla .= "<tr>";
                     $tabla .= "<td>" . $orden["empresa_nombre"] . "</td>";
                     $tabla .= "<td>" . $orden["orden_codigo"] . "</td>";
                     $tabla .= "<td>" . $orden["soli_nombres"] . "</td>";
                     $tabla .= "<td>" . $orden["to_descripcion"] . "</td>";
-                    $tabla .= "<td>" . $orden["eje_nombre"] . "</td>";
+                    $tabla .= "<td>" . $item["e_nombre"] . "</td>";
                     $tabla .= "<td>" . substr($orden["orden_fecha"],0,4) . "</td>";
                     $tabla .= "<td>" . substr($orden["orden_fecha"],5,2) . "</td>";
                     $tabla .= "<td>" . date("d/m/Y", strtotime($orden["orden_fecha"]) ) . "</td>";
                     $tabla .= "<td>" . $orden["simbolo"] . "</td>";
                     $tabla .= "<td>0.00</td>";
-                    $tabla .= "<td>".$value_cuenta["codigo"]."</td>";
-                    $tabla .= "<td>" . $detalles[$keyC]["descripcion"]  . "</td>";
-                    $tabla .= "<td>" . $detalles[$keyC]["monto"]  . "</td>";
+                    $tabla .= "<td>" . $item["monto"]  . "</td>";
                     $tabla .= "<td>0.00</td>";
-                    $tabla .= "<td>" . $value_cuenta["codigo"] . "</td>";
-                    $tabla .= "<td>" . $value_cuenta["descripcion"] . "</td>";
-                    $tabla .= "<td> - </td>";
-                    $tabla .= "<td> - </td>";
+                    $tabla .= "<td>".$item["centro_codigo"]."</td>";
+                    $tabla .= "<td>" . $item["centro_descripcion"]  . "</td>";
+                    $tabla .= "<td>" . $item["cuenta3_codigo"] . "</td>";
+                    $tabla .= "<td>" . $item["cuenta3_descripcion"] . "</td>";
         
                     $tabla .= "</tr>";
                     $tabla .= "</table>"; 
-                }
-            }
-            else{
-                $ordenes = $this->db->table("orden o")
-                    ->select("o.id,e.nombre empresa_nombre, o.codigo orden_codigo,pso.nombres soli_nombres,pso.apellidoPaterno soliAp, pso.apellidoMaterno soliAm, pej.nombres jefe_nombres,pej.apellidoPaterno jefeAp, pej.apellidoMaterno jefeAm, to.descripcion to_descripcion,eje.nombre eje_nombre,o.fecha orden_fecha, m.simbolo, o.objeto,o.idCuenta idCuenta3, o.importe, c1.descripcion cuenta1_descripcion, c3.descripcion cuenta3_descripcion, c3.codigo cuenta3_codigo,cc.descripcion centro_descripcion, cc.codigo centro_codigo")
-                    ->join("empresa e","e.id = o.idEmpresa")
-                    ->join("personal pso","pso.id = o.idPersonalSoli")
-                    ->join("personal pej","pej.id = o.idPersonalJefe")
-                    ->join("tipoOrden to","to.id = o.idTipoOrden")
-                    ->join("empresa eje","eje.id = o.idEmpresaEje")
-                    ->join("moneda m","m.id = o.idMoneda")
-                    ->join("centro cc","cc.id = o.idCentroCosto")
-                    ->join("cuenta3 c3","c3.id = o.idCuenta")
-                    ->join("cuenta2 c2","c2.id = c3.idCuenta")
-                    ->join("cuenta1 c1","c1.id = c2.idCuenta")
-                    ->where("o.fecha > ", $fechaInicio)
-                    ->where("o.fecha < ", $fechaFinal)
-                    ->where("o.estado !=", "5")
-                    ->where("o.id ", $value["id"])
-                    ->get()->getResult();
-        
-               
-                
-                foreach ($ordenes as $key => $value) {
-                 
-                    $tabla .=  "<table>";
-                    $tabla .= "<tr>";
-                    $tabla .= "<td>" . $value->empresa_nombre . "</td>";
-                    $tabla .= "<td>" . $value->orden_codigo . "</td>";
-                    $tabla .= "<td>" . $value->soli_nombres . "</td>";
-                    $tabla .= "<td>" . $value->to_descripcion . "</td>";
-                    $tabla .= "<td>" . $value->eje_nombre . "</td>";
-                    $tabla .= "<td>" . substr($value->orden_fecha,0,4) . "</td>";
-                    $tabla .= "<td>" . substr($value->orden_fecha,5,2) . "</td>";
-                    $tabla .= "<td>" . date("d/m/Y", strtotime($value->orden_fecha) ) . "</td>";
-                    $tabla .= "<td>" . $value->simbolo . "</td>";
-                    $tabla .= "<td>0.00</td>";
-                    $tabla .= "<td>".$value->centro_codigo."-".$value->cuenta3_codigo."</td>";
-                    $tabla .= "<td>" . $value->objeto . "</td>";
-                    $tabla .= "<td>" . $value->importe . "</td>";
-                    $tabla .= "<td>0.00</td>";
-                    $tabla .= "<td>" . $value->centro_codigo . "</td>";
-                    $tabla .= "<td>" . $value->centro_descripcion . "</td>";
-                    $tabla .= "<td>" . $value->cuenta3_descripcion . "</td>";
-                    $tabla .= "<td>" . $value->cuenta1_descripcion . "</td>";
-        
-                  //  $detalle = $value->detalle;
-        
-                    /*foreach ($detalle as $key2 => $value2) {
-                        $tabla .= "<td>" . $value2->descripcion . "</td>";
-                        $tabla .= "<td>" . $value2->monto . "</td>";
-                    }*/
-        
-                    $tabla .= "</tr>";
-                    $tabla .= "</table>"; 
-                }
-                
+                }           
             }
         }
         $tabla .= '</body></html>';
-       echo $tabla;
-
+        echo $tabla;
     }
 
     public function reporteTesoreria(){
@@ -746,213 +703,104 @@ class Rendicion extends BaseController
 
     public function getExcelTesoreria(){
         $fechaInicio = $_POST["fechaInicio"];
-        $fechaFinal = $_POST["fechaFinal"];
+        $fechaFinal = $_POST["fechaFinal"]; 
+
+    /*     $fechaInicio = "2022-01-01";
+        $fechaFinal = "2022-05-05";  */
+        
+
 
         $filename = $fechaInicio . "_" . $fechaFinal . "_tesoreria_reporte.xls";
 
-       header('Content-Encoding: UTF-8');
+        header('Content-Encoding: UTF-8');
         header("Content-type: application/x-msdownload; charset=UTF-8");
         header("Content-Disposition: attachment; filename=$filename");
         header("Pragma: no-cache");
         header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
         echo "\xEF\xBB\xBF";
         
-        $totalImportes = 0;
-        $cantidadRegistroSoles = 0;
-        $cantidadRegistroDolares = 0;
-        $totalImporteSoles = 0;
-        $totalImporteDolares = 0;
 
-        $ordenesTotal = $this->db->table("orden")
-            ->where("fecha > ", $fechaInicio)
-            ->where("fecha < ", $fechaFinal)
+        $rendicionTotal = $this->db->table("rendicion")
+            ->where("created_at > ", $fechaInicio)
+            ->where("created_at < ", $fechaFinal)
             ->where("estado !=","5")->get()->getResultArray();
-           
+
         $tabla = "";
         $tabla .= "<table>
             <tr>
-                <th style='border:1px solid black'>Empresa</th>
-                <th style='border:1px solid black'>Fecha Solicitud</th>
-                <th style='border:1px solid black'>Solicitud</th>
-                <th style='border:1px solid black'>Número de OC</th>
-                <th style='border:1px solid black'>Solicitante</th>
-                <th style='border:1px solid black'>Beneficiario</th>
-                <th style='border:1px solid black'>RUC Beneficiario</th>
-                <th style='border:1px solid black'>Banco Beneficiario</th>
-                <th style='border:1px solid black'>Objeto de Contrato</th>
-                <th style='border:1px solid black'>Moneda</th>
-                <th style='border:1px solid black'>Importe</th>
-                <th style='border:1px solid black'>Glosa</th>
-                <th style='border:1px solid black'>Ceco</th>
-                <th style='border:1px solid black'>Detalle Ceco</th>
-                <th style='border:1px solid black'>Cuenta</th>
-                <th style='border:1px solid black'>Nivel 3</th>
-                <th style='border:1px solid black'>Nivel 1</th>
+                <th bgcolor='#00b050'><font color='white'>Empresa</font></th>
+                <th bgcolor='#00b050'><font color='white'>Num OC</fotn></th>
+                <th bgcolor='#00b050'><font color='white'>Solicitante</fotn></th>
+                <th bgcolor='#00b050'><font color='white'>Área</fotn></th>
+               
+                <th bgcolor='#00b050'><font color='white'>Año registro</fotn></th>
+                <th bgcolor='#00b050'><font color='white'>Mes registro</fotn></th>
+                <th bgcolor='#002060'><font color='white'>Fecha</fotn></th>
+                <th bgcolor='#002060'><font color='white'>Moneda</fotn></th>
+                <th bgcolor='#002060'><font color='white'>Tipo de Cambio</fotn></th>
+
                 
+                <th bgcolor='#00b050'><font color='white'>Total S/</fotn></th>
+            
+        
             </tr>
         </table>";
       
-        foreach($ordenesTotal as $key => $value){
-            if($value["idCuenta"] == "0"){ //multiples centros
-                $orden = $this->db->table("orden o")
-                    ->select("o.id,e.nombre empresa_nombre,o.fecha orden_fecha,ts.descripcion ts_descripcion, o.codigo orden_codigo,pso.nombres soli_nombres,pso.apellidoPaterno soliAp, pso.apellidoMaterno soliAm, pej.nombres jefe_nombres,pej.apellidoPaterno jefeAp, pej.apellidoMaterno jefeAm, to.descripcion to_descripcion,eje.nombre eje_nombre,eje.ruc eje_ruc, m.simbolo,be.nroCuenta be_nroCuenta,b.descripcion banco_descripcion, o.objeto,o.idCuenta idCuenta3, o.importe")
-                    ->join("empresa e","e.id = o.idEmpresa")
-                    ->join("personal pso","pso.id = o.idPersonalSoli")
-                    ->join("personal pej","pej.id = o.idPersonalJefe")
-                    ->join("tipoOrden to","to.id = o.idTipoOrden")
-                    ->join("tipoSolicitud ts","ts.id = o.idTipoSolicitud")
-                    ->join("banco_empresa be","be.id = o.idBanco_empresa")
-                    ->join("banco b","b.id = be.idBanco")
-                    ->join("empresa eje","eje.id = o.idEmpresaEje")
-                    ->join("moneda m","m.id = o.idMoneda")
+        foreach($rendicionTotal as $key => $value){
+            //buscando si tiene centros
+            $idRendicion = $value["id"];
+            
+            $items = $this->db->table("rendicion_item ri")
+            ->select('ri.id ri_id, ri.nroDoc,ri.idEmpresaProv,ri.detalle,ri.monto,c1.descripcion cuenta1_descripcion, c3.descripcion cuenta3_descripcion, c3.codigo cuenta3_codigo,cc.descripcion centro_descripcion, cc.codigo centro_codigo,e.nombre e_nombre')
+            
+            ->join("empresa e","e.id = ri.idEmpresaProv")
+            ->join("centro cc","cc.id = ri.idCentro","left")
+            ->join("cuenta3 c3","c3.id = ri.idCuenta","left")
+            ->join("cuenta2 c2","c2.id = c3.idCuenta","left")
+            ->join("cuenta1 c1","c1.id = c2.idCuenta","left")
+            ->where("ri.idRendicion",$idRendicion)
+            ->get()->getResultArray();
 
-                    ->where("o.fecha > ", $fechaInicio)
-                    ->where("o.fecha < ", $fechaFinal)
-                    ->where("o.estado !=", "5")
-                    ->where("o.id =", $value["id"])
-                    ->get()->getRowArray();
-  
-          
-                
-
-                $centros = $this->db->table("orden_centro")
-                        ->where("idOrden",$value["id"])
-                        ->get()->getResultArray();
-                
-                $detalles = $this->db->table("orden_detalle")
-                ->where("idOrden",$value["id"])
-                ->get()->getResultArray();
-
-     
-                foreach ($centros as $keyC => $valueC) {
-                    if($orden["simbolo"] == "PEN"){
-                        $cantidadRegistroSoles++;
-                        $totalImporteSoles += $detalles[$keyC]["monto"];
-                    }else{
-                        $cantidadRegistroDolares++;
-                        $totalImporteDolares += $detalles[$keyC]["monto"];
-                    }
-
-                    $value_cuenta = $this->db->table("centro")
-                        ->where("id",$valueC["idCentro"])->get()->getRowArray();
-                    
-                        $tabla .=  "<table>";
-                        $tabla .= "<tr>";
-                        $tabla .= "<td>" . $orden["empresa_nombre"] . "</td>";
-                        $tabla .= "<td>" . date("d/m/Y", strtotime($orden["orden_fecha"]) ) . "</td>";
-                        $tabla .= "<td>" . $orden["ts_descripcion"] . "</td>";
-                        $tabla .= "<td>" . $orden["orden_codigo"] . "</td>";
-                        $tabla .= "<td>" . $orden["soli_nombres"] . "</td>";
-                        $tabla .= "<td>" . $orden["eje_nombre"] . "</td>";
-                        $tabla .= "<td>" . $orden["eje_ruc"] . "</td>";
-                        $tabla .= "<td>" . $orden["banco_descripcion"]." ".$orden["be_nroCuenta"] . "</td>";
-                        $tabla .= "<td>" . $detalles[$keyC]["descripcion"] . "</td>";
-                        $tabla .= "<td>" . $orden["simbolo"] . "</td>";
-                        $tabla .= "<td>" . $detalles[$keyC]["monto"] . "</td>";
-                        $tabla .= "<td>" . $value_cuenta["codigo"]. "</td>";
-                        $tabla .= "<td>" . $value_cuenta["codigo"] . "</td>";
-                        $tabla .= "<td>" . $value_cuenta["descripcion"] . "</td>";
-                        $tabla .= "<td> - </td>";
-                        $tabla .= "<td> - </td>";
-                        $tabla .= "<td> - </td>";
-                        $tabla .= "</tr>";
-                        $tabla .= "</table>"; 
-                }
-            }
-            else{
-                $orden = $this->db->table("orden o")
-                    ->select("o.id,e.nombre empresa_nombre,o.fecha orden_fecha,ts.descripcion ts_descripcion, o.codigo orden_codigo,pso.nombres soli_nombres,pso.apellidoPaterno soliAp, pso.apellidoMaterno soliAm, pej.nombres jefe_nombres,pej.apellidoPaterno jefeAp, pej.apellidoMaterno jefeAm, to.descripcion to_descripcion,eje.nombre eje_nombre,eje.ruc eje_ruc, m.simbolo,be.nroCuenta be_nroCuenta,b.descripcion banco_descripcion, o.objeto,o.idCuenta idCuenta3, o.importe,c1.descripcion cuenta1_descripcion, c3.descripcion cuenta3_descripcion, c3.codigo cuenta3_codigo,cc.descripcion centro_descripcion, cc.codigo centro_codigo")
-                    ->join("empresa e","e.id = o.idEmpresa")
-                    ->join("personal pso","pso.id = o.idPersonalSoli")
-                    ->join("personal pej","pej.id = o.idPersonalJefe")
-                    ->join("tipoOrden to","to.id = o.idTipoOrden")
-                    ->join("tipoSolicitud ts","ts.id = o.idTipoSolicitud")
-                    ->join("banco_empresa be","be.id = o.idBanco_empresa")
-                    ->join("banco b","b.id = be.idBanco")
-                    ->join("empresa eje","eje.id = o.idEmpresaEje")
-                    ->join("moneda m","m.id = o.idMoneda")
-                    ->join("centro cc","cc.id = o.idCentroCosto")
-                    ->join("cuenta3 c3","c3.id = o.idCuenta")
-                    ->join("cuenta2 c2","c2.id = c3.idCuenta")
-                    ->join("cuenta1 c1","c1.id = c2.idCuenta")
-                    ->where("o.fecha > ", $fechaInicio)
-                    ->where("o.fecha < ", $fechaFinal)
-                    ->where("o.estado !=", "5")
-                    ->where("o.id =", $value["id"])
-                    ->get()->getRowArray();
-        
-               /* foreach ($orden as $key => $value) {
-                    $detalles = $this->db->table("orden_detalle")
-                        ->where("idOrden", $value->id)
-                        ->get()->getResult();
-                    $orden[$key]->detalle = $detalles;
-                }*/
            
-        
-                if($orden["simbolo"] == "PEN"){
-                    $cantidadRegistroSoles++;
-                    $totalImporteSoles += $orden["importe"];
-                }else{
-                    $cantidadRegistroDolares++;
-                    $totalImporteDolares += $orden["importe"];
-                }
-                 
-                $tabla .=  "<table>";
-                $tabla .= "<tr>";
-                $tabla .= "<td>" . $orden["empresa_nombre"] . "</td>";
-                $tabla .= "<td>" . date("d/m/Y", strtotime($orden["orden_fecha"]) ) . "</td>";
-                $tabla .= "<td>" . $orden["ts_descripcion"] . "</td>";
-                $tabla .= "<td>" . $orden["orden_codigo"] . "</td>";
-                $tabla .= "<td>" . $orden["soli_nombres"] . "</td>";
-                $tabla .= "<td>" . $orden["eje_nombre"] . "</td>";
-                $tabla .= "<td>" . $orden["eje_ruc"] . "</td>";
-                $tabla .= "<td>" . $orden["banco_descripcion"]." ".$orden["be_nroCuenta"] . "</td>";
-                $tabla .= "<td>" . $orden["objeto"] . "</td>";
-                $tabla .= "<td>" . $orden["simbolo"] . "</td>";
-                $tabla .= "<td>" . $orden["importe"] . "</td>";
-                $tabla .= "<td>" . $orden["centro_codigo"]."-".$orden["cuenta3_codigo"] . "</td>";
-                $tabla .= "<td>" . $orden["centro_codigo"] . "</td>";
-                $tabla .= "<td>" . $orden["centro_descripcion"] . "</td>";
-                $tabla .= "<td>" . $orden["cuenta3_codigo"] . "</td>";
-                $tabla .= "<td>" . $orden["cuenta3_descripcion"] . "</td>";
-                $tabla .= "<td>" . $orden["cuenta1_descripcion"] . "</td>";
 
-    
-                //  $detalle = $value->detalle;
-    
-                /*foreach ($detalle as $key2 => $value2) {
-                    $tabla .= "<td>" . $value2->descripcion . "</td>";
-                    $tabla .= "<td>" . $value2->monto . "</td>";
-                }*/
-    
-                $tabla .= "</tr>";
-                $tabla .= "</table>"; 
-             
+            $orden = $this->db->table("rendicion o")
+                    ->select("o.id,e.nombre empresa_nombre, o.codigo orden_codigo,pso.nombres soli_nombres,pso.apellidoPaterno soliAp, pso.apellidoMaterno soliAm, pej.nombres jefe_nombres,pej.apellidoPaterno jefeAp, pej.apellidoMaterno jefeAm, to.descripcion to_descripcion,eje.nombre eje_nombre,o.created_at orden_fecha, m.simbolo, o.importe")
+                    ->join("empresa e","e.id = o.idEmpresa")
+                    ->join("personal pso","pso.id = o.idPersonalSoli")
+                    ->join("personal pej","pej.id = o.idPersonalJefe")
+                    ->join("tipoOrden to","to.id = o.idTipoOrden")
+                    ->join("orden","orden.id = o.idOrden")
+                    ->join("empresa eje","eje.id = o.idEmpresaEje")
+                    ->join("moneda m","m.id = o.idMoneda")
+                    ->where("o.created_at > ", $fechaInicio)
+                    ->where("o.created_at < ", $fechaFinal)
+                    ->where("o.estado !=", "5")
+                    ->where("o.id =", $idRendicion)
+                    ->get()->getRowArray();
+
+
                 
-            }
+    
+ 
+            $tabla .=  "<table class='table'>";
+            $tabla .= "<tr>";
+            $tabla .= "<td>" . $orden["empresa_nombre"] . "</td>";
+            $tabla .= "<td>" . $orden["orden_codigo"] . "</td>";
+            $tabla .= "<td>" . $orden["soli_nombres"] . "</td>";
+            $tabla .= "<td>" . $orden["to_descripcion"] . "</td>";
+            $tabla .= "<td>" . substr($orden["orden_fecha"],0,4) . "</td>";
+            $tabla .= "<td>" . substr($orden["orden_fecha"],5,2) . "</td>";
+            $tabla .= "<td>" . date("d/m/Y", strtotime($orden["orden_fecha"]) ) . "</td>";
+            $tabla .= "<td>" . $orden["simbolo"] . "</td>";
+            $tabla .= "<td>0.00</td>";
+            $tabla .= "<td>" . $orden["importe"]  . "</td>";
+
+            $tabla .= "</tr>";
+            $tabla .= "</table>"; 
+                         
+            
         }
-
-        $tabla .= '<table>';
-        $tabla .= '<tr>';
-        $tabla .= '<td colspan="10" style="text-align:center">Numero de registros Soles</td>';
-        $tabla .= '<td>'.$cantidadRegistroSoles.'</td>';
-        $tabla .= '</tr>';
-
-        $tabla .= '<tr>';
-        $tabla .= '<td colspan="10" style="text-align:center">Total Soles</td>';
-        $tabla .= '<td>'.$totalImporteSoles.'</td>';
-        $tabla .= '</tr>';
-
-        $tabla .= '<tr>';
-        $tabla .= '<td colspan="10" style="text-align:center">Numero de registros Soles</td>';
-        $tabla .= '<td>'.$cantidadRegistroDolares.'</td>';
-        $tabla .= '</tr>';
-
-        $tabla .= '<tr>';
-        $tabla .= '<td colspan="10" style="text-align:center">Numero de registros Dolares</td>';
-        $tabla .= '<td>'.$totalImporteDolares.'</td>';
-        $tabla .= '</tr>';
-        $tabla .= '</table>';
+        $tabla .= '</body></html>';
         echo $tabla;
         
     }

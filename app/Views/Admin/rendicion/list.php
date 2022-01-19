@@ -99,7 +99,7 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
         <?php foreach($rendiciones as $key=>$value): ?>
         <tr>
             <td><span><?= $value->codigo; ?> </span></td>
-            <td><span><?= substr($value->created_at,0,10); ?></span></td>
+            <td><span><?= $value->created_at; ?></span></td>
             <td><span data-bs-toggle="tooltip" data-bs-placement="top" title="<?= $value->empresa_nombre; ?>"><?= substr($value->empresa_nombre,0,20); ?></span></td>
             <td><span data-bs-toggle="tooltip" data-bs-placement="top" title="<?= $value->pes_nombres." ".$value->pes_apellidoPaterno." ".$value->pes_apellidoMaterno; ?>"><?= substr($value->pes_nombres." ".$value->pes_apellidoPaterno." ".$value->pes_apellidoMaterno,0,17)."..." ; ?></span></td>
             <td><span data-bs-toggle="tooltip" data-bs-placement="top" title="<?= $value->eje_nombre; ?>"><?= substr($value->eje_nombre,0,20); ?></span></td>

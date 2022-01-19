@@ -88,6 +88,40 @@ class Oc extends BaseController
             return redirect()->to(site_url('admin/oc/index'));
         }
     }
+    public function prueba(){
+        $idTipoOrden = "1";
+        $tipoOrden = $this->db->table("tipoOrden")
+                    ->where("id", $idTipoOrden)
+                    ->get()->getRow();
+
+        $codTipoOrden = $tipoOrden->codigo;
+
+        $a = $this->db->table("orden")
+            ->where("idTipoOrden",$idTipoOrden)
+            ->like("codigo","2022", "both")
+            ->orderBy("id","desc")
+            ->get()->getRowArray();
+
+    
+        if($a){
+            $arr = explode("-",$a["codigo"]);
+            $num = substr($arr[0], -3);
+
+            $cantOrden = $num + 1;
+
+            if ($cantOrden < 10) {
+                $cantOrden = "00" . $cantOrden;
+            } else if ($cantOrden < 100) {
+                $cantOrden = "0" . $cantOrden;
+            }
+
+            echo $codTipoOrden.$cantOrden."-".date("Y");
+       
+        }else{
+            echo $codTipoOrden."001-2023";
+        }
+            
+    }
 
     public function agregar()
     {
@@ -134,7 +168,7 @@ class Oc extends BaseController
                 $this->template->render('Admin/oc/agregar', $data);
             } else {
 
-                $cantOrden = $this->db->table("orden")
+               /* $cantOrden = $this->db->table("orden")
                     ->select('count(*) cant')
                     ->where("idTipoOrden", $this->request->getVar('idTipoOrden'))
                     ->where('estado !=','5')
@@ -154,7 +188,39 @@ class Oc extends BaseController
 
                 $codTipoOrden = $tipoOrden->codigo;
 
-                $codigo = $codTipoOrden . $cantOrden . "-".date("Y");
+                $codigo = $codTipoOrden . $cantOrden . "-".date("Y");*/
+
+                $idTipoOrden = $this->request->getVar('idTipoOrden');
+                $tipoOrden = $this->db->table("tipoOrden")
+                            ->where("id", $idTipoOrden)
+                            ->get()->getRow();
+
+                $codTipoOrden = $tipoOrden->codigo;
+
+                $a = $this->db->table("orden")
+                    ->where("idTipoOrden",$idTipoOrden)
+                    ->like("codigo",date("Y"), "both")
+                    ->orderBy("id","desc")
+                    ->get()->getRowArray();
+
+            
+                if($a){
+                    $arr = explode("-",$a["codigo"]);
+                    $num = substr($arr[0], -3);
+
+                    $cantOrden = $num + 1;
+
+                    if ($cantOrden < 10) {
+                        $cantOrden = "00" . $cantOrden;
+                    } else if ($cantOrden < 100) {
+                        $cantOrden = "0" . $cantOrden;
+                    }
+
+                    $codigo = $codTipoOrden.$cantOrden."-".date("Y");
+            
+                }else{
+                    $codigo = $codTipoOrden."001-".date("Y");
+                }
 
                 //hallando monto
                 $detalles = $this->request->getVar('detalle');
@@ -660,10 +726,13 @@ class Oc extends BaseController
     {
         $fechaInicio = $_POST["fechaInicio"];
         $fechaFinal = $_POST["fechaFinal"];
+/* 
+        $fechaInicio = "2021-01-01";
+        $fechaFinal = "2022-12-01"; */
 
         $filename = $fechaInicio . "_" . $fechaFinal . "_finanzas_reporte.xls";
 
-        header('Content-Encoding: UTF-8');
+       header('Content-Encoding: UTF-8');
         header("Content-type: application/x-msdownload; charset=UTF-8");
         header("Content-Disposition: attachment; filename=$filename");
         header("Pragma: no-cache");
@@ -676,6 +745,7 @@ class Oc extends BaseController
             ->where("fecha < ", $fechaFinal)
             ->where("estado !=","5")->get()->getResultArray();
 
+   
         $tabla = "";
         $tabla .= "<table>
             <tr>
@@ -702,7 +772,12 @@ class Oc extends BaseController
         </table>";
       
         foreach($ordenesTotal as $key => $value){
-            if($value["idCuenta"] == "0"){ //multiples centros
+            $idCentro = $value["idCentroCosto"];
+            $elcentro = $this->db->table("centro")
+                ->where("id",$idCentro)->get()->getRowArray();
+            $c_varios = $elcentro["codigo"];
+
+            if($c_varios == "VariosCAD"){ //multiples centros
                 $orden = $this->db->table("orden o")
                     ->select("o.id,e.nombre empresa_nombre, o.codigo orden_codigo,pso.nombres soli_nombres,pso.apellidoPaterno soliAp, pso.apellidoMaterno soliAm, pej.nombres jefe_nombres,pej.apellidoPaterno jefeAp, pej.apellidoMaterno jefeAm, to.descripcion to_descripcion,eje.nombre eje_nombre,o.fecha orden_fecha, m.simbolo, o.objeto,o.idCuenta idCuenta3, o.importe")
                     ->join("empresa e","e.id = o.idEmpresa")
@@ -714,7 +789,7 @@ class Oc extends BaseController
                     ->where("o.fecha > ", $fechaInicio)
                     ->where("o.fecha < ", $fechaFinal)
                     ->where("o.estado !=", "5")
-                    ->where("o.id =", $value["id"])
+                    ->where("o.id ", $value["id"])
                     ->get()->getRowArray();
 
           
@@ -722,6 +797,8 @@ class Oc extends BaseController
                 $centros = $this->db->table("orden_centro")
                         ->where("idOrden",$value["id"])
                         ->get()->getResultArray();
+
+       
                 $detalles = $this->db->table("orden_detalle")
                 ->where("idOrden",$value["id"])
                 ->get()->getResultArray();
@@ -746,8 +823,8 @@ class Oc extends BaseController
                     $tabla .= "<td>" . $orden["simbolo"] . "</td>";
                     $tabla .= "<td>0.00</td>";
                     $tabla .= "<td>".$value_cuenta["codigo"]."</td>";
-                    $tabla .= "<td>" . $detalles[$keyC]["descripcion"]  . "</td>";
-                    $tabla .= "<td>" . $detalles[$keyC]["monto"]  . "</td>";
+                    $tabla .= "<td>" . $detalles[0]["descripcion"]  . "</td>";
+                    $tabla .= "<td>" . $detalles[0]["monto"]  . "</td>";
                     $tabla .= "<td>0.00</td>";
                     $tabla .= "<td>" . $value_cuenta["codigo"] . "</td>";
                     $tabla .= "<td>" . $value_cuenta["descripcion"] . "</td>";
@@ -759,7 +836,7 @@ class Oc extends BaseController
                 }
             }
             else{
-                $ordenes = $this->db->table("orden o")
+                $orden = $this->db->table("orden o")
                     ->select("o.id,e.nombre empresa_nombre, o.codigo orden_codigo,pso.nombres soli_nombres,pso.apellidoPaterno soliAp, pso.apellidoMaterno soliAm, pej.nombres jefe_nombres,pej.apellidoPaterno jefeAp, pej.apellidoMaterno jefeAm, to.descripcion to_descripcion,eje.nombre eje_nombre,o.fecha orden_fecha, m.simbolo, o.objeto,o.idCuenta idCuenta3, o.importe, c1.descripcion cuenta1_descripcion, c3.descripcion cuenta3_descripcion, c3.codigo cuenta3_codigo,cc.descripcion centro_descripcion, cc.codigo centro_codigo")
                     ->join("empresa e","e.id = o.idEmpresa")
                     ->join("personal pso","pso.id = o.idPersonalSoli")
@@ -774,44 +851,43 @@ class Oc extends BaseController
                     ->where("o.fecha > ", $fechaInicio)
                     ->where("o.fecha < ", $fechaFinal)
                     ->where("o.estado !=", "5")
-                    ->where("o.id !=", $value["id"])
-                    ->get()->getResult();
+                    ->where("o.id ", $value["id"])
+                    ->get()->getRow();
         
                
-                
-                foreach ($ordenes as $key => $value) {
+              
                  
-                    $tabla .=  "<table>";
-                    $tabla .= "<tr>";
-                    $tabla .= "<td>" . $value->empresa_nombre . "</td>";
-                    $tabla .= "<td>" . $value->orden_codigo . "</td>";
-                    $tabla .= "<td>" . $value->soli_nombres . "</td>";
-                    $tabla .= "<td>" . $value->to_descripcion . "</td>";
-                    $tabla .= "<td>" . $value->eje_nombre . "</td>";
-                    $tabla .= "<td>" . substr($value->orden_fecha,0,4) . "</td>";
-                    $tabla .= "<td>" . substr($value->orden_fecha,5,2) . "</td>";
-                    $tabla .= "<td>" . date("d/m/Y", strtotime($value->orden_fecha) ) . "</td>";
-                    $tabla .= "<td>" . $value->simbolo . "</td>";
-                    $tabla .= "<td>0.00</td>";
-                    $tabla .= "<td>".$value->centro_codigo."-".$value->cuenta3_codigo."</td>";
-                    $tabla .= "<td>" . $value->objeto . "</td>";
-                    $tabla .= "<td>" . $value->importe . "</td>";
-                    $tabla .= "<td>0.00</td>";
-                    $tabla .= "<td>" . $value->centro_codigo . "</td>";
-                    $tabla .= "<td>" . $value->centro_descripcion . "</td>";
-                    $tabla .= "<td>" . $value->cuenta3_descripcion . "</td>";
-                    $tabla .= "<td>" . $value->cuenta1_descripcion . "</td>";
-        
-                  //  $detalle = $value->detalle;
-        
-                    /*foreach ($detalle as $key2 => $value2) {
-                        $tabla .= "<td>" . $value2->descripcion . "</td>";
-                        $tabla .= "<td>" . $value2->monto . "</td>";
-                    }*/
-        
-                    $tabla .= "</tr>";
-                    $tabla .= "</table>"; 
-                }
+                $tabla .=  "<table>";
+                $tabla .= "<tr>";
+                $tabla .= "<td>" . $orden->empresa_nombre . "</td>";
+                $tabla .= "<td>" . $orden->orden_codigo . "</td>";
+                $tabla .= "<td>" . $orden->soli_nombres . "</td>";
+                $tabla .= "<td>" . $orden->to_descripcion . "</td>";
+                $tabla .= "<td>" . $orden->eje_nombre . "</td>";
+                $tabla .= "<td>" . substr($orden->orden_fecha,0,4) . "</td>";
+                $tabla .= "<td>" . substr($orden->orden_fecha,5,2) . "</td>";
+                $tabla .= "<td>" . date("d/m/Y", strtotime($orden->orden_fecha) ) . "</td>";
+                $tabla .= "<td>" . $orden->simbolo . "</td>";
+                $tabla .= "<td>0.00</td>";
+                $tabla .= "<td>".$orden->centro_codigo."-".$orden->cuenta3_codigo."</td>";
+                $tabla .= "<td>" . $orden->objeto . "</td>";
+                $tabla .= "<td>" . $orden->importe . "</td>";
+                $tabla .= "<td>0.00</td>";
+                $tabla .= "<td>" . $orden->centro_codigo . "</td>";
+                $tabla .= "<td>" . $orden->centro_descripcion . "</td>";
+                $tabla .= "<td>" . $orden->cuenta3_descripcion . "</td>";
+                $tabla .= "<td>" . $orden->cuenta1_descripcion . "</td>";
+    
+                //  $detalle = $value->detalle;
+    
+                /*foreach ($detalle as $key2 => $value2) {
+                    $tabla .= "<td>" . $value2->descripcion . "</td>";
+                    $tabla .= "<td>" . $value2->monto . "</td>";
+                }*/
+    
+                $tabla .= "</tr>";
+                $tabla .= "</table>"; 
+               
                 
             }
         }
@@ -829,9 +905,13 @@ class Oc extends BaseController
         $fechaInicio = $_POST["fechaInicio"];
         $fechaFinal = $_POST["fechaFinal"];
 
+        
+    /*     $fechaInicio = "2021-01-01";
+        $fechaFinal = "2022-12-01";  */
+
         $filename = $fechaInicio . "_" . $fechaFinal . "_tesoreria_reporte.xls";
 
-       header('Content-Encoding: UTF-8');
+        header('Content-Encoding: UTF-8');
         header("Content-type: application/x-msdownload; charset=UTF-8");
         header("Content-Disposition: attachment; filename=$filename");
         header("Pragma: no-cache");
@@ -874,7 +954,12 @@ class Oc extends BaseController
         </table>";
       
         foreach($ordenesTotal as $key => $value){
-            if($value["idCuenta"] == "0"){ //multiples centros
+            $idCentro = $value["idCentroCosto"];
+            $elcentro = $this->db->table("centro")
+                ->where("id",$idCentro)->get()->getRowArray();
+            $c_varios = $elcentro["codigo"];
+
+            if($c_varios == "VariosCAD"){ //multiples centros
                 $orden = $this->db->table("orden o")
                     ->select("o.id,e.nombre empresa_nombre,o.fecha orden_fecha,ts.descripcion ts_descripcion, o.codigo orden_codigo,pso.nombres soli_nombres,pso.apellidoPaterno soliAp, pso.apellidoMaterno soliAm, pej.nombres jefe_nombres,pej.apellidoPaterno jefeAp, pej.apellidoMaterno jefeAm, to.descripcion to_descripcion,eje.nombre eje_nombre,eje.ruc eje_ruc, m.simbolo,be.nroCuenta be_nroCuenta,b.descripcion banco_descripcion, o.objeto,o.idCuenta idCuenta3, o.importe")
                     ->join("empresa e","e.id = o.idEmpresa")
@@ -904,14 +989,25 @@ class Oc extends BaseController
                 ->where("idOrden",$value["id"])
                 ->get()->getResultArray();
 
+                foreach ($detalles as $keydet => $valuedet) {
+                    if($orden["simbolo"] == "PEN"){
+                       // $cantidadRegistroSoles++;
+                        $totalImporteSoles += $detalles[$keydet]["monto"];
+                    }else{
+                       // $cantidadRegistroDolares++;
+                        $totalImporteDolares += $detalles[$keydet]["monto"];
+                    }
+                }
      
                 foreach ($centros as $keyC => $valueC) {
                     if($orden["simbolo"] == "PEN"){
                         $cantidadRegistroSoles++;
-                        $totalImporteSoles += $detalles[$keyC]["monto"];
+                        $montoCentro = $valueC["porcentaje"]*$totalImporteSoles/100;
+                       // $totalImporteSoles += $detalles[$keyC]["monto"];
                     }else{
                         $cantidadRegistroDolares++;
-                        $totalImporteDolares += $detalles[$keyC]["monto"];
+                        $montoCentro = $valueC["porcentaje"]*$totalImporteDolares/100;
+                      //  $totalImporteDolares += $detalles[$keyC]["monto"];
                     }
 
                     $value_cuenta = $this->db->table("centro")
@@ -927,9 +1023,9 @@ class Oc extends BaseController
                         $tabla .= "<td>" . $orden["eje_nombre"] . "</td>";
                         $tabla .= "<td>" . $orden["eje_ruc"] . "</td>";
                         $tabla .= "<td>" . $orden["banco_descripcion"]." ".$orden["be_nroCuenta"] . "</td>";
-                        $tabla .= "<td>" . $detalles[$keyC]["descripcion"] . "</td>";
+                        $tabla .= "<td>" . $detalles[0]["descripcion"] . "</td>";
                         $tabla .= "<td>" . $orden["simbolo"] . "</td>";
-                        $tabla .= "<td>" . $detalles[$keyC]["monto"] . "</td>";
+                        $tabla .= "<td>" . $montoCentro . "</td>";
                         $tabla .= "<td>" . $value_cuenta["codigo"]. "</td>";
                         $tabla .= "<td>" . $value_cuenta["codigo"] . "</td>";
                         $tabla .= "<td>" . $value_cuenta["descripcion"] . "</td>";

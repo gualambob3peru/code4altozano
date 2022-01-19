@@ -66,7 +66,7 @@
                             <th>Key</th>
                             <th>Ceco</th>
                             <th>Nivel 3</th>
-                            <th>Nivel 1</th>
+                         
                             <th>Monto</th>
                         </tr>
                     </thead>
@@ -81,40 +81,43 @@
                                     <td><?= $value["k_descripcion"]; ?></td>
                                     <td><?= $value["c_codigo"]." ".$value["c_descripcion"]; ?></td>
                                     <td><?= $value["c3_codigo"]." ".$value["c3_descripcion"]; ?></td>
-                                    <td><?= $value["nroDoc"]; ?></td>
+                                 
                                     <td><?= $value["monto"]; ?></td>
                                
                                 </tr>
                             <?php else: ?>
-                                <tr>
-                                    <td><?= $value["nroDoc"]; ?></td>
-                                    <td><?= $value["emp_nombre"]." ".$value["emp_ruc"]; ?></td>
-                                    <td><?= $value["detalle"]; ?></td>
-                                    <td colspan="5">
-                                        <table class="table table-bordered">
-                                            <thead>
-                                                <tr>
-                                                    <th>Detalle</th>
-                                                    <th>Key</th>
-                                                    <th>Ceco</th>
-                                                    <th>Nivel 3</th>
-                                                    <th>Monto</th>
-                                                </tr>
-                                            </thead>
-                                            <?php foreach($value["centros"] as $key2=>$value2): ?>
-                                            <tr>
-                                                <td><?= $value2["detalle"] ?></td>
-                                                <td><?= $value2["k_descripcion"] ?></td>
-                                                <td><?= $value2["c_codigo"]." ".$value2["c_descripcion"]; ?></td>
-                                                <td><?= $value2["c3_codigo"]." ".$value2["c3_descripcion"]; ?></td>
-                                                <td><?= $value2["monto"] ?></td>
-                               
-                                            </tr>
-                                            <?php endforeach; ?>
-                                        </table>
-                                    </td>
-                               
+                                <tr >
+                                    <td rowspan="<?php echo count($value["centros"]) ?>"><?= $value["nroDoc"]; ?></td>
+                                    <td rowspan="<?php echo count($value["centros"]) ?>"><?= $value["emp_nombre"]." ".$value["emp_ruc"]; ?></td>
+                                    <td rowspan="<?php echo count($value["centros"]) ?>"><?= $value["detalle"]; ?></td>
+                                  
+                                    <?php foreach($value["centros"] as $key2=>$value2): ?>
+                                           
+                                        <?php if ($key2==0): ?>
+                                            <td><?= $value2["k_descripcion"] ?></td>
+                                            <td><?= $value2["c_codigo"]." ".$value2["c_descripcion"]; ?></td>
+                                            <td><?= $value2["c3_codigo"]." ".$value2["c3_descripcion"]; ?></td>
+                                            <td><?= $value2["monto"] ?></td>
+                           
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>  
                                 </tr>
+                                
+                                <?php foreach($value["centros"] as $key3=>$value3): ?>
+                                    
+                                    
+                                    <?php if ($key3!=0): ?>
+                                        <tr>
+                                            <td><?= $value3["k_descripcion"] ?></td>
+                                            <td><?= $value3["c_codigo"]." ".$value3["c_descripcion"]; ?></td>
+                                            <td><?= $value3["c3_codigo"]." ".$value3["c3_descripcion"]; ?></td>
+                                            <td><?= $value3["monto"] ?></td>
+                                        </tr>
+                                    <?php endif; ?>
+                    
+                                    
+                                <?php endforeach; ?>
+                                        
                             <?php endif; ?>
                         <?php endforeach; ?>
                     </tbody>

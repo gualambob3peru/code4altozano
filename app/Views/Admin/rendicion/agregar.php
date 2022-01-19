@@ -20,9 +20,10 @@
         padding: 5px 10px;
         width: 100%;
     }
+
     .no-close .ui-dialog-titlebar-close {
-  display: none;
-}
+        display: none;
+    }
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
@@ -183,9 +184,9 @@
 
                 // Remove invalid value
                 this.input
-                    .val("")
+                   // .val("")
                     .attr("title", value + " No encontrado")
-                    .tooltip("open");
+                   // .tooltip("open");
                 this.element.val("");
                 this._delay(function() {
                     this.input.tooltip("close").attr("title", "");
@@ -239,7 +240,7 @@
                         }
                         nroCuenta.value = '';
 
-                        
+
 
                     })
                     .catch(error => console.log('error', error));
@@ -248,7 +249,7 @@
             }
         });
 
-       
+
 
         $("#idOrden_com").combobox({
             source: total_ordenes,
@@ -266,10 +267,58 @@
             }
         });
 
+        $(".c_tipoSoli").click(function() {
+            let val = $(this).val();
+            if (val == 2 || val == 4) {
+                $("#divOrden").css("display", "none");
+                $("#idOrden").val("");
+                $("#divOrden span input").val("");
+            } else {
+                $("#divOrden").css("display", "block");
+            }
+        });
+
+        let v_c_tipoSoli = $(".c_tipoSoli:checked").val();
+        if (v_c_tipoSoli == 2 || v_c_tipoSoli == 4) {
+            $("#divOrden").css("display", "none");
+            $("#idOrden").val("");
+            $("#divOrden span input").val("");
+        } else {
+            $("#divOrden").css("display", "block");
+        }
+
+        $("body").on("click", ".btnAgregarProv", function() {
+            let val = $(this).parents("tr").find(".n_t_prov .custom-combobox-input").val();
+            let $this = $(this);
+            $.ajax({
+                url: "admin/empresa/ajaxAgregarEmpresaSin",
+                type: "post",
+                dataType: "json",
+                data: {
+                    nombre: val
+                },
+                error: function(ee) {
+                    alert('No se pudo agregar');
+                },
+                success: function(response) {
+           
+                    if (response.state == 5) {
+                        alert('Debe agregar un nombre');
+                        $this.removeClass("btn-success").addClass("btn-info");
+                    } else {
+                        $this.parents("tr").eq(0).find(".n_l_td_prov").val(response.id);
+                        console.log('ff');
+                        $this.removeClass("btn-info").addClass("btn-success");
+                       
+                    }
+                }
+            });
+        });
+
     });
 </script>
 
-<form method="POST"  action="" enctype="multipart/form-data">
+<form method="POST" action="" enctype="multipart/form-data">
 
     <div class="text-center mt-4 mb-4">
         <h3>RENDICIÓN DE GASTOS</h3>
@@ -291,51 +340,37 @@
                 </select>
             </div>
 
-            <div class="mb-3 pe-5">
+            <div class="mb-3 pe-5"  id="divOrden">
                 <input type="hidden" name="idOrden" id="idOrden">
 
                 <input type="text" id="idOrden_com">
 
-                <!-- <input type="hidden" name="otro" value="idOrden">
-
-                <select name="idOrden" id="idOrden" class="form-select">
-                    <option value="">Seleccionar Orden</option>
-                    <?php foreach ($ordenes as $key => $value) : ?>
-                        <option value="<?php echo $value["id"] ?>"><?php echo $value["codigo"] ?></option>
-                    <?php endforeach; ?>
-
-                </select> -->
+              
             </div>
-            <!-- <div class="mb-3">
-                <input class="form-control" type="date" name="fecha" placeholder="Fecha" required>
-            </div> -->
-            <!--  <div class="mb-3">
-
-                <input class="form-control" type="text" name="numero" placeholder="Número">
-            </div> -->
+          
         </div>
         <div class="col-md-4">
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="idTipoSolicitud" id="flexRadioDefault1" checked value="1" required>
+                <input class="form-check-input c_tipoSoli" type="radio" name="idTipoSolicitud" id="flexRadioDefault1" checked value="1" required>
                 <label class="form-check-label" for="flexRadioDefault1">
                     OC / Entrega a rendir
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="idTipoSolicitud" id="flexRadioDefault2" value="2" required>
+                <input class="form-check-input c_tipoSoli" type="radio" name="idTipoSolicitud" id="flexRadioDefault2" value="2" required>
                 <label class="form-check-label" for="flexRadioDefault2">
                     Caja chica
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="idTipoSolicitud" id="flexRadioDefault3" value="3" required>
+                <input class="form-check-input c_tipoSoli" type="radio" name="idTipoSolicitud" id="flexRadioDefault3" value="3" required>
                 <label class="form-check-label" for="flexRadioDefault3">
                     Reembolso
                 </label>
             </div>
 
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="idTipoSolicitud" id="flexRadioDefault3" value="4" required>
+                <input class="form-check-input c_tipoSoli" type="radio" name="idTipoSolicitud" id="flexRadioDefault3" value="4" required>
                 <label class="form-check-label" for="flexRadioDefault3">
                     Tarjeta de crédito
                 </label>
@@ -401,6 +436,7 @@
                 <tr>
                     <th>Nº Doc</th>
                     <th>Proveedor</th>
+                    <th></th>
                     <th>Detalle</th>
                     <th>Varios</th>
                     <th>Key</th>
@@ -418,7 +454,7 @@
             </tbody>
         </table>
 
-        
+
 
 
     </div>
@@ -531,44 +567,41 @@
 </form>
 
 <table style="display:none">
-            <tbody id="miFilaDetalle">
-                <tr>
-                    <td>
-                        <input type="hidden" class="td_total" name="varioscentros_t[]" value="">
-                        <input type="text" name="nro[]" class="form-control">
+    <tbody id="miFilaDetalle">
+        <tr>
+            <td>
+                <input type="hidden" class="td_total" name="varioscentros_t[]" value="">
+                <input type="text" name="nro[]" class="form-control" required>
 
-                    </td>
-                    <td class="n_t_prov pe-5">
-                    <input type="text" class="n_td_prov form-control">
-                    <input type="hidden" name="proveedor[]" class="n_l_td_prov">
+            </td>
+            <td class="n_t_prov pe-5">
+                <input type="text" class="n_td_prov form-control">
+                <input type="hidden" name="proveedor[]" class="n_l_td_prov">
 
-                       <!--  <select name="proveedor[]"  class="form-select">
-                            <option value="" selected>Seleccionar</option>
-                            <?php foreach ($empresas_total as $key => $value) : ?>
-                                <option value="<?php echo $value["id"] ?>"><?php echo $value["nombre"] ?></option>
-                            <?php endforeach; ?>
-                        </select> -->
-                    </td>
-                    <td><input type="text" name="detalle[]"  class="form-control"></td>
-                    <td> <button type="button" class="btnVarios btn btn-info"><i class="bi bi-journal-plus"></i></button> </td>
-                    <td class="n_t_key pe-5">
-                        <input type="text" class="n_td_ke form-control"><input type="hidden" name="varioskeys[]" class="n_l_td_ke">
-                    </td>
-                    <td class="n_t_centro pe-5">
-                        <input type="text" class="n_td_ce form-control" ><input type="hidden" name="variosCentros[]" class="n_l_td_ce">
-                    </td>
-                    <td class="n_t_cuenta pe-5">
-                        <input type="text" class="n_td_cu form-control"><input type="hidden" name="variosCuentas[]" class="n_l_td_cu">
-                    </td>
-                    <td class="td_cuenta1">-</td>
-                    <td><input type="text" name="monto[]" class="form-control"></td>
+            </td>
+            <td>
+                <button type="button" class="btn btn-info text-white btnAgregarProv"><i class="bi bi-plus-lg"></i></button>
+            </td>
+            <td><input type="text" name="detalle[]" class="form-control"></td>
+            <td> <button type="button" class="btnVarios btn btn-info"><i class="bi bi-journal-plus"></i></button> </td>
+            <td class="n_t_key pe-5">
+                <input type="text" class="n_td_ke form-control"><input type="hidden" name="varioskeys[]" class="n_l_td_ke">
+            </td>
+            <td class="n_t_centro pe-5">
+                <input type="text" class="n_td_ce form-control"><input type="hidden" name="variosCentros[]" class="n_l_td_ce">
+            </td>
+            <td class="n_t_cuenta pe-5">
+                <input type="text" class="n_td_cu form-control"><input type="hidden" name="variosCuentas[]" class="n_l_td_cu">
+            </td>
+            <td class="td_cuenta1">-</td>
+            <td><input type="text" name="monto[]" class="form-control"></td>
 
-                    <td>
-                        <button class="btn btn-danger n_td_delete"><i class="bi bi-trash"></i></button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+            <td>
+                <button class="btn btn-danger n_td_delete"><i class="bi bi-trash"></i></button>
+            </td>
+        </tr>
+    </tbody>
+</table>
 
 <table style="display: none;">
     <tbody id="cloneTrKeyCentro">
@@ -621,21 +654,21 @@
 </div>
 
 <script>
-    $(function(){
+    $(function() {
 
         let keys_all = JSON.parse('<?php echo json_encode($keys) ?>');
         let proveedor_all = JSON.parse('<?php echo json_encode($empresas_total) ?>');
-    
+
         let total_keys = [];
-    
+
         for (let i = 0; i < keys_all.length; i++) {
             let key = {};
             key.label = keys_all[i].descripcion;
             key.value = keys_all[i].id;
-    
+
             key.id = keys_all[i].id;
             key.descripcion = keys_all[i].descripcion;
-    
+
             total_keys.push(key);
         }
 
@@ -644,34 +677,34 @@
             let proveedor = {};
             proveedor.label = proveedor_all[i].nombre;
             proveedor.value = proveedor_all[i].id;
-    
+
             proveedor.id = proveedor_all[i].id;
             proveedor.nombre = proveedor_all[i].nombre;
-    
+
             total_proveedor.push(proveedor);
         }
-    
+
         let cuentas3 = JSON.parse('<?php echo json_encode($cuentas3) ?>');
-    
-    
-    
-    
+
+
+
+
         $("#btnAgregarDetalle").click(function() {
             let miFila = $("#miFilaDetalle").html();
             let miId = parseInt(Math.random() * 1000000);
             miFila = $(miFila).attr("id", "fila_m_" + miId);
             $(miFila).attr("elId", miId);
             $(miFila).find(".btnVarios").attr("elId", miId);
-    
+
             //proveedor
             $(miFila).find(".n_td_prov").attr("id", "n_prov_" + miId);
             $(miFila).find(".n_l_td_prov").attr("id", "n_l_prov_" + miId);
-    
+
             let modal = $("#divCloneModalVarios").html();
             modal = $(modal).attr("id", "m_" + miId)
             $(modal).find(".btnAgregarCentro").attr("elId", miId)
             $("body").append($(modal));
-    
+
             $("#m_" + miId).dialog({
                 autoOpen: false,
                 closeOnEscape: false,
@@ -696,32 +729,32 @@
                                     detalle = $(detalles.eq(i)).val();
 
                                 mifCeco = new Object();
-    
+
                                 mifCeco.key = key;
                                 mifCeco.centro = ceco;
                                 mifCeco.cuenta3 = cu3;
                                 mifCeco.monto = monto;
                                 mifCeco.detalle = detalle;
-    
+
                                 arr_centros.push(mifCeco);
                             }
                         }
-    
+
                         console.log(arr_centros);
-    
-    
+
+
                         $("#fila_m_" + miId).find(".td_total").val(JSON.stringify(arr_centros));
                         $(this).dialog("close");
                     }
                 }
             });
-    
+
             $(miFila).find(".n_td_ke").attr("id", "n_ke_" + miId);
             $(miFila).find(".n_l_td_ke").attr("id", "n_l_ke_" + miId);
-    
+
             $(miFila).find(".n_td_ce").attr("id", "n_ce_" + miId);
             $(miFila).find(".n_l_td_ce").attr("id", "n_l_ce_" + miId);
-    
+
             $(miFila).find(".n_td_cu").attr("id", "n_cu_" + miId);
             $(miFila).find(".n_l_td_cu").attr("id", "n_l_cu_" + miId);
             $("#tbodyDetalles").append(miFila);
@@ -753,9 +786,9 @@
                     $("#n_l_ke_" + miId).val(ui.item.id);
                     $("#n_ke_" + miId).val(ui.item.descripcion);
                     $("#n_ke_" + miId).next().find(".custom-combobox-input").val(ui.item.descripcion);
-    
-    
-    
+
+
+
                     $.ajax({
                         url: "admin/centro/ajaxGet_key",
                         data: {
@@ -764,26 +797,26 @@
                         type: "post",
                         dataType: "json",
                         success: function(response) {
-    
+
                             let total_centro = [];
-    
+
                             for (let i = 0; i < response.keys.length; i++) {
                                 let key = {};
                                 key.label = response.keys[i].codigo + " " + response.keys[i].descripcion;
                                 key.value = response.keys[i].id;
-    
+
                                 key.id = response.keys[i].id;
                                 key.descripcion = response.keys[i].descripcion;
                                 key.codigo = response.keys[i].codigo;
-    
+
                                 total_centro.push(key);
                             }
-    
+
                             $("#n_ce_" + miId).next(".custom-combobox").remove();
                             let miTr = $("#n_ce_" + miId).parent();
                             $("#n_ce_" + miId).remove();
                             miTr.prepend('<input type="text" id="n_ce_' + miId + '">');
-    
+
                             $("#n_ce_" + miId).combobox({
                                 source: total_centro,
                                 focus: function(event, ui) {
@@ -795,7 +828,7 @@
                                     $("#n_l_ce_" + miId).val(ui.item.id);
                                     $("#n_ce_" + miId).val(ui.item.descripcion);
                                     $("#n_ce_" + miId).next().find(".custom-combobox-input").val(ui.item.codigo + " " + ui.item.descripcion);
-    
+
                                     $.ajax({
                                         url: "admin/oc/getAjaxCuenta3_centro",
                                         type: "POST",
@@ -804,42 +837,42 @@
                                             idCentro: ui.item.id
                                         },
                                         success: function(response) {
-    
+
                                             console.log(response);
                                             cuentas3 = response.response;
                                             let total_cuentas3 = [];
-    
+
                                             for (let i = 0; i < cuentas3.length; i++) {
                                                 let cuenta3 = {};
                                                 cuenta3.value = cuentas3[i].c3_id;
                                                 cuenta3.label = cuentas3[i].c3_codigo + " - " + cuentas3[i].c3_descripcion;
-    
+
                                                 cuenta3.c3_id = cuentas3[i].c3_id;
                                                 cuenta3.c3_codigo = cuentas3[i].c3_codigo;
                                                 cuenta3.c3_descripcion = cuentas3[i].c3_descripcion;
-    
+
                                                 cuenta3.c2_id = cuentas3[i].c2_id;
                                                 cuenta3.c2_codigo = cuentas3[i].c2_codigo;
                                                 cuenta3.c2_descripcion = cuentas3[i].c2_descripcion;
-    
+
                                                 cuenta3.c1_id = cuentas3[i].c1_id;
                                                 cuenta3.c1_codigo = cuentas3[i].c1_codigo;
                                                 cuenta3.c1_descripcion = cuentas3[i].c1_descripcion;
-    
+
                                                 cuenta3.ca_id = cuentas3[i].ca_id;
                                                 cuenta3.ca_codigo = cuentas3[i].ca_codigo;
                                                 cuenta3.ca_descripcion = cuentas3[i].ca_descripcion;
-    
+
                                                 total_cuentas3.push(cuenta3);
                                             }
-    
+
                                             $("#n_cu_" + miId).next(".custom-combobox").remove();
                                             let miTr = $("#n_cu_" + miId).parent();
                                             $("#n_cu_" + miId).remove();
                                             miTr.prepend('<input type="text" id="n_cu_' + miId + '">');
-    
-    
-    
+
+
+
                                             $("#n_cu_" + miId).combobox({
                                                 source: total_cuentas3,
                                                 focus: function(event, ui) {
@@ -864,35 +897,35 @@
                     return false;
                 }
             });
-    
+
         });
-    
-    
-    
+
+
+
         $("body").on("click", ".btnVarios", function() {
             let elId = $(this).attr("elId");
-    
+
             $("#m_" + elId).dialog("open");
         });
-    
+
         $("body").on("click", ".btnAgregarCentro", function() {
             let miId = parseInt(Math.random() * 1000000);
             let modalId = $(this).attr("elId");
-    
+
             let fila = $("#cloneTrKeyCentro").html();
             fila = $(fila).attr("id", "fila_" + miId);
-    
+
             $(fila).find(".td_ke").attr("id", "ke_" + miId);
             $(fila).find(".l_td_ke").attr("id", "l_ke_" + miId);
-    
+
             $(fila).find(".td_ce").attr("id", "ce_" + miId);
             $(fila).find(".l_td_ce").attr("id", "l_ce_" + miId);
-    
+
             $(fila).find(".td_cu").attr("id", "cu_" + miId);
             $(fila).find(".l_td_cu").attr("id", "l_cu_" + miId);
-    
+
             $("#m_" + modalId).find("tbody").append($(fila));
-    
+
             $("#ke_" + miId).combobox({
                 source: total_keys,
                 focus: function(event, ui) {
@@ -904,9 +937,9 @@
                     $("#l_ke_" + miId).val(ui.item.id);
                     $("#ke_" + miId).val(ui.item.descripcion);
                     $("#ke_" + miId).next().find(".custom-combobox-input").val(ui.item.descripcion);
-    
-    
-    
+
+
+
                     $.ajax({
                         url: "admin/centro/ajaxGet_key",
                         data: {
@@ -915,26 +948,26 @@
                         type: "post",
                         dataType: "json",
                         success: function(response) {
-    
+
                             let total_centro = [];
-    
+
                             for (let i = 0; i < response.keys.length; i++) {
                                 let key = {};
                                 key.label = response.keys[i].codigo + " " + response.keys[i].descripcion;
                                 key.value = response.keys[i].id;
-    
+
                                 key.id = response.keys[i].id;
                                 key.descripcion = response.keys[i].descripcion;
                                 key.codigo = response.keys[i].codigo;
-    
+
                                 total_centro.push(key);
                             }
-    
+
                             $("#ce_" + miId).next(".custom-combobox").remove();
                             let miTr = $("#ce_" + miId).parent();
                             $("#ce_" + miId).remove();
                             miTr.prepend('<input type="text" id="ce_' + miId + '">');
-    
+
                             $("#ce_" + miId).combobox({
                                 source: total_centro,
                                 focus: function(event, ui) {
@@ -946,7 +979,7 @@
                                     $("#l_ce_" + miId).val(ui.item.id);
                                     $("#ce_" + miId).val(ui.item.descripcion);
                                     $("#ce_" + miId).next().find(".custom-combobox-input").val(ui.item.codigo + " " + ui.item.descripcion);
-    
+
                                     $.ajax({
                                         url: "admin/oc/getAjaxCuenta3_centro",
                                         type: "POST",
@@ -955,42 +988,42 @@
                                             idCentro: ui.item.id
                                         },
                                         success: function(response) {
-    
+
                                             console.log(response);
                                             cuentas3 = response.response;
                                             let total_cuentas3 = [];
-    
+
                                             for (let i = 0; i < cuentas3.length; i++) {
                                                 let cuenta3 = {};
                                                 cuenta3.value = cuentas3[i].c3_id;
                                                 cuenta3.label = cuentas3[i].c3_codigo + " - " + cuentas3[i].c3_descripcion;
-    
+
                                                 cuenta3.c3_id = cuentas3[i].c3_id;
                                                 cuenta3.c3_codigo = cuentas3[i].c3_codigo;
                                                 cuenta3.c3_descripcion = cuentas3[i].c3_descripcion;
-    
+
                                                 cuenta3.c2_id = cuentas3[i].c2_id;
                                                 cuenta3.c2_codigo = cuentas3[i].c2_codigo;
                                                 cuenta3.c2_descripcion = cuentas3[i].c2_descripcion;
-    
+
                                                 cuenta3.c1_id = cuentas3[i].c1_id;
                                                 cuenta3.c1_codigo = cuentas3[i].c1_codigo;
                                                 cuenta3.c1_descripcion = cuentas3[i].c1_descripcion;
-    
+
                                                 cuenta3.ca_id = cuentas3[i].ca_id;
                                                 cuenta3.ca_codigo = cuentas3[i].ca_codigo;
                                                 cuenta3.ca_descripcion = cuentas3[i].ca_descripcion;
-    
+
                                                 total_cuentas3.push(cuenta3);
                                             }
-    
+
                                             $("#cu_" + miId).next(".custom-combobox").remove();
                                             let miTr = $("#cu_" + miId).parent();
                                             $("#cu_" + miId).remove();
                                             miTr.prepend('<input type="text" id="cu_' + miId + '">');
-    
-    
-    
+
+
+
                                             $("#cu_" + miId).combobox({
                                                 source: total_cuentas3,
                                                 focus: function(event, ui) {
@@ -1015,16 +1048,16 @@
                     return false;
                 }
             });
-    
-    
+
+
         });
         $("#btnAgregarDetalle").click();
 
-        $("body").on("click",".n_td_delete",function(){
+        $("body").on("click", ".n_td_delete", function() {
             $(this).parents("tr").eq(0).remove();
         })
-        
-        $("body").on("click",".l_td_delete",function(){
+
+        $("body").on("click", ".l_td_delete", function() {
             $(this).parents("tr").eq(0).remove();
         })
 
@@ -1033,6 +1066,6 @@
 
             nroCuenta.value = this.selectedOptions[0].getAttribute('nroCuenta');
         }
-        
+
     });
 </script>
