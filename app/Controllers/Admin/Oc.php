@@ -520,6 +520,16 @@ class Oc extends BaseController
             $orden = (new OcModel())->find($idOrden);
             $data["o_orden"] =$orden;
             $data["o_tipoOrden"] = (new TipoOrdenModel())->find($orden["idTipoOrden"]);
+
+            $data["o_clasecosto"] = $this->db->table("clasecosto cc")
+                ->select("cc.id")
+                ->join("cuenta1 c1","cc.id = c1.idCuenta")
+                ->join("cuenta2 c2","c1.id = c2.idCuenta")
+                ->join("cuenta3 c3","c2.id = c3.idCuenta")
+                ->where("c3.id",$orden["idCuenta"])
+                ->get()->getRowArray();
+
+
             $data["o_tipoSolicitud"] = (new TipoSolicitudModel())->find($orden["idTipoSolicitud"]);
             $data["o_empresa"] = (new EmpresaModel())->find($orden["idEmpresa"]);
             $data["o_centroCosto"] = (new CentroModel())->find($orden["idCentroCosto"]);
@@ -579,6 +589,28 @@ class Oc extends BaseController
         echo json_encode(array("response" => $cuentas3));
     }
 
+    public function getAjaxCuenta3_centro_clase()
+    {
+        $idCentro = $this->request->getVar('idCentro');
+        $idClaseCosto = $this->request->getVar('idClaseCosto');
+
+        $cuentas3 = $this->db->table("centro_clase cc")
+            ->select('c3.id c3_id, c3.descripcion c3_descripcion, c3.codigo c3_codigo, c2.id c2_id, c2.descripcion c2_descripcion, c2.codigo c2_codigo,c1.id c1_id, c1.descripcion c1_descripcion, c1.codigo c1_codigo, ca.id ca_id, ca.descripcion ca_descripcion, ca.codigo ca_codigo')
+            ->join("clasecosto ca", 'cc.idClaseCosto = ca.id')
+            ->join("cuenta1 c1", 'ca.id = c1.idCuenta')
+            ->join("cuenta2 c2", 'c1.id = c2.idCuenta')
+            ->join("cuenta3 c3", 'c2.id = c3.idCuenta')
+
+
+            ->where("cc.idCentro = " . $idCentro)
+            ->where("ca.id = " . $idClaseCosto)
+            ->where("c3.estado", "1")
+
+            ->get()->getResult();
+
+        echo json_encode(array("response" => $cuentas3));
+    }
+
     public function getAjaxClase_centro()
     {
         $idCentro = $this->request->getVar('idCentro');
@@ -593,7 +625,7 @@ class Oc extends BaseController
 
             ->get()->getResult();
 
-        echo json_encode(array("response" => $clases));
+        echo json_encode(array("respuesta" => $clases));
     }
 
     public function ver($idOrden)
