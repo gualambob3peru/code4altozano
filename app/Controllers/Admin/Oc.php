@@ -589,6 +589,8 @@ class Oc extends BaseController
         echo json_encode(array("response" => $cuentas3));
     }
 
+    
+
     public function getAjaxCuenta3_centro_clase()
     {
         $idCentro = $this->request->getVar('idCentro');

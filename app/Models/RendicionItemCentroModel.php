@@ -46,10 +46,14 @@ class RendicionItemCentroModel extends Model
             c.idKey,c.codigo c_codigo,c.descripcion c_descripcion,
             c3.codigo c3_codigo,c3.descripcion c3_descripcion,
             k.descripcion k_descripcion,
+            cc.id cc_id,cc.codigo cc_codigo,cc.descripcion cc_descripcion
             ")
             ->where("rendicion_itemcentro.idRendicionItem",$id)
             ->join("centro c","c.id = rendicion_itemcentro.idCentro")
             ->join("cuenta3 c3","c3.id = rendicion_itemcentro.idCuenta")
+             ->join("cuenta2 c2","c2.id = c3.idCuenta","left")
+            ->join("cuenta1 c1","c1.id = c2.idCuenta","left")
+            ->join("clasecosto cc","cc.id = c1.idCuenta","left")
             ->join("key k","k.id = c.idKey")
             ->get()->getResultArray();
     }
