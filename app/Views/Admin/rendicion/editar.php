@@ -462,8 +462,24 @@
             <tbody id="tbodyDetalles">
 
             </tbody>
+            <tfoot>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    
+                    <th>Total</th>
+                    <th id="sumaTotal"></th>
+                    <td></td>
+                </tr>
+            </tfoot>
         </table>
-
 
 
 
@@ -623,7 +639,7 @@
                 <input type="text" class="n_td_cu form-control"><input type="hidden" name="variosCuentas[]" class="n_l_td_cu">
             </td>
             <td class="td_cuenta1">-</td>
-            <td><input type="text" name="monto[]" class="form-control"></td>
+            <td><input type="text" name="monto[]" class="form-control t_monto"></td>
 
             <td>
                 <button class="btn btn-danger n_td_delete text-white"><i class="bi bi-trash"></i></button>
@@ -668,7 +684,7 @@
         <div>
             <button type="button" class="btn btn-info btn-sm btnAgregarCentro"><i class="bi bi-plus-lg"></i></button>
         </div>
-        <div id="tablaCentro">
+        <div class="tablaCentro">
             <table class="table table-bordered">
 
                 <thead>
@@ -701,6 +717,18 @@
 
 <script>
     $(function() {
+
+        $("body").on("keyup","#tbodyDetalles .t_monto,.ui-dialog .l_td_monto",function(){
+            let suma = 0;
+            $("#tbodyDetalles .t_monto,.ui-dialog .l_td_monto").each(function(){
+                let cant = 0;
+                if($(this).val()!="") {
+                    suma += parseFloat($(this).val());
+                }
+            });
+     
+            $("#sumaTotal").text(suma)
+        });
 
         let keys_all = JSON.parse('<?php echo json_encode($keys) ?>');
 
@@ -1843,7 +1871,7 @@
 
                 for (let ind in centros) {
                     if (ind == centros.length - 1) {
-                        miclickModalCentro(miTr.attr("elId"), centros[ind].detalle, centros[ind].idKey, centros[ind].idCentro,centros[ind].cc_id, centros[ind].idCuenta, centros[ind].monto, 1);
+                        miclickModalCentro(miTr.attr("elId"), centros[ind].detalle, centros[ind].idKey, centros[ind].idCentro, centros[ind].cc_id, centros[ind].idCuenta, centros[ind].monto, 1);
                     } else {
                         miclickModalCentro(miTr.attr("elId"), centros[ind].detalle, centros[ind].idKey, centros[ind].idCentro, centros[ind].cc_id, centros[ind].idCuenta, centros[ind].monto, 0);
                     }

@@ -147,10 +147,10 @@ class Rendicion extends BaseController
                         $cantOrden = "0" . $cantOrden;
                     }
 
-                    $codigo = $codTipoOrden.$cantOrden."-".date("Y");
+                    $codigo = "Rend.".$codTipoOrden.$cantOrden."-".date("Y");
             
                 }else{
-                    $codigo = $codTipoOrden."001-".date("Y");
+                    $codigo = "Rend.".$codTipoOrden."001-".date("Y");
                 }
 
                 //calculando importe total
