@@ -352,7 +352,7 @@
             <img src="images/logo1.png" alt="">
         </div>
         <div class="col-md-3">
-            <div class="mb-3">
+            <div class="mb-3 pe-3">
 
                 <select name="idTipoOrden" id="idTipoOrden" class="form-select">
                     <option value="">Seleccionar</option>
@@ -367,6 +367,15 @@
                 <input type="hidden" name="idOrden" id="idOrden">
 
                 <input type="text" id="idOrden_com">
+
+            </div>
+
+            <div class="mb-3 pe-3">
+                <select class="form-select" name="idMoneda" id="idMoneda" required>
+                    <option <?= ((1 == $o_rendicion["idMoneda"]) ? "selected" : "") ?> value="1">Soles</option>
+                    <option <?= ((2 == $o_rendicion["idMoneda"]) ? "selected" : "") ?>  value="2">Dólares</option>
+                    <option <?= ((3 == $o_rendicion["idMoneda"]) ? "selected" : "") ?>  value="3">Euros</option>
+                </select>
 
             </div>
 

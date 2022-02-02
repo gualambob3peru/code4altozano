@@ -182,7 +182,7 @@ class Rendicion extends BaseController
                     "idOrden" => $this->request->getVar('idOrden'),
                     "idEmpresaEje" => $this->request->getVar('ejecutado'),
                     "idBanco_empresa" => $this->request->getVar('idBanco'),
-                    "idMoneda" => 1,
+                    "idMoneda" => $this->request->getVar('idMoneda'),
                     "referencia" => $this->request->getVar('referencia'),
                 ];
                 $newRendicion = new RendicionModel();
@@ -359,7 +359,7 @@ class Rendicion extends BaseController
                     "idOrden" => $this->request->getVar('idOrden'),
                     "idEmpresaEje" => $this->request->getVar('ejecutado'),
                     "idBanco_empresa" => $this->request->getVar('idBanco'),
-                    "idMoneda" => 1,
+                    "idMoneda" => $this->request->getVar('idMoneda'),
                     "referencia" => $this->request->getVar('referencia'),
                 ];
                 $newRendicion = new RendicionModel();

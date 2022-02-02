@@ -347,6 +347,15 @@
 
               
             </div>
+
+            <div class="mb-3">
+                <select class="form-select" name="idMoneda" id="idMoneda" required>
+                    <option value="1">Soles</option>
+                    <option value="2">Dólares</option>
+                    <option value="3">Euros</option>
+                </select>
+
+            </div>
           
         </div>
         <div class="col-md-4">
