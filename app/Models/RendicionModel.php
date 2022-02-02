@@ -92,7 +92,7 @@ class RendicionModel extends Model
             ->join("moneda m", 'm.id = rendicion.idMoneda')
             ->join("banco_empresa be", 'be.id = rendicion.idBanco_empresa')
             ->join("banco b", 'b.id = be.idBanco')
-            ->join("orden o","o.id = rendicion.idOrden")
+            ->join("orden o","o.id = rendicion.idOrden","left")
         
             ->where("rendicion.estado !=","5")
             ->where("rendicion.id ",$idRendicion)

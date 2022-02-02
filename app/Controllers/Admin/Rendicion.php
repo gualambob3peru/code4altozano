@@ -229,7 +229,7 @@ class Rendicion extends BaseController
                     foreach ($this->request->getFileMultiple('docs') as $file) {
 
 
-                        $name = uniqid().'.'.$file->guessExtension();
+                        $name = $file->getClientName();
                         $file->move('uploads/rendicion/'.$miIdRendicion,$name);
 
 
@@ -424,7 +424,7 @@ class Rendicion extends BaseController
                     foreach ($this->request->getFileMultiple('docs') as $file) {
 
 
-                        $name = uniqid().'.'.$file->guessExtension();
+                        $name = $file->getClientName();
                         $file->move('uploads/rendicion/'.$idRendicion,$name);
 
 

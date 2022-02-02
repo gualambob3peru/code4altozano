@@ -541,7 +541,7 @@
                         <?php foreach ($o_images as $key => $value) : ?>
                             <tr>
                                 <td>Doc <?= ($key + 1) ?> : </td>
-                                <td><a target="_blank" href="uploads/rendicion/<?= $value["idRendicion"] ?>/<?= $value["imagen"] ?>">Archivo</a></td>
+                                <td><a target="_blank" href="uploads/rendicion/<?= $value["idRendicion"] ?>/<?= $value["imagen"] ?>"><?= $value["imagen"] ?></a></td>
                                 <td><button elId="<?= $value["id"] ?>" class="btn btn-sm btn-danger btnModalEliImagen text-white" type="button"><i class="bi bi-trash  text-white"></i></button></td>
                             </tr>
 
@@ -623,7 +623,7 @@
                 <input type="text" class="n_td_cu form-control"><input type="hidden" name="variosCuentas[]" class="n_l_td_cu">
             </td>
             <td class="td_cuenta1">-</td>
-            <td><input type="number" name="monto[]" class="form-control"></td>
+            <td><input type="text" name="monto[]" class="form-control"></td>
 
             <td>
                 <button class="btn btn-danger n_td_delete text-white"><i class="bi bi-trash"></i></button>
