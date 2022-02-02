@@ -729,6 +729,7 @@
      
             $("#sumaTotal").text(suma)
         });
+        
 
         let keys_all = JSON.parse('<?php echo json_encode($keys) ?>');
 
@@ -1956,6 +1957,8 @@
             $("#modalEliminarArchivo").attr("elId", $(this).attr("elId"));
             modalELiminarArchivo.dialog('open');
         });
+
+        $("#tbodyDetalles .t_monto").keyup();
 
     });
 </script>
