@@ -484,8 +484,8 @@
                     <td></td>
                     
                     <th>Total</th>
-                    <th id="sumaTotal"></th>
-                    <td></td>
+                    <th style="text-align: right;" id="sumaTotal"></th>
+                    <td style="font-weight: bold;" id="textTipoMoneda"></td>
                 </tr>
             </tfoot>
         </table>
@@ -1968,6 +1968,22 @@
         });
 
         $("#tbodyDetalles .t_monto").keyup();
+
+        $("#idMoneda").change(function(){
+            let val = $(this).val();
+
+            if(val=="1"){
+                $("#textTipoMoneda").text("S/.");
+            }else if(val=="2"){
+                $("#textTipoMoneda").text("USD");
+            }else if(val=="3"){
+                $("#textTipoMoneda").text("EUROS");
+            }else{
+                $("#textTipoMoneda").text("S/.");
+            }
+        });
+
+        $("#idMoneda").change();        
 
     });
 </script>

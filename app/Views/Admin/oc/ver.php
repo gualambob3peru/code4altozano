@@ -10,7 +10,8 @@
         <button id="descargar" class="btn btn-danger mb-4 text-white"><i class="bi bi-file-earmark-pdf"></i> PDF</button>
         <?php
 
-if($_SESSION["personal"]["idCargo"]=="1"){
+if($_SESSION["personal"]["idCargo"]=="1" && $orden["estado"]!="1"){
+    
     echo " <button data-bs-toggle='tooltip' data-bs-placement='top' title='Aprobar Orden' elId='".$orden["id"] ."' class='text-white btn btn-success mb-4  btnAprobar'><i class='bi bi-check-lg'></i> Aprobar Orden</button>";
 }
 ?>

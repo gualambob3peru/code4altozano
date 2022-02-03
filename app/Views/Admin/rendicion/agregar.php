@@ -476,7 +476,7 @@
                     
                     <th>Total</th>
                     <th id="sumaTotal"></th>
-                    <td></td>
+                    <td style="font-weight: bold;" id="textTipoMoneda"></td>
                 </tr>
             </tfoot>
         </table>
@@ -1239,6 +1239,22 @@
 
             nroCuenta.value = this.selectedOptions[0].getAttribute('nroCuenta');
         }
+
+        $("#idMoneda").change(function(){
+            let val = $(this).val();
+
+            if(val=="1"){
+                $("#textTipoMoneda").text("S/.");
+            }else if(val=="2"){
+                $("#textTipoMoneda").text("USD");
+            }else if(val=="3"){
+                $("#textTipoMoneda").text("EUROS");
+            }else{
+                $("#textTipoMoneda").text("S/.");
+            }
+        });
+
+        $("#idMoneda").change();  
 
     });
 </script>
