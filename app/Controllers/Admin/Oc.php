@@ -438,7 +438,7 @@ class Oc extends BaseController
                     "idTipoSolicitud" => $this->request->getVar('idTipoSolicitud'),
                     "fecha" => date("Y-m-d"),
                     "nombre" => $this->request->getVar('nombre'),
-                    "idTipoOrden" => $this->request->getVar('idTipoOrden'),
+                    //"idTipoOrden" => $this->request->getVar('idTipoOrden'),
                     "idEmpresa" => $this->request->getVar('idEmpresa'),
                     "idCentroCosto" => $this->request->getVar('idCentroCosto'),
                     "idPersonalSoli" => $this->request->getVar('solicitado'),
