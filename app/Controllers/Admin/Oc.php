@@ -813,15 +813,15 @@ class Oc extends BaseController
 
             if($c_varios == "VariosCAD"){ //multiples centros
                 $orden = $this->db->table("orden o")
-                    ->select("o.id,e.nombre empresa_nombre, o.codigo orden_codigo,pso.nombres soli_nombres,pso.apellidoPaterno soliAp, pso.apellidoMaterno soliAm, pej.nombres jefe_nombres,pej.apellidoPaterno jefeAp, pej.apellidoMaterno jefeAm, to.descripcion to_descripcion,eje.nombre eje_nombre,o.fecha orden_fecha, m.simbolo, o.objeto,o.idCuenta idCuenta3, o.importe")
+                    ->select("o.id,e.nombre empresa_nombre, o.codigo orden_codigo,pso.nombres soli_nombres,pso.apellidoPaterno soliAp, pso.apellidoMaterno soliAm, pej.nombres jefe_nombres,pej.apellidoPaterno jefeAp, pej.apellidoMaterno jefeAm, to.descripcion to_descripcion,eje.nombre eje_nombre,o.created_at orden_fecha, m.simbolo, o.objeto,o.idCuenta idCuenta3, o.importe")
                     ->join("empresa e","e.id = o.idEmpresa")
                     ->join("personal pso","pso.id = o.idPersonalSoli")
                     ->join("personal pej","pej.id = o.idPersonalJefe")
                     ->join("tipoOrden to","to.id = o.idTipoOrden")
                     ->join("empresa eje","eje.id = o.idEmpresaEje")
                     ->join("moneda m","m.id = o.idMoneda")
-                    ->where("o.fecha > ", $fechaInicio)
-                    ->where("o.fecha < ", $fechaFinal)
+                    ->where("o.created_at > ", $fechaInicio)
+                    ->where("o.created_at < ", $fechaFinal)
                     ->where("o.estado !=", "5")
                     ->where("o.id ", $value["id"])
                     ->get()->getRowArray();
@@ -871,7 +871,7 @@ class Oc extends BaseController
             }
             else{
                 $orden = $this->db->table("orden o")
-                    ->select("o.id,e.nombre empresa_nombre, o.codigo orden_codigo,pso.nombres soli_nombres,pso.apellidoPaterno soliAp, pso.apellidoMaterno soliAm, pej.nombres jefe_nombres,pej.apellidoPaterno jefeAp, pej.apellidoMaterno jefeAm, to.descripcion to_descripcion,eje.nombre eje_nombre,o.fecha orden_fecha, m.simbolo, o.objeto,o.idCuenta idCuenta3, o.importe, c1.descripcion cuenta1_descripcion, c3.descripcion cuenta3_descripcion, c3.codigo cuenta3_codigo,cc.descripcion centro_descripcion, cc.codigo centro_codigo")
+                    ->select("o.id,e.nombre empresa_nombre, o.codigo orden_codigo,pso.nombres soli_nombres,pso.apellidoPaterno soliAp, pso.apellidoMaterno soliAm, pej.nombres jefe_nombres,pej.apellidoPaterno jefeAp, pej.apellidoMaterno jefeAm, to.descripcion to_descripcion,eje.nombre eje_nombre,o.created_at orden_fecha, m.simbolo, o.objeto,o.idCuenta idCuenta3, o.importe, c1.descripcion cuenta1_descripcion, c3.descripcion cuenta3_descripcion, c3.codigo cuenta3_codigo,cc.descripcion centro_descripcion, cc.codigo centro_codigo")
                     ->join("empresa e","e.id = o.idEmpresa")
                     ->join("personal pso","pso.id = o.idPersonalSoli")
                     ->join("personal pej","pej.id = o.idPersonalJefe")
@@ -882,8 +882,8 @@ class Oc extends BaseController
                     ->join("cuenta3 c3","c3.id = o.idCuenta")
                     ->join("cuenta2 c2","c2.id = c3.idCuenta")
                     ->join("cuenta1 c1","c1.id = c2.idCuenta")
-                    ->where("o.fecha > ", $fechaInicio)
-                    ->where("o.fecha < ", $fechaFinal)
+                    ->where("o.created_at > ", $fechaInicio)
+                    ->where("o.created_at < ", $fechaFinal)
                     ->where("o.estado !=", "5")
                     ->where("o.id ", $value["id"])
                     ->get()->getRow();
