@@ -775,8 +775,8 @@ class Oc extends BaseController
         
 
         $ordenesTotal = $this->db->table("orden")
-            ->where("fecha > ", $fechaInicio)
-            ->where("fecha < ", $fechaFinal)
+            ->where("created_at > ", $fechaInicio)
+            ->where("created_at < ", $fechaFinal." 23:59:59")
             ->where("estado !=","5")->get()->getResultArray();
 
    
@@ -821,7 +821,7 @@ class Oc extends BaseController
                     ->join("empresa eje","eje.id = o.idEmpresaEje")
                     ->join("moneda m","m.id = o.idMoneda")
                     ->where("o.created_at > ", $fechaInicio)
-                    ->where("o.created_at < ", $fechaFinal)
+                    ->where("o.created_at < ", $fechaFinal." 23:59:59")
                     ->where("o.estado !=", "5")
                     ->where("o.id ", $value["id"])
                     ->get()->getRowArray();
@@ -836,6 +836,11 @@ class Oc extends BaseController
                 $detalles = $this->db->table("orden_detalle")
                 ->where("idOrden",$value["id"])
                 ->get()->getResultArray();
+
+                $sumaOrden = 0;
+                foreach ($detalles as $keyD => $valueD) {
+                    $sumaOrden += $valueD["monto"];
+                }
      
                 foreach ($centros as $keyC => $valueC) {
                     $value_cuenta = $this->db->table("centro")
@@ -858,7 +863,7 @@ class Oc extends BaseController
                     $tabla .= "<td>0.00</td>";
                     $tabla .= "<td>".$value_cuenta["codigo"]."</td>";
                     $tabla .= "<td>" . $detalles[0]["descripcion"]  . "</td>";
-                    $tabla .= "<td>" . $detalles[0]["monto"]  . "</td>";
+                    $tabla .= "<td>" . ($sumaOrden*$valueC["porcentaje"]/100)  . "</td>";
                     $tabla .= "<td>0.00</td>";
                     $tabla .= "<td>" . $value_cuenta["codigo"] . "</td>";
                     $tabla .= "<td>" . $value_cuenta["descripcion"] . "</td>";
@@ -883,7 +888,7 @@ class Oc extends BaseController
                     ->join("cuenta2 c2","c2.id = c3.idCuenta")
                     ->join("cuenta1 c1","c1.id = c2.idCuenta")
                     ->where("o.created_at > ", $fechaInicio)
-                    ->where("o.created_at < ", $fechaFinal)
+                    ->where("o.created_at < ", $fechaFinal." 23:59:59")
                     ->where("o.estado !=", "5")
                     ->where("o.id ", $value["id"])
                     ->get()->getRow();
