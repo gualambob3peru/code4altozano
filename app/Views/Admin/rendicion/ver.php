@@ -121,6 +121,14 @@
                             <?php endif; ?>
                         <?php endforeach; ?>
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="4"></td>
+                            <th>Total</th>
+                            <th><?php echo $o_rendicion["m_descripcion"] ?></th>
+                            <th><?php echo $o_rendicion["importe"]?></th>
+                        </tr>
+                    </tfoot>
                 </table>
                 
         
