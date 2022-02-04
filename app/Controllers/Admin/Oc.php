@@ -758,11 +758,11 @@ class Oc extends BaseController
 
     public function getExcelFinanzas()
     {
-        $fechaInicio = $_POST["fechaInicio"];
-        $fechaFinal = $_POST["fechaFinal"];
-/* 
+         $fechaInicio = $_POST["fechaInicio"];
+        $fechaFinal = $_POST["fechaFinal"]; 
+
         $fechaInicio = "2021-01-01";
-        $fechaFinal = "2022-12-01"; */
+        $fechaFinal = "2022-12-01";
 
         $filename = $fechaInicio . "_" . $fechaFinal . "_finanzas_reporte.xls";
 
@@ -829,6 +829,7 @@ class Oc extends BaseController
           
 
                 $centros = $this->db->table("orden_centro")
+                   
                         ->where("idOrden",$value["id"])
                         ->get()->getResultArray();
 
@@ -845,10 +846,15 @@ class Oc extends BaseController
                 foreach ($centros as $keyC => $valueC) {
                     $value_cuenta = $this->db->table("centro")
                         ->where("id",$valueC["idCentro"])->get()->getRowArray();
-                   
-                       
 
-                    
+                    $cuentaC = $this->db->table("orden_centro od")    
+                        ->select("od.idCentro,od.idCuenta,od.id, od.porcentaje,c3.codigo c3_codigo,c3.descripcion c3_descripcion,c1.codigo c1_codigo,c1.descripcion c1_descripcion")
+                        ->join("cuenta3 c3","c3.id = od.idCuenta")
+                        ->join("cuenta2 c2","c2.id = c3.idCuenta")
+                        ->join("cuenta1 c1","c1.id = c2.idCuenta")
+                        ->where("od.id",$valueC["id"])
+                        ->get()->getRowArray();
+              
                     $tabla .=  "<table>";
                     $tabla .= "<tr>";
                     $tabla .= "<td>" . $orden["empresa_nombre"] . "</td>";
@@ -867,8 +873,8 @@ class Oc extends BaseController
                     $tabla .= "<td>0.00</td>";
                     $tabla .= "<td>" . $value_cuenta["codigo"] . "</td>";
                     $tabla .= "<td>" . $value_cuenta["descripcion"] . "</td>";
-                    $tabla .= "<td> - </td>";
-                    $tabla .= "<td> - </td>";
+                    $tabla .= "<td> ".$cuentaC["c3_descripcion"]." </td>";
+                    $tabla .= "<td> ".$cuentaC["c1_descripcion"]." </td>";
         
                     $tabla .= "</tr>";
                     $tabla .= "</table>"; 
