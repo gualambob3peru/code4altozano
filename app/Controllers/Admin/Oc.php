@@ -761,8 +761,8 @@ class Oc extends BaseController
          $fechaInicio = $_POST["fechaInicio"];
         $fechaFinal = $_POST["fechaFinal"]; 
 
-        $fechaInicio = "2021-01-01";
-        $fechaFinal = "2022-12-01";
+       /* $fechaInicio = "2021-01-01";
+        $fechaFinal = "2022-12-01";*/
 
         $filename = $fechaInicio . "_" . $fechaFinal . "_finanzas_reporte.xls";
 
