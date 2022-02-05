@@ -521,7 +521,7 @@
             <div class="mb-3 row">
                 <label for="idBanco" class="col-sm-4 col-form-label">Banco</label>
                 <div class="col-sm-8 ">
-                    <select class="form-select" name="idBanco" id="idBanco" required>
+                    <select class="form-select" name="idBanco" id="idBanco" >
                         <option value="" selected>Seleccionar</option>
                         <?php foreach ($banco as $key => $value) : ?>
                             <option value="<?php echo $value["id"] ?>"><?php echo $value["descripcion"] ?></option>
