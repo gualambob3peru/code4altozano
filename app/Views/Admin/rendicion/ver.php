@@ -192,10 +192,10 @@
         $("#descargar").click(function(){
             var element = document.getElementById('htmlpdf');
             var opt = {
-                margin: [0, 0, 30, 0],
+                margin: [0, 0, 0, 0],
                 filename:     codigo+'.pdf',
                 image:        { type: 'jpeg', quality: 1 },
-                html2canvas:  { scale: 1 },
+                html2canvas:  { scale: 0.5 },
                 jsPDF: {unit: 'pt', format: 'a4', orientation: 'portrait'}
             };
 
