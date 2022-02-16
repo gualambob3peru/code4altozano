@@ -195,7 +195,7 @@
                 margin: [0, 0, 0, 0],
                 filename:     codigo+'.pdf',
                 image:        { type: 'jpeg', quality: 1 },
-                html2canvas:  { scale: 0.5 },
+                html2canvas:  { scale: 2 },
                 jsPDF: {unit: 'pt', format: 'a4', orientation: 'portrait'}
             };
 
