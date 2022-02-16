@@ -104,7 +104,7 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
             <td><span data-bs-toggle="tooltip" data-bs-placement="top" title="<?= $value->pes_nombres." ".$value->pes_apellidoPaterno." ".$value->pes_apellidoMaterno; ?>"><?= substr($value->pes_nombres." ".$value->pes_apellidoPaterno." ".$value->pes_apellidoMaterno,0,17)."..." ; ?></span></td>
             <td><span data-bs-toggle="tooltip" data-bs-placement="top" title="<?= $value->eje_nombre; ?>"><?= substr($value->eje_nombre,0,20); ?></span></td>
             <td><?= $value->m_descripcion; ?></td>
-            <td><?= $value->importe; ?></td>
+            <td><?= number_format($value->importe,2); ?></td>
 
             <td><?= $value->tsr_descripcion; ?></td>
             <td>
