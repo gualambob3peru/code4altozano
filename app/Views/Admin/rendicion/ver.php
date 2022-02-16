@@ -197,6 +197,7 @@
                 filename:     codigo+'.pdf',
                 image:        { type: 'jpeg', quality: 1 },
                 html2canvas:  { scale: 1 },
+                jsPDF: {unit: 'pt', format: 'a4', orientation: 'portrait'}
             };
 
             html2pdf().set(opt).from(element).save();
