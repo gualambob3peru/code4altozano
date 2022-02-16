@@ -89,7 +89,7 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
             
             <th>Tipo solicitud</th>
             <th>Estado</th> 
-            <th>Acciones</th> 
+            <th style="width:320px">Acciones</th> 
             
         </tr>
     </thead>
