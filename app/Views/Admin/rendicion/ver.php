@@ -56,7 +56,7 @@
                 <hr>
                 <h6>Datos de rendición</h6>
                 
-                <table class="table table-bordered f13">
+                <table class="table table-bordered" style="font-size:13px">
                     <thead>
                         <tr>
                             <th>Nº Doc</th>
