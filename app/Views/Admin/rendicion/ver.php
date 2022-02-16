@@ -73,7 +73,7 @@
                         <?php foreach($o_items as $key=>$value): ?>
                             <?php if($value["centros"] == null): ?>
                                 <tr>
-                                    <td><?= $value["nroDoc"]; ?></td>
+                                    <td style="width: 150px;"><?= $value["nroDoc"]; ?></td>
                                     <td><?= $value["emp_nombre"]." ".$value["emp_ruc"]; ?></td>
                                     <td><?= $value["detalle"]; ?></td>
                                    
@@ -86,7 +86,7 @@
                                 </tr>
                             <?php else: ?>
                                 <tr >
-                                    <td rowspan="<?php echo count($value["centros"]) ?>"><?= $value["nroDoc"]; ?></td>
+                                    <td style="width:150px" rowspan="<?php echo count($value["centros"]) ?>"><?= $value["nroDoc"]; ?></td>
                                     <td rowspan="<?php echo count($value["centros"]) ?>"><?= $value["emp_nombre"]." ".$value["emp_ruc"]; ?></td>
                                     <td rowspan="<?php echo count($value["centros"]) ?>"><?= $value["detalle"]; ?></td>
                                   
@@ -196,7 +196,7 @@
                 filename:     codigo+'.pdf',
                 image:        { type: 'jpeg', quality: 1 },
                 html2canvas:  { scale: 2 },
-                jsPDF: {unit: 'pt', format: 'a4', orientation: 'portrait'}
+                jsPDF: {unit: 'pt', format: 'a3', orientation: 'portrait'}
             };
 
             html2pdf().set(opt).from(element).save();
