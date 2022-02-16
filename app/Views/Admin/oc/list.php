@@ -98,7 +98,7 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
         <?php foreach($ocs as $key=>$value): ?>
         <tr>
             <td><span><?= $value->orden_codigo; ?> </span></td>
-            <td><span><?= substr($value->created_at,0,10); ?></span></td>
+            <td style="width: 100px;"><span><?= substr($value->created_at,0,10); ?></span></td>
             <td><span data-bs-toggle="tooltip" data-bs-placement="top" title="<?= $value->empresa_nombre; ?>"><?= substr($value->empresa_nombre,0,20); ?></span></td>
             <td><span data-bs-toggle="tooltip" data-bs-placement="top" title="<?= $value->peso_nombres." ".$value->peso_apellidoPaterno." ".$value->peso_apellidoMaterno; ?>"><?= substr($value->peso_nombres." ".$value->peso_apellidoPaterno." ".$value->peso_apellidoMaterno,0,17)."..." ; ?></span></td>
             <td><span data-bs-toggle="tooltip" data-bs-placement="top" title="<?= $value->eje_nombre; ?>"><?= substr($value->eje_nombre,0,20); ?></span></td>
