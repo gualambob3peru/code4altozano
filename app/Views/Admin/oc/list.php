@@ -111,7 +111,7 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
                 <?php 
                     if($value->orden_estado=="1"){
                        
-                        echo '<i style="font-size:17px" class="bi bi-check-circle-fill text-success" data-bs-toggle="tooltip" data-bs-placement="top" title="Aprobado"></i>';
+                        echo '<i style="font-size:17px" class="bi bi-check-circle-fill text-success" data-bs-toggle="tooltip" data-bs-placement="top"  style<="title="Aprobado"></i>';
                     }else if($value->orden_estado=="2"){
                         echo '<i style="font-size:17px" class="bi bi-exclamation-circle-fill text-warning" data-bs-toggle="tooltip" data-bs-placement="top" title="Pendiente para Jefe Directo"></i>';
                        
@@ -125,7 +125,7 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
                     }
                 ?>
             </td>
-        <td>
+        <td style="width: 150px;">
             <div class="input-group">
 
                  <?php 
