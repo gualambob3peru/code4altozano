@@ -193,7 +193,6 @@
             var element = document.getElementById('htmlpdf');
             var opt = {
                 margin: [0, 0, 30, 0],
-                pagebreak: {mode: 'avoid-all'},
                 filename:     codigo+'.pdf',
                 image:        { type: 'jpeg', quality: 1 },
                 html2canvas:  { scale: 1 },
