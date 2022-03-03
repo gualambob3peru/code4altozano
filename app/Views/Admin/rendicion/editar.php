@@ -736,7 +736,7 @@
                 }
             });
      
-            $("#sumaTotal").text(suma)
+            $("#sumaTotal").text(suma.toFixed(2))
         });
         
 
