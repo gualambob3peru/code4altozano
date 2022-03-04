@@ -88,6 +88,32 @@ class Oc extends BaseController
             return redirect()->to(site_url('admin/oc/index'));
         }
     }
+    public function ajaxAprobar(){
+        $idOrden = $_POST["id"]; 
+        if ($_SESSION["personal"]["idCargo"] == "3") {
+            $datosUpdate = [
+                "id" => $idOrden,
+                "estado" => '3'
+            ];
+            $this->model->save($datosUpdate);
+            echo json_encode(array("respuesta"=> 1));
+        } else if ($_SESSION["personal"]["idCargo"] == "2") {
+            $datosUpdate = [
+                "id" => $idOrden,
+                "estado" => '4'
+            ];
+            $this->model->save($datosUpdate);
+            echo json_encode(array("respuesta"=> 1));
+        } else if ($_SESSION["personal"]["idCargo"] == "1") {
+            $datosUpdate = [
+                "id" => $idOrden,
+                "estado" => '1'
+            ];
+            $this->model->save($datosUpdate);
+            echo json_encode(array("respuesta"=> 1));
+        }
+    }
+
     public function prueba(){
         $idTipoOrden = "1";
         $tipoOrden = $this->db->table("tipoOrden")

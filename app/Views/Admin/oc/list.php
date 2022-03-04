@@ -240,12 +240,37 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
     for(let i=0; i<btnAprobarAll.length;i++){
         btnAprobarAll[i].onclick = function(){
             let id = this.getAttribute('elId');
-
-            document.getElementById('btnOkAprobar').setAttribute('href','admin/oc/aprobar/'+id);
+            $("#btnOkAprobar").attr("elId",id);
+            //document.getElementById('btnOkAprobar').setAttribute('href','admin/oc/aprobar/'+id);
             modalAprobar.show();
 
         }
     }
+
+    $("body").on("click","#btnOkAprobar",function(){
+        let elId = $(this).attr("elId");
+        $.ajax({
+            url:"admin/oc/ajaxAprobar",
+            data:{
+                id:elId
+            },
+            type:"post",
+            dataType:"json",
+            success : function(response){
+          
+                if(response.respuesta == "1"){
+                    modalAprobar.hide();
+                    
+                    alert("Aprobación exitosa");
+                    let inn = $(".btnAprobar[elId='"+elId+"']").parents("tr").eq(0).find(".bi-exclamation-circle-fill").eq(0);
+                    inn.addClass("bi-check-circle-fill").addClass("text-success").removeClass("bi-exclamation-circle-fill").removeClass("text-warning");
+                    $(".btnAprobar[elId='"+elId+"']").remove();
+                }else{
+                    alert("No se pudo aprobar la orden, Inténtelo nuevamente");
+                }
+            }
+        });
+    });
 
     btnOkEliminar.onclick = function(e){
         if(inputEliminar.value == "eliminar"){
