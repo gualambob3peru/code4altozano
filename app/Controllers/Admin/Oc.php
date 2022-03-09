@@ -88,6 +88,15 @@ class Oc extends BaseController
             return redirect()->to(site_url('admin/oc/index'));
         }
     }
+    public function ajaxCambiarEstado(){
+        $id = $_POST["id"];
+        $orden = $this->db->table("orden")
+        ->where("id",$id)
+        ->get()->getRowArray();
+
+        echo json_encode(array("respuesta" => $orden));
+    }
+
     public function ajaxAprobar(){
         $idOrden = $_POST["id"]; 
         if ($_SESSION["personal"]["idCargo"] == "3") {

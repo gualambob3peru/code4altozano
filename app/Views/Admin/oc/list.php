@@ -163,7 +163,7 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
                     }
                 ?>
  
-                <a target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Ver Detalles de la orden" elId="<?= $value->id ?>" href="admin/oc/ver/<?= $value->id ?>" class="text-white btn btn-info btn-sm"><i class="bi bi-eye"></i></a>
+                <a target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Ver Detalles de la orden" elId="<?= $value->id ?>" href="admin/oc/ver/<?= $value->id ?>" class="text-white btn btn-info btn-sm btnVisuali"><i class="bi bi-eye"></i></a>
 
                 <?php 
                     if(($value->idPersonal==$_SESSION["personal"]["id"] &&  $value->orden_estado == 2) || $_SESSION["personal"]["idCargo"] == "1" ||$_SESSION["personal"]["idCargo"] == "2"){
@@ -178,7 +178,7 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
         <?php endforeach; ?>
     </tbody>
 </table>
-
+<input type="hidden" name="" id="idElAprobado">
 <div class="modal" tabindex="-1" id="modalEliminar">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -227,6 +227,11 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
     let btnEliminarAll = document.getElementsByClassName('btnEliminar');
     let btnAprobarAll = document.getElementsByClassName('btnAprobar');
     
+    $("body").on("click",".btnVisuali",function(){
+        let id= $(this).attr("elId");
+        $("#idElAprobado").val(id);
+    });
+
     for(let i=0; i<btnEliminarAll.length;i++){
         btnEliminarAll[i].onclick = function(){
             let id = this.getAttribute('elId');
@@ -279,6 +284,27 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
             return false;
         }
     }
-   
+     setInterval(function(){
+        let id = $("#idElAprobado").val();
+
+        $.ajax({
+            url: "admin/oc/ajaxCambiarEstado",
+            data : {id:id},
+            dataType: "json",
+            type : "post",
+            success: function(response){
+                if(response.respuesta!= null){
+
+                    let orden = response.respuesta ;
+                
+                    if(orden.estado == "1"){
+                        let inn = $(".btnAprobar[elId='"+id+"']").parents("tr").eq(0).find(".bi-exclamation-circle-fill").eq(0);
+                        inn.addClass("bi-check-circle-fill").addClass("text-success").removeClass("bi-exclamation-circle-fill").removeClass("text-warning");
+                        $(".btnAprobar[elId='"+id+"']").remove();
+                    }
+                }
+            }
+        });
+     },1000);
    
 </script>
