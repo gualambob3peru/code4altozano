@@ -651,7 +651,7 @@
             <td><input type="text" name="monto[]" class="form-control t_monto"></td>
 
             <td>
-                <button class="btn btn-danger n_td_delete text-white"><i class="bi bi-trash"></i></button>
+                <button type="button" class="btn btn-danger n_td_delete text-white"><i class="bi bi-trash"></i></button>
             </td>
         </tr>
     </tbody>
@@ -682,7 +682,7 @@
             </td>
             <td>
 
-                <button class="btn btn-danger btn-sm l_td_delete"><i class="bi bi-trash"></i></button>
+                <button type="button" class="btn btn-danger btn-sm l_td_delete"><i class="bi bi-trash"></i></button>
             </td>
         </tr>
     </tbody>

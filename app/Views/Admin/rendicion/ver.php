@@ -7,7 +7,7 @@
 <div class="container">
 
     <div class="text-end">
-        <button id="descargar" class="btn btn-danger mb-4 text-white"><i class="bi bi-file-earmark-pdf"></i> PDF</button>
+        <button type="button" id="descargar" class="btn btn-danger mb-4 text-white"><i class="bi bi-file-earmark-pdf"></i> PDF</button>
     </div>
     <div id="htmlpdf">
         <img src="images/logo1.png" alt="">
