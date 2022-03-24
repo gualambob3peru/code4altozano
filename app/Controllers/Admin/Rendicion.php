@@ -197,7 +197,7 @@ class Rendicion extends BaseController
                         "idRendicion" => $miIdRendicion,
                         "nroDoc" =>$this->request->getVar('nro')[$key],
                         "idEmpresaProv" =>$this->request->getVar('proveedor')[$key],
-                        "detalle" =>$this->request->getVar('detalle')[$key],
+                        "detalle" =>trim($this->request->getVar('detalle')[$key]),
                         "idCentro" =>$this->request->getVar('variosCentros')[$key],
                         "idCuenta" =>$this->request->getVar('variosCuentas')[$key],
                         "monto" =>$this->request->getVar('monto')[$key]
