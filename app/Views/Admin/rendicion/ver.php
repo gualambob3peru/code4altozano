@@ -24,8 +24,14 @@
                 Área : <?= $o_rendicion["tipoOrden_descripcion"] ?>  
                 </div>
                 <div>
-                Tipo solicitud : <?= $o_rendicion["tsr_descripcion"] ?>
+                Tipo solicitud : <?= $o_rendicion["tsr_descripcion"] ?> 
                 </div>
+
+                <?php if($o_rendicion["o_codigo"] != ""):?>
+                    <div>
+                Orden: <?= $o_rendicion["o_codigo"] ?> 
+                </div>
+                <?php endif?>
             </div>
         
         
