@@ -50,7 +50,7 @@ class RendicionItemModel extends Model
             cc.id cc_id,cc.codigo cc_codigo,cc.descripcion cc_descripcion
             ")
             ->where("rendicion_item.idRendicion",$id)
-            ->join("empresa emp","emp.id = rendicion_item.idEmpresaProv")
+            ->join("empresa emp","emp.id = rendicion_item.idEmpresaProv","left")
             ->join("centro c","c.id = rendicion_item.idCentro","left")
             ->join("cuenta3 c3","c3.id = rendicion_item.idCuenta","left")
             ->join("cuenta2 c2","c2.id = c3.idCuenta","left")
