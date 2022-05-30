@@ -429,13 +429,13 @@
             <div class="col-md-6">
                 <div id="divVariosCentro">
                     <button type="button" class="btn btn-success ms-4 mb-2 text-white" id="agregarCentroVarios"><i class="bi bi-plus text-white "></i> Centro</button>
-                    <table class="table table-striped table-bordered ms-4">
+                    <table class="table table-striped table-bordered ms-4" style="font-size:15px">
                         <thead>
                             <tr>
                                 <th>Key</th>
                                 <th>Centro</th>
                                 <th>Nivel 3</th>
-                                <th style="width:68px">%</th>
+                                <th style="width:85px">%</th>
                                 <th></th>
                             </tr>
                         </thead>
